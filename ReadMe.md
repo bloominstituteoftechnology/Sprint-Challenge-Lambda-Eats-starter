@@ -6,6 +6,18 @@ The sprint challenge is your chance to independently work through material and b
 
 In this challenge you will be working from the `Lambda Eats` homepage to create a functional `Pizza?` button that leads to a build your own pizza custom form.
 
+## **Self-Study Questions**
+
+Demonstrate your understanding of this week's concepts by answering the following free-form questions.
+
+Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
+
+1. In 1-2 sentences, explain what React's `useRouteMatch` hook is used for.
+2. How would you explain form validation to someone who has never programmed before?
+3. In 1-2 sentences, define end to end testing. 
+
+You are expected to be able to answer all these questions. Your responses contribute to your Sprint Challenge grade. Skipping this section **will** prevent you from passing this challenge.
+
 ## Instructions
 
 ### Task 1: Set Up The Project With Git
@@ -25,15 +37,16 @@ Follow these steps to set up and work on your project:
 
 Your MVP should include, at a minimum, the following components.
 
-- [ ] A homepage with a `Pizza?` button that has a `"/"` route
-- [ ] A button that leads to a form to Build Your Own Pizza with a `"/pizza"` route
-- [ ] An Add to Order button that returns a database record of the order.
-- [ ] Dropdown form component for pizza size
-- [ ] Radio button form component for sauce - at least 2
-- [ ] Checklist form component for toppings - at least 4
+- [ ]A homepage that has a "/" route and links to your form (button, nav bar, or any other type of link is acceptable)
+- [ ] A form with a "/pizza" route
+- [ ] A name text input field
+- [ ] Validation for name - name must be at least 2 characters
+- [ ]Dropdown form component for pizza size
+- [ ]Checklist form component for toppings - at least 4 (hint: name each separately!)
 - [ ] Text input form component for special instructions
+- [ ] An Add to Order button that submits form and returns a database record of name, pizza size, sauce, and special instructions
 
-#### Testing
+#### Testing MVP
 
 Implement the following tests in Cypress:
 
@@ -51,11 +64,11 @@ You may use the following wireframe (also in a folder above) as guidance as you 
 If you complete the MVP, move on to the following stretch goals. As usual, these goals represent a mix of additional at-level work in addition to work that is beyond the scope of what you've learned, but attainable with your current knowledge (and google).
 
 - [ ] Toggle form component for gluten free crust
-- [ ] Turn your form into a modal that pops up on the home page.
+- [ ] Turn your form into a modal that pops up on the home page
 - [ ] Turn form element sections into nested routes
 - [ ] Create a `cart` page with additional form options like: delivery or pickup, the option to add utensils and straws, add a tip, etc.
 - [ ] Test more of the application with Cypress
-- [ ] Add functionality to your order button that it leads to a Congrats! Pizza is on it's way! page **and** returns a database record of the order.
+- [ ] Add functionality to your order button that it leads to a Congrats! Pizza is on it's way! page **and** returns a database record of the whole order
 
 **"Pizza is on its Way" Wireframe:**
 
