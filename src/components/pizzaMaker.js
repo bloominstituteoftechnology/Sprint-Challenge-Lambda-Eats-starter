@@ -123,7 +123,7 @@ const PizzaMaker = () => {
 
             <label htmlFor="size choice">
                 Choose Your Size
-        <select name="size"onChange={inputChange}>
+        <select name="size" data-cy="size" onChange={inputChange}>
                     <option value="select">Select</option>
                     <option value="8in">8in</option>
                     <option value="12in">12in</option>
@@ -133,7 +133,7 @@ const PizzaMaker = () => {
             </label><br />
             <label htmlFor="sauce choice">
                 Choose Your Sauce
-        <select name="sauce" onChange={inputChange}>
+        <select name="sauce" data-cy="sauce" onChange={inputChange}>
                     <option value="select">Select</option>
                     <option value="marinara">Marinara</option>
                     <option value="BBQ">BBQ</option>
