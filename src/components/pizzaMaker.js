@@ -4,11 +4,13 @@ import axios from 'axios';
 
 const formSchema = yup.object().shape({
     name: yup.string().min(2).required("please enter a Name longer than 2 characters."),
-    pepperoni: yup.boolean().notRequired(),
-    sausage: yup.boolean().notRequired(),
-    canadian: yup.boolean().notRequired(),
-    spicy: yup.boolean().notRequired(),
-    chicken: yup.boolean().notRequired(),
+    sauce: yup.string(),
+    size: yup.string(),
+    pepperoni: yup.boolean().oneOf([true, false]),
+    sausage: yup.boolean().oneOf([true, false]),
+    canadian: yup.boolean().oneOf([true, false]),
+    spicy: yup.boolean().oneOf([true, false]),
+    chicken: yup.boolean().oneOf([true, false]),
     instructions: yup.string().max(500),
 })
 
@@ -20,11 +22,11 @@ const PizzaMaker = () => {
         name: "",
         size: "",
         sauce: "",
-        pepperoni: "",
-        sausage: "",
-        canadian: "",
-        spicy: "",
-        chicken: "",
+        pepperoni: false,
+        sausage: false,
+        canadian: false,
+        spicy: false,
+        chicken: false,
         instructions: "",
 
     })
@@ -51,7 +53,7 @@ const PizzaMaker = () => {
 
     const onFormSubmit = event => {
         event.preventDefault();
-        axios.post("https://reqres.in", formValues)
+        axios.post("https://reqres.in/api/users", formValues)
             .then(res => {
                 setPost(res.data);
 
@@ -60,16 +62,17 @@ const PizzaMaker = () => {
                     name: "",
                     size: "",
                     sauce: "",
-                    pepperoni: "",
-                    sausage: "",
-                    canadian: "",
-                    spicy: "",
-                    chicken: "",
+                    pepperoni: false,
+                    sausage: false,
+                    canadian: false,
+                    spicy: false,
+                    chicken: false,
                     instructions: "",
 
                 })
-                    .catch(err => console.log("POST error:", err.res))
+                   
             })
+            .catch(err => console.log("POST error:", err.res))
     }
 
     const validateChange = event => {
@@ -104,10 +107,11 @@ const PizzaMaker = () => {
     }
 
     return (
-        <form onFormSubmit={onFormSubmit}>
+        <form onSubmit={onFormSubmit}>
             <label htmlFor="Name for Order">
                 Name for Order
             <input
+                    data-cy= "nameArea"
                     name="name"
                     type="text"
                     value={formValues.name}
@@ -119,7 +123,7 @@ const PizzaMaker = () => {
 
             <label htmlFor="size choice">
                 Choose Your Size
-        <select name="size">
+        <select name="size"onChange={inputChange}>
                     <option value="select">Select</option>
                     <option value="8in">8in</option>
                     <option value="12in">12in</option>
@@ -129,7 +133,7 @@ const PizzaMaker = () => {
             </label><br />
             <label htmlFor="sauce choice">
                 Choose Your Sauce
-        <select name="sauce">
+        <select name="sauce" onChange={inputChange}>
                     <option value="select">Select</option>
                     <option value="marinara">Marinara</option>
                     <option value="BBQ">BBQ</option>
@@ -141,6 +145,7 @@ const PizzaMaker = () => {
         </label><br />
             <label htmlFor="Pepperoni">
                 <input
+                    data-cy= "pepperoni"
                     name="pepperoni"
                     type="checkbox"
                     checked={formValues.pepperoni}
@@ -152,6 +157,7 @@ const PizzaMaker = () => {
         </label>
             <label htmlFor="Sausage">
                 <input
+                    data-cy="sausage"
                     name="sausage"
                     type="checkbox"
                     checked={formValues.sausage}
@@ -163,6 +169,7 @@ const PizzaMaker = () => {
 
             <label htmlFor="Canadian Bacon">
                 <input
+                    data-cy="canadian"
                     name="canadian"
                     type="checkbox"
                     checked={formValues.canadian}
@@ -174,6 +181,7 @@ const PizzaMaker = () => {
 
             <label htmlFor="Spicy Italian Sausage">
                 <input
+                    data-cy="spicy"
                     name="spicy"
                     type="checkbox"
                     checked={formValues.spicy}
@@ -185,6 +193,7 @@ const PizzaMaker = () => {
 
             <label htmlFor="Grilled Chiken">
                 <input
+                    data-cy="chicken"
                     name="chicken"
                     type="checkbox"
                     checked={formValues.chicken}
@@ -197,6 +206,7 @@ const PizzaMaker = () => {
             <label htmlFor="special instructions">
                 Special Instructions
             <input
+                    data-cy="instructions"
                     name="instructions"
                     type="text"
                     value={formValues.instructions}
@@ -205,7 +215,7 @@ const PizzaMaker = () => {
 
             </label><br />
             <pre>{JSON.stringify(post, null, 2)}</pre>
-            <button disabled={addDisabled}>Add to Order</button>
+            <button data-cy="addButton" disabled={addDisabled}>Add to Order</button>
 
         </form>
 
