@@ -3,12 +3,14 @@ import Pizza from '../../Assets/Pizza.jpg'
 
 import {Link} from 'react-router-dom'
 
+import './Homepage.styles.css'
+
 
 const Homepage = () => {
 
     return(
         <>
-            <h1>Homepage</h1>
+            <h2>Homepage</h2>
             <img 
                 className="PizzaImg"
                 src={Pizza}

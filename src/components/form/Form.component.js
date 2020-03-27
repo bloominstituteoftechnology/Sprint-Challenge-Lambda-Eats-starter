@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react"
 import axios from "axios"
 import * as yup from "yup"
 
+import "./Form.styles.css"
+
 
 
 const formSchema = yup.object().shape({
@@ -112,7 +114,7 @@ const Form = () => {
     }
 
     return (
-        <>
+        <div className="form">
         <form onSubmit={formSubmit}>
             <label htmlFor="name">
             <h3>Your Name:</h3>
@@ -131,7 +133,7 @@ const Form = () => {
                 name="size" 
                 onChange={inputChange}
             >
-                <option value="Small">Select Size</option>
+                <option value="Small">Select Size:</option>
                 <option value="Small">Small</option>
                 <option value="Medium">Medium</option>
                 <option value="Large">Large</option>
@@ -205,7 +207,7 @@ const Form = () => {
             <pre>{JSON.stringify(post, null, 2)}</pre>
             <button disabled={buttonDisabled}>Placed Order</button>
         </form>
-        </>
+        </div>
     )
 }
 

@@ -1,0 +1,18 @@
+.form{
+    text-align: center;
+    background-color: red;
+    width: 80%;
+    margin: 0 auto;
+    border: 10px solid brown;
+}
+
+p{
+    font-size: .5rem;
+}
+
+pre{
+    background-color: yellow;
+    text-align: justify;
+    display: flex;
+    justify-content: center;
+}

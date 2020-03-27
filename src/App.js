@@ -13,7 +13,7 @@ const App = () => {
     <>
     <nav>
       <h1>Lambda Eats</h1>
-      <div>
+      <div className="nav-links" >
         <Link to='/'>Home</Link>
         <Link to='/order' >Order</Link>
       </div>
