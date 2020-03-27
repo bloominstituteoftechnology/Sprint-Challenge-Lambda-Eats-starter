@@ -2,6 +2,8 @@ import axios from "axios";
 import React, {useState, useEffect} from "react";
 import * as yup from "yup";
 import "./Home.js";
+import {Link} from "react-router-dom";
+
 
 
 const formSchema = yup.object().shape({
@@ -12,10 +14,11 @@ const formSchema = yup.object().shape({
     chicken: yup.string(),
     bacon: yup.string(),
     pepperoni: yup.string(),
-    instructions: yup.string().required("what you need?"),
+    instructions: yup.string()
   });
 
   export default function Pizza() {
+    
       
     const [formState, setFormState] = useState({
       name: "",
