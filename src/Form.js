@@ -119,7 +119,7 @@ const formSchema = yup.object().shape({
                     {errors.name.length > 0 ? (<p className="error">{errors.name}</p> ): null}
                 </label>
 
-                <br/>
+                    <br/>
                 <label htmlFor="email">
                     Email
                     <input 
@@ -132,10 +132,10 @@ const formSchema = yup.object().shape({
                     {errors.email.length > 0 ? (<p className="error"> {errors.email}</p>) : null}
                 </label>
 
-                <br/>
+                    <br/>
                 <label htmlFor="size">
                     What size Pizza?
-                 <select 
+                    <select 
                     id="size" 
                     name="size" 
                     onChange={inputChange}>
@@ -143,9 +143,9 @@ const formSchema = yup.object().shape({
                     <option value="medium">medium</option>
                     <option value="large">large</option>
                     </select>
-                </label>
-        
-                <br/>  
+                  </label>
+
+                    <br/>  
                 <label htmlFor="checkbox">
                     Sausage
                     <input 
@@ -155,7 +155,10 @@ const formSchema = yup.object().shape({
                     name="sausage"
                     onChange={inputChange}
                     />
-                    <label htmlFor="checkbox">
+                </label>
+
+                    <br/>
+                <label htmlFor="checkbox">
                     Chicken
                     <input 
                     id="checkbox"
@@ -164,9 +167,10 @@ const formSchema = yup.object().shape({
                     name="chicken"
                     onChange={inputChange}
                     />
-                    </label>
-                    </label>
-                    <label htmlFor="checkbox">
+                </label>
+                
+                    <br/>
+                <label htmlFor="checkbox">
                     Bacon
                     <input 
                     id="checkbox"
@@ -175,9 +179,10 @@ const formSchema = yup.object().shape({
                     name="bacon"
                     onChange={inputChange}
                     />
-                    </label>
+                </label>
 
-                    <label htmlFor="checkbox">
+                    <br/>
+                <label htmlFor="checkbox">
                     Pepperoni
                     <input 
                     id="checkbox"
@@ -186,9 +191,10 @@ const formSchema = yup.object().shape({
                     name="pepperoni"
                     onChange={inputChange}
                     />
-                    </label>
+                </label>
+
                     <br/>
-                    <label htmlFor="instructions">
+                <label htmlFor="instructions">
                     Special Instructions
                     <input 
                     id="instructions"
@@ -199,7 +205,9 @@ const formSchema = yup.object().shape({
                     />
                     {errors.instructions.length > 0 ? (<p className="error">{errors.instructions}</p> ): null}
                 </label>
+
                 <pre>{JSON.stringify(post, null, 2)}</pre>  
+
                 <button disabled={submitDisable}>new world ORDER!!!</button>
             </form>
         </div>   

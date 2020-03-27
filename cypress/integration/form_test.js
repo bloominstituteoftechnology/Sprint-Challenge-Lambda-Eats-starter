@@ -13,7 +13,9 @@ describe("Testing our form inputs", function() {
         .select("small")  
         .should("have.value", "small");  
       cy.get('[type=checkbox]') 
-        .check(),
+        .check()
+        .should("be.checked")
       cy.get('button')   
         .click()
+        .should("be.exist")
     })});
