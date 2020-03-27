@@ -1,5 +1,4 @@
 import React from "react";
-import Home from "./components/home"
 import PizzaMaker from "./components/pizzaMaker"
 import { Route, Link } from "react-router-dom";
 const App = () => {
