@@ -2,9 +2,9 @@ import React from "react";
 
 import {Link, Route} from 'react-router-dom';
 
-import Homepage from './components/Homepage'
+import Homepage from './components/homepage/Homepage.component'
 
-import Form from './components/Form'
+import Form from './components/form/Form.component'
 
 
 
