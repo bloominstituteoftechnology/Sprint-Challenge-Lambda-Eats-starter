@@ -1,10 +1,18 @@
-import React from "react";
+import React from 'react';
+import { Route } from 'react-router-dom';
+
+import Homepage from './components.js/Homepage';
+import Pizza from "./components.js/Pizza"
 
 const App = () => {
   return (
     <>
-      <h1>Lambda Eats</h1>
-      <p>You can remove this code and create your own header</p>
+      <Route exact path="/">
+        <Homepage />
+      </Route>
+<Route path = "/pizza">
+  <Pizza/>
+</Route>
     </>
   );
 };
