@@ -7,13 +7,12 @@ import * as yup from "yup"
 const formSchema = yup.object().shape({
     name: yup.string().required("We need your name").min(2, "Has to be longer than 2 letters"),
     size: yup.string(),
-    topping: yup.boolean(true || false),
-    topping1: yup.boolean(true || false),
-    topping2: yup.boolean(true || false),
-    topping3: yup.boolean(true || false),
-    topping4: yup.boolean(true || false),
-    topping5: yup.boolean(true || false),
-    topping6: yup.boolean(true || false),
+    ExtraCheese: yup.boolean(true || false),
+    BlackOlive: yup.boolean(true || false),
+    Onion: yup.boolean(true || false),
+    Tomato: yup.boolean(true || false),
+    Garlic: yup.boolean(true || false),
+    GreenPepper: yup.boolean(true || false),
     specialInstruction: yup.string("")
 })
 
@@ -25,11 +24,11 @@ const Form = () => {
         size: "Small",
         // topping: "",
         // topping1: "",
-        // topping2: "",
-        // topping3: "",
-        // topping4: "",
-        // topping5: "",
-        // topping6: "",
+        // "BlackOlive": "",
+        // Onion: "",
+        // Tomato: "",
+        // Garlic: "",
+        // GreenPepper: "",
         specialInstruction:""
       
     });
@@ -39,11 +38,11 @@ const Form = () => {
         size: "",
         // topping: "",
         // topping1: "",
-        // topping2: "",
-        // topping3: "",
-        // topping4: "",
-        // topping5: "",
-        // topping6: "",
+        // "BlackOlive": "",
+        // Onion: "",
+        // Tomato: "",
+        // Garlic: "",
+        // GreenPepper: "",
         specialInstruction:""
         
     });
@@ -63,6 +62,7 @@ const Form = () => {
         axios
             .post("https://reqres.in/api/users", formState)
             .then(res => {
+                console.log(res)
                 setPost([post, res.data]);
 
             setFormState({
@@ -70,11 +70,11 @@ const Form = () => {
                 size: "Small",
                 // topping: "",
                 // topping1: "",
-                // topping2: "",
-                // topping3: "",
-                // topping4: "",
-                // topping5: "",
-                // topping6: "",
+                // "BlackOlive": "",
+                // Onion: "",
+                // Tomato: "",
+                // Garlic: "",
+                // GreenPepper: "",
                 specialInstruction:""
                 
             });
@@ -115,7 +115,7 @@ const Form = () => {
         <>
         <form onSubmit={formSubmit}>
             <label htmlFor="name">
-            Your Name
+            <h3>Your Name:</h3>
             <input
                 type="text"
                 name="name"
@@ -124,7 +124,8 @@ const Form = () => {
             />
             </label>
             <label htmlFor="size">
-            Size? (Small sized if not selected)
+            <h3>Size?</h3>
+             <p>(Small sized if not selected)</p>
             <select 
                 id="size" 
                 name="size" 
@@ -139,56 +140,56 @@ const Form = () => {
             </select>
             </label>
             <h3>Toppings:</h3>
-            <label htmlFor="topping">topping
+            <label htmlFor="ExtraCheese">Extra Cheese
                 <input 
                     type="checkbox"
-                    name="topping"
+                    name="ExtraCheese"
                     checked={formState.topping}
                     onChange={inputChange}
                 />
             </label>
             <br />
-            <label htmlFor="topping">topping
+            <label htmlFor="BlackOlive">Black Olive
                 <input 
                     type="checkbox"
-                    name="topping2"
-                    checked={formState.topping2}
+                    name="BlackOlive"
+                    checked={formState.BlackOlive}
                     onChange={inputChange}
                 />
             </label>
             <br />
-            <label htmlFor="topping">topping
+            <label htmlFor="Onion">Onion
                 <input 
                     type="checkbox"
-                    name="topping3"
-                    checked={formState.topping3}
+                    name="Onion"
+                    checked={formState.Onion}
                     onChange={inputChange}
                 />
             </label>
             <br />
-            <label htmlFor="topping">topping
+            <label htmlFor="Tomato">Tomato
                 <input 
                     type="checkbox"
-                    name="topping4"
-                    checked={formState.topping4}
+                    name="Tomato"
+                    checked={formState.Tomato}
                     onChange={inputChange}
                 />
             </label>
             <br />
-            <label htmlFor="topping">topping
+            <label htmlFor="Garlic">Garlic
                 <input 
                     type="checkbox"
-                    name="topping5"
-                    checked={formState.topping5}
+                    name="Garlic"
+                    checked={formState.Garlic}
                     onChange={inputChange}
                 />
             </label>
             <br />
-            <label htmlFor="topping">topping
+            <label htmlFor="GreenPepper">Green Pepper
                 <input 
                     type="checkbox"
-                    name="topping6"
-                    checked={formState.topping6}
+                    name="GreenPepper"
+                    checked={formState.GreenPepper}
                     onChange={inputChange}
                 />
             </label>
