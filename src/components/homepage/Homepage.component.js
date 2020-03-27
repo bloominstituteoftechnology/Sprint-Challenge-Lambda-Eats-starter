@@ -10,7 +10,7 @@ const Homepage = () => {
 
     return(
         <>
-            <h2>Homepage</h2>
+            <h2>Don't Hold Your Craving</h2>
             <img 
                 className="PizzaImg"
                 src={Pizza}

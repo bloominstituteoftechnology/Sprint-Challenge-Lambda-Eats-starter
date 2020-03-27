@@ -6,6 +6,7 @@ describe("Testing form", () => {
     it("Add text to inputs and submit form", () => {
       cy.get('nav > div > [href="/order"]')
         .click()
+        .pause()
       cy.get('input[name="name"]')
         .type("Joo Woon")
         .should("have.value", "Joo Woon");
@@ -26,7 +27,8 @@ describe("Testing form", () => {
         .should('be.checked');
         cy.get('textarea')
         .type("Stay Safe!")
-        // .should("have.value", "Stay Safe");
       cy.get('button').click();
+  
+  
     })
   });
