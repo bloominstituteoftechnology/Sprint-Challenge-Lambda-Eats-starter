@@ -1,10 +1,15 @@
 import React from "react";
 import Home from "./components/home"
-import { Route } from "react-router-dom";
+import PizzaMaker from "./components/pizzaMaker"
+import { Route, Link } from "react-router-dom";
 const App = () => {
   return (
     <>
-      <Route exact path="/" componant={Home} />
+      <h1>Lambda Eats</h1>
+      <div><Link to={'/'}>Home</Link></div>
+      <div> <Link to={'/pizza'}>Pizza?</Link></div>
+      <Route exact path="/" componant={App} />
+      <Route exact path="/pizza" component={PizzaMaker} />
     </>
   );
 };

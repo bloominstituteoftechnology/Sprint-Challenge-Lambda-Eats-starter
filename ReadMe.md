@@ -24,26 +24,26 @@ You are expected to be able to answer all these questions. Your responses contri
 
 Follow these steps to set up and work on your project:
 
-- [ ] Create a forked copy of this project.
-- [ ] Add your project manager as collaborator on Github.
-- [ ] Clone your OWN version of the repository (Not Lambda's by mistake!).
-- [ ] CD into the project base directory `cd lambda-eats`
-- [ ] Download project dependencies by running `npm install`
-- [ ] Start up the app using `npm start`
-- [ ] Create a new branch: git checkout -b `<firstName-lastName>`. Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly.
-- [ ] Push commits: git push origin `<firstName-lastName>`.
+- [Y] Create a forked copy of this project.
+- [Y] Add your project manager as collaborator on Github.
+- [Y] Clone your OWN version of the repository (Not Lambda's by mistake!).
+- [Y] CD into the project base directory `cd lambda-eats`
+- [Y] Download project dependencies by running `npm install`
+- [Y] Start up the app using `npm start`
+- [Y] Create a new branch: git checkout -b `<firstName-lastName>`. Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly.
+- [Y] Push commits: git push origin `<firstName-lastName>`.
 
 ### Task 2: Minimum Viable Product
 
 Your MVP should include, at a minimum, the following components.
 
-- [ ]A homepage that has a "/" route and links to your form (button, nav bar, or any other type of link is acceptable)
-- [ ] A form with a "/pizza" route
-- [ ] A name text input field
-- [ ] Validation for name - name must be at least 2 characters
-- [ ]Dropdown form component for pizza size
-- [ ]Checklist form component for toppings - at least 4 (hint: name each separately!)
-- [ ] Text input form component for special instructions
+- [Y]A homepage that has a "/" route and links to your form (button, nav bar, or any other type of link is acceptable)
+- [Y] A form with a "/pizza" route
+- [Y] A name text input field
+- [] Validation for name - name must be at least 2 characters
+- [Y]Dropdown form component for pizza size
+- [Y]Checklist form component for toppings - at least 4 (hint: name each separately!)
+- [Y] Text input form component for special instructions
 - [ ] An Add to Order button that submits form and returns a database record of name, pizza size, sauce, and special instructions
 
 #### Testing MVP
