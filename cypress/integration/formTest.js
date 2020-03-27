@@ -1,6 +1,6 @@
 describe("Testing the Pizza form", function() {
   beforeEach(function() {
-    cy.visit("http://localhost:3000/");
+    cy.visit("http://localhost:3000/component/pizza_form");
   });
     it("Add test to inputs and submit form", function() {
       cy
@@ -12,7 +12,7 @@ describe("Testing the Pizza form", function() {
       .type("some text")
       .should("have.value", "some text")
       cy
-      .get('select[name="size"]')
+      .get('select[name="sizes"]')
       .select('small')
       .should("have.value", "small")
       cy
@@ -30,9 +30,9 @@ describe("Testing the Pizza form", function() {
       .type("Timmy")
       .should("have.value", "Timmy")
       cy
-      .get('select[name="size"]')
-      .select('Sm')
-      .should("have.value", "Sm")
+      .get('select[name="sizes"]')
+      .select('small')
+      .should("have.value", "small")
       cy
       .get('button[name="submit"]')
       .click()

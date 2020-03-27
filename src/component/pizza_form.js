@@ -4,7 +4,7 @@ import * as yup from 'yup';
 
 const formSchema = yup.object().shape({
   name: yup.string().required("Name is a required field."),
-  size: yup.string().required("Must Select a Size"),
+  sizes: yup.string().required("Must Select a Size"),
   pepperoni_topping: yup.boolean().defined(),
   olive_topping: yup.boolean().defined(),
   pineapple_topping: yup.boolean().defined(),
@@ -173,7 +173,7 @@ return (
         />
 
 
-        <button type = 'submit'>Submit</button>
+        <button name= "submit" type = 'submit'>Submit</button>
         <pre>{JSON.stringify(post, null, 2)}</pre>
 
   </form>
