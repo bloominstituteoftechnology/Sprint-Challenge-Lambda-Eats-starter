@@ -13,8 +13,16 @@ Demonstrate your understanding of this week's concepts by answering the followin
 Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
 1. In 1-2 sentences, explain what React's `useRouteMatch` hook is used for.
+
+The useRouteMatch accesses the match data without rendering a route, but it still works to match the current URL in the same way a route would.
+
 2. How would you explain form validation to someone who has never programmed before?
-3. In 1-2 sentences, define end to end testing. 
+
+Form validation checks that all the mandatory fields have been addressed in the intended and logical way before a form can be submitted.
+
+3. In 1-2 sentences, define end to end testing.
+
+This tests the software from start to end.  looking for  potential problems with the data entry and execution of a software platform.
 
 You are expected to be able to answer all these questions. Your responses contribute to your Sprint Challenge grade. Skipping this section **will** prevent you from passing this challenge.
 
@@ -24,14 +32,14 @@ You are expected to be able to answer all these questions. Your responses contri
 
 Follow these steps to set up and work on your project:
 
-- [ ] Create a forked copy of this project.
-- [ ] Add your project manager as collaborator on Github.
-- [ ] Clone your OWN version of the repository (Not Lambda's by mistake!).
-- [ ] CD into the project base directory `cd lambda-eats`
-- [ ] Download project dependencies by running `npm install`
-- [ ] Start up the app using `npm start`
-- [ ] Create a new branch: git checkout -b `<firstName-lastName>`. Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly.
-- [ ] Push commits: git push origin `<firstName-lastName>`.
+- [X] Create a forked copy of this project.
+- [X] Add your project manager as collaborator on Github.
+- [X] Clone your OWN version of the repository (Not Lambda's by mistake!).
+- [X] CD into the project base directory `cd lambda-eats`
+- [X] Download project dependencies by running `npm install`
+- [X] Start up the app using `npm start`
+- [X] Create a new branch: git checkout -b `<firstName-lastName>`. Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly.
+- [X] Push commits: git push origin `<firstName-lastName>`.
 
 ### Task 2: Minimum Viable Product
 
