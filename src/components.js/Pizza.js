@@ -20,10 +20,10 @@ const Pizza = () => {
   const [formValues, setFormValues] = useState({
     name: '',
     pizza_size: '',
-    veggies: false,
-    Bacon: false,
-    Pineapple: false,
-    BBQ: false,
+    veggies: "",
+    Bacon: "",
+    Pineapple: "",
+    BBQ: "",
     special_instructions: ''
   });
   // state for errors
@@ -80,10 +80,10 @@ const Pizza = () => {
         setFormValues({
           name: '',
           pizza_size: '',
-          veggies: false,
-          Bacon: false,
-          Pineapple: false,
-          BBQ: false,
+          veggies: '',
+          Bacon: '',
+          Pineapple: '',
+          BBQ: '',
           special_instructions: '',
         });
       })
@@ -159,7 +159,7 @@ const Pizza = () => {
         </label>
         <br />
         <pre>{JSON.stringify(post, null, 2)}</pre>
-        <button disabled={disableButton}>Add to order</button>
+        <button disabled={disableButton}>Submit Order</button>
       </form>
     </div>
   );
