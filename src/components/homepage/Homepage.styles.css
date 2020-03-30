@@ -1,0 +1,38 @@
+h2{
+    margin: 0 auto;
+    text-align: center;
+    font-size: 4rem;
+    position: absolute;
+    width: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+a.OrderButton {
+    text-align: center;
+    font-size: 2.5rem;
+    position: absolute;
+    top: 70%;
+    width: 40%;
+    left: 50%;
+    text-decoration: none;
+    transform: translate(-50%, -50%);
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 0 auto;
+    border: none;
+    border-radius: 10px;
+    padding:16px;
+    vertical-align: middle;
+    text-align: center;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: red;
+    font-weight: 500;
+    line-height: 36px;
+    height: 100px;
+}
+img {
+    background-position: fixed;
+}
