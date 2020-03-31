@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
 import axios from 'axios';
-
+import pizza_boxes from "./pizza_boxes.jpg"
 import './Pizza.css';
+import styled from "styled-components";
 
 const formSchema = yup.object().shape({
   name: yup.string().min(2, 'come on, your name is longer than that!'),
@@ -14,7 +15,15 @@ const formSchema = yup.object().shape({
   // Bacon: yup.boolean().oneOf([true], 'I know you want the Bacon'),
   // special_instructions: yup.string().required('I am a robot, i need to know where to leave the pizza'),
 });
-
+// styles
+let Background = styled.div `
+{
+  background: url(${pizza_boxes}) no-repeat center center fixed; 
+  background-size: cover;    
+  height:100vh;
+  overflow-y:hidden;
+}
+`
 const Pizza = () => {
   //set state for form inputs
   const [formValues, setFormValues] = useState({
@@ -91,7 +100,7 @@ const Pizza = () => {
   }
 
   return (
-    <div>
+    <Background>
       <Link to="/">Home</Link>
 
       <form onSubmit={submitForm}>
@@ -161,7 +170,7 @@ const Pizza = () => {
         <pre>{JSON.stringify(post, null, 2)}</pre>
         <button disabled={disableButton}>Submit Order</button>
       </form>
-    </div>
+    </Background>
   );
 };
 
