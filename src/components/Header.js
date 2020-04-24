@@ -6,9 +6,10 @@ const Header = styled.header`
   position: fixed;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: #DCDCDC;
   top: 0;
-  padding: 0.5rem 1rem;
+  padding: 1rem 1.5rem;
 `;
 
 export default Header;
