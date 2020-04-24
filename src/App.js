@@ -2,8 +2,8 @@
 import React from "react";
 import './App.css';
 import { Route } from "react-router-dom";
-import Home from "./Components/Home.js";
-import Form from "./Components/Form.js";
+import Home from "./components/Home.js";
+import Form from "./components/Form.js"
 
 const App = () => {
   return (
@@ -16,3 +16,4 @@ const App = () => {
   );
 };
 export default App;
+//dividing line
