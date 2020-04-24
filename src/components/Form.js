@@ -64,6 +64,12 @@ const FormComponent = (props) => {
         <FormGroup check>
           <Label check>
             <Input type="checkbox" />{' '}
+            Sausage
+          </Label>
+        </FormGroup>
+        <FormGroup check>
+          <Label check>
+            <Input type="checkbox" />{' '}
             Extra Cheese
           </Label>
         </FormGroup>
