@@ -14,6 +14,7 @@ Edit this document to include your answers after each question. Make sure to lea
 
 1. In 1-2 sentences, explain what React's `useRouteMatch` hook is used for.
 
+It provides access to the match object.
 
 2. How would you explain form validation to someone who has never programmed before?
 

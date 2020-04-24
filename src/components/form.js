@@ -6,7 +6,6 @@ function Form(props){
     onInputChange,
     onCheckboxChange,
     onSubmit,
-    disabled,
     errors,
   } = props
 
@@ -16,13 +15,21 @@ function Form(props){
       <h1>Build Your Own Pizza</h1>
         <div className='errors'>
         </div>
-
+        <div className='title settings'>
+          <label><h2>Name:</h2>
+          <input
+            value={values.name}
+            onChange={onInputChange}
+            name='name'
+            type='text'
+            /></label>
+            </div>
         <div className='choice settings'>
         <label><h2>Choice of Size:</h2>
           <select
             value={values.size}
             onChange={onInputChange}
-            name='choice'
+            name='size'
           >
             <option defaultValue=''>Please Choose</option>
             <option value='small'>Small</option>
@@ -82,6 +89,7 @@ function Form(props){
                   onChange={onCheckboxChange}
                   name='beef'
                   type='checkbox'/> Beef</label>
+
                     </div>
 
                 <div className='special settings'>
@@ -94,7 +102,7 @@ function Form(props){
                     /></label>
 
                   <div className='order'>
-                    <button onClick={onSubmit} disable={disabled}>submit</button>
+                    <button onClick={onSubmit} >submit</button>
 
                   </div>
 

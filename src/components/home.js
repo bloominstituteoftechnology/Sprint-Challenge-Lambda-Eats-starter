@@ -1,10 +1,16 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-function Home(){
-  return(
-    <h1>Home</h1>
-  )
+const Home = () => {
 
-}
+	return (
+		<div className='top-content'>
+			<p>Please click the Pizza button to order!</p>
+			<Link to='/pizza'>
+				<button className='pizza-order'>Pizza Order</button>
+			</Link>
 
-export default Home
+		</div>
+	);
+};
+export default Home;

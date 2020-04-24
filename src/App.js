@@ -5,105 +5,62 @@ import './App.css';
 
 import axios from 'axios'
 import * as yup from 'yup'
+
 import Form from './components/form'
-import User from './components/Users';
+
 import Home from './components/home'
 
-const url = 'https://reqres.in/api/users'
+const url = 'https://reqres.in/api/pizza';
 
 const initialFormValues = {
-  size: '',
-  sauce: {
-    ranch: false,
-    marinara: false,
-    cheese: false,
-  },
-  toppings: {
-    pepperoni: false,
-    sausage: false,
-    jalapenos: false,
-    bacon: false,
-    beef: false,
+      name: '',
+      size: '',
+      sauce: {
+              ranch: false,
+              marinara: false,
+              cheese: false,
+            },
+      toppings: {
+              pepperoni: false,
+              sausage: false,
+              jalapenos: false,
+              bacon: false,
+              beef: false
   },
   special: '',
 
 }
 
 const initialFormErrors = {
-  size: '',
-  sauce: '',
-  toppings: '',
-  special: '',
+  name: '',
+  size: ''
+
 }
 
 const formSchema = yup.object().shape({
-
-choice: yup
+name: yup
   .string()
-  .matches(/(Small|Large)/)
+  .required('this is required'),
+size: yup
+  .string()
   .required('this is required'),
 
+special: yup
+  .string()
 
-  sauce: yup
-      .string()
-      .matches(/(ranch|marinara|cheese)/, 'either single or married')
-      .required('civil status is required'),
-      toppings: yup
-          .string()
-          .matches(/(pepperoni|sausage|jalapenos|bacon|beef)/, 'either single or married')
-          .required('civil status is required'),
-          special: yup
-            .string()
-            .min(3, 'username must have at least 3 characters!')
-            .required('username is required!'),
+
 
 
 })
 
 export default function App() {
-  const [users, setUsers] = useState([])
+  const [newOrder, setNewOrder] = useState([])
   const [formValues, setFormValues] = useState(initialFormValues)
-
-  const [formDisabled, setFormDisabled] = useState(true)
-  const [formErrors, setFormErrors] = useState(initialFormErrors)
+  const [formErrors, setFormErrors] = useState(initialFormErrors);
 
 
-  const postUsers = user => {
-
-    axios.post(url, user)
-    .then(res => {
-      setUsers([...users, res.data])
-
-    })
-    .catch(error => {
-
-    })
-  }
-
-  useEffect(() => {
-
-    formSchema.isValid(formValues)
-    .then(valid => {
-      setFormDisabled(!valid)
-    })
-  }, [formValues])
 
 
-  const onSubmit = evt => {
-    evt.preventDefault()
-
-
-  const newUsers = {
-    size: formValues.size,
-    sauce: formValues.sauce,
-    toppings: formValues.toppings,
-    terms: formValues.terms,
-  }
-
-  postUsers(newUsers)
-  setFormValues(initialFormValues)
-
-}
 
 const onInputChange = evt => {
   const name = evt.target.name
@@ -131,46 +88,77 @@ const onInputChange = evt => {
 }
 
 const onCheckboxChange = evt => {
-  const { name } = evt.target
-  const isChecked = evt.target.checked
 
   setFormValues({
     ...formValues,
+
     sauce: {
       ...formValues.sauce,
-      [name]: isChecked,
+      [evt.target.name]: evt.target.checked
     },
     toppings: {
-      ...formValues.sauce,
-      [name]: isChecked,
+      ...formValues.toppings,
+      [evt.target.name]: evt.target.checked
     }
   })
 }
 
+const postOrder = order => {
+  axios.post(url, order)
+    .then(res => {
+      setNewOrder([res.data, ...newOrder])
+      console.log(res.data);
+    })
+    .catch(err => {
+      console.log('error');
+    })
+}
+
+const onSubmit = evt => {
+  evt.preventDefault();
+
+  const newOrder = {
+    name: formValues.name,
+    size: formValues.size,
+    sauce: Object.keys(formValues.sauce)
+      .filter(sauce => formValues.sauce[sauce] === true),
+    toppings: Object.keys(formValues.toppings)
+      .filter(topping => formValues.toppings[topping] === true),
+    special: formValues.special
+  }
+
+  postOrder(newOrder);
+  setFormValues(initialFormValues);
+}
 
  return (
-    <div className="App">
+    <div className='landing'>
+
+    <header>
+				<h1 className='headerTitle'></h1>
+				<Route path='/pizza'>
+					<Link to='/'>Home</Link>
+				</Route>
+			</header>
+			<Switch>
+				<Route exact path='/' component={Home}/>
+
+				<Route path='/pizza'>
+					<Form
+          values={formValues}
+          onInputChange={onInputChange}
+          onCheckboxChange={onCheckboxChange}
+          onSubmit={onSubmit}
+          errors={formErrors}/>
+				</Route>
+
+			</Switch>
 
 
 
 
-          <Form
-            values={formValues}
-            onInputChange={onInputChange}
-            onCheckboxChange={onCheckboxChange}
-            onSubmit={onSubmit}
-            disabled={formDisabled}
-            errors={formErrors}
-          />
 
 
-          {
-            users.map(user => {
-              return (
-                <User key={user.id} details={user} />
-              )
-            })
-          }
 
 
 
