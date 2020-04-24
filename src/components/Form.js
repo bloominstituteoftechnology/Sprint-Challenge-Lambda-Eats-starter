@@ -1,8 +1,8 @@
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormText, Alert } from 'reactstrap';
 
 const FormComponent = (props) => {
-  const { changeHandler, submitHandler } = props;
+  const { changeHandler, submitHandler, errors } = props;
 
   return (
     <div>
@@ -10,6 +10,7 @@ const FormComponent = (props) => {
       <Form>
         <FormGroup>
           <Label for="name">Name for order</Label>
+          <Alert style={{ display: `${errors.name ? "block" : "none"}`}} color="danger">{errors.name}</Alert>
           <Input 
             onChange={changeHandler}
             type="text" 
