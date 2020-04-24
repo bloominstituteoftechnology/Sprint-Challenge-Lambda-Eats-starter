@@ -2,6 +2,13 @@
   text-align: center;
 }
 
+.header{
+  font-size: 40px;
+  color: red;
+  display: flex;
+  justify-content: center;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +42,25 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.form-class{
+  border: 5px solid black;
+  padding: 5%;
+  background:lightgrey;
+}
+
+
+
+
+
+.settings{
+  border: 1px solid black;
+  padding: 5%;
+  background: white;
+
+}
+
+.order{
+  padding: 5%;
 }
