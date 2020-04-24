@@ -16,16 +16,6 @@ const FormComponent = (props) => {
             <option>XL</option>
           </Input>
         </FormGroup>
-        {/* <FormGroup>
-          <Label for="exampleText">Text Area</Label>
-          <Input type="textarea" name="text" id="exampleText" />
-        </FormGroup>
-        <FormGroup>
-          <FormText color="muted">
-            This is some placeholder block-level help text for the above input.
-            It's a bit lighter and easily wraps to a new line.
-          </FormText>
-        </FormGroup> */}
         <FormGroup tag="fieldset">
           <legend>Choice of Sauce</legend>
           <FormGroup check>
@@ -79,6 +69,15 @@ const FormComponent = (props) => {
             Veggies
           </Label>
         </FormGroup>
+        </FormGroup>
+        <FormGroup>
+          <Label for="specialInstructions">Special Instructions</Label>
+          <Input type="textarea" name="instructions" id="specialInstructions" />
+        </FormGroup>
+        <FormGroup>
+          <FormText color="muted">
+            Anything else?
+          </FormText>
         </FormGroup>
         <Button>Submit</Button>
       </Form>
