@@ -2,12 +2,22 @@ import React from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 const FormComponent = (props) => {
-  const { changeHandler } = props;
+  const { changeHandler, submitHandler } = props;
 
   return (
     <div>
       <h1>Build your own Pizza</h1>
       <Form>
+        <FormGroup>
+          <Label for="name">Name for order</Label>
+          <Input 
+            onChange={changeHandler}
+            type="text" 
+            name="name" 
+            id="name"
+          >
+          </Input>
+        </FormGroup>
         <FormGroup>
           <Label for="size">Choice of Size</Label>
           <Input 
@@ -131,7 +141,7 @@ const FormComponent = (props) => {
             Anything else?
           </FormText>
         </FormGroup>
-        <Button>Submit</Button>
+        <Button onClick={submitHandler}>Add to Order</Button>
       </Form>
     </div>
   );

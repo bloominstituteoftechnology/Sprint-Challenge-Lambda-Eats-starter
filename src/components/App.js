@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Route, Switch, Link } from 'react-router-dom';
+import Axios from 'axios';
 
 
 // Components
@@ -22,6 +23,7 @@ const App = () => {
   }
 
   const [formValues, setFormValues] = useState(initialFormValues);
+  const [orders, setOrders] = useState([])
 
   const onInputChange = evt => {
     const name = evt.target.name;
@@ -48,6 +50,18 @@ const App = () => {
     })
   }
 
+  const submitHandler = evt => {
+    evt.preventDefault();
+
+    return Axios.post('https://reqres.in/api/users', formValues)
+      .then(res => {
+        return setOrders([
+          ...orders,
+          res.data
+        ])
+      });
+  }
+
   return (
     <>
       <Header>
@@ -58,8 +72,11 @@ const App = () => {
       <Switch>
         <Route path="/pizza">
           <FormContainer>
-          <Form changeHandler={onInputChange}/>
+          <Form changeHandler={onInputChange} submitHandler={submitHandler}/>
           </FormContainer>
+          {orders.map(order => {
+          return <pre style={{ fontSize: "1.6rem", margin: "1rem auto", padding: "0.5rem", width: "75vw"}} key={order.id}>{JSON.stringify(order)}</pre>
+        })}
         </Route>
         <Route path="/">
           <Hero>
