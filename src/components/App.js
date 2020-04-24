@@ -1,10 +1,13 @@
 import React from "react";
+import { Route, Switch, Link } from 'react-router-dom';
+
 
 // Components
 import Header from './Header';
 import Hero from './Hero';
 import CTA from './CTA';
-import { Route, Switch, Link } from 'react-router-dom';
+import Form from './Form';
+import FormContainer from "./FormContainer";
 
 const App = () => {
   return (
@@ -15,7 +18,11 @@ const App = () => {
       </Header>
 
       <Switch>
-        <Route path="/pizza"></Route>
+        <Route path="/pizza">
+          <FormContainer>
+          <Form />
+          </FormContainer>
+        </Route>
         <Route path="/">
           <Hero>
             <CTA />
