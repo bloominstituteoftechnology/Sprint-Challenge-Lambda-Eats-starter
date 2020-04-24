@@ -2,13 +2,20 @@ import React from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 const FormComponent = (props) => {
+  const { changeHandler } = props;
+
   return (
     <div>
       <h1>Build your own Pizza</h1>
       <Form>
         <FormGroup>
           <Label for="size">Choice of Size</Label>
-          <Input type="select" name="size" id="size">
+          <Input 
+            onChange={changeHandler}
+            type="select" 
+            name="size" 
+            id="size"
+          >
             <option defaultValue>Please Choose a size</option>
             <option>Sm</option>
             <option>M</option>
@@ -20,19 +27,34 @@ const FormComponent = (props) => {
           <legend>Choice of Sauce</legend>
           <FormGroup check>
             <Label check>
-              <Input type="radio" name="radio1" />{' '}
+              <Input
+              onChange={changeHandler}
+                type="radio" 
+                name="sauce" 
+                value="Original Red"
+              />{' '}
               Original Red
             </Label>
           </FormGroup>
           <FormGroup check>
             <Label check>
-              <Input type="radio" name="radio1" />{' '}
+              <Input
+                onChange={changeHandler}
+                type="radio" 
+                name="sauce" 
+                value="Garlic Ranch"
+              />{' '}
               Garlic Ranch
             </Label>
           </FormGroup>
           <FormGroup check>
           <Label check>
-            <Input type="radio" name="radio1" />{' '}
+            <Input 
+              onChange={changeHandler}
+              type="radio" 
+              name="sauce" 
+              value="BBQ Sauce"
+            />{' '}
               BBQ Sauce
           </Label>
           </FormGroup>
@@ -41,38 +63,68 @@ const FormComponent = (props) => {
           <legend>Choice of toppings</legend>
           <FormGroup check>
           <Label check>
-            <Input type="checkbox" />{' '}
+            <Input
+              onChange={changeHandler}
+              name="pepperonni"
+              value="pepperonni"
+              type="checkbox" 
+            />{' '}
             Pepperonni
           </Label>
         </FormGroup>
         <FormGroup check>
           <Label check>
-            <Input type="checkbox" />{' '}
+          <Input
+              onChange={changeHandler}
+              name="olives"
+              value="olives"
+              type="checkbox" 
+            />{' '}
             Olives
           </Label>
         </FormGroup>
         <FormGroup check>
           <Label check>
-            <Input type="checkbox" />{' '}
+          <Input
+              onChange={changeHandler}
+              name="sausage"
+              value="sausage"
+              type="checkbox" 
+            />{' '}
             Sausage
           </Label>
         </FormGroup>
         <FormGroup check>
           <Label check>
-            <Input type="checkbox" />{' '}
+          <Input
+              onChange={changeHandler}
+              name="extraCheese"
+              value="extra cheese"
+              type="checkbox" 
+            />{' '}
             Extra Cheese
           </Label>
         </FormGroup>
         <FormGroup check>
           <Label check>
-            <Input type="checkbox" />{' '}
+          <Input
+              onChange={changeHandler}
+              name="veggies"
+              value="veggies"
+              type="checkbox" 
+            />{' '}
             Veggies
           </Label>
         </FormGroup>
         </FormGroup>
         <FormGroup>
           <Label for="specialInstructions">Special Instructions</Label>
-          <Input type="textarea" name="instructions" id="specialInstructions" />
+          <Input 
+            onChange={changeHandler}
+            type="textarea" 
+            name="instructions" 
+            id="specialInstructions" 
+          />
         </FormGroup>
         <FormGroup>
           <FormText color="muted">
