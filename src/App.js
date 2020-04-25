@@ -7,7 +7,7 @@ import axios from 'axios'
 import * as yup from 'yup'
 
 import Form from './components/form'
-
+import Orders from './components/orders'
 import Home from './components/home'
 
 const url = 'https://reqres.in/api/pizza';
@@ -153,6 +153,14 @@ const onSubmit = evt => {
 				</Route>
 
 			</Switch>
+
+      {
+        newOrder.map(order =>{
+          return(
+            <Orders key={order.name} info={order} />
+          )
+        })
+      }
 
 
 
