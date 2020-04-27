@@ -40,6 +40,7 @@ const initialFormErrors = {
 const formSchema = yup.object().shape({
 name: yup
   .string()
+  .min(3, 'username must have at least 3 characters!')
   .required('this is required'),
 size: yup
   .string()

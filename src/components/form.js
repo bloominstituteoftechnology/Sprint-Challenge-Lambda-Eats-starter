@@ -14,6 +14,7 @@ function Form(props){
     <form className='form-class'>
       <h1>Build Your Own Pizza</h1>
         <div className='errors'>
+        {errors.name}
         </div>
         <div className='title settings'>
           <label><h2>Name:</h2>
