@@ -2,6 +2,30 @@
   text-align: center;
 }
 
+
+
+.headerTitle{
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+.top-content{
+  color: white;
+  display: flex;
+  flex-direction: column;
+
+  margin: auto;
+  padding-left: 43%;
+  padding-bottom: 30%;
+  padding-top: 20%;
+
+}
+.pizza-order{
+  background: red;
+  border-radius: 10px;
+  color: white;
+  font-size: 40px;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +59,28 @@
   to {
     transform: rotate(360deg);
   }
+}
+.landing{
+  background: grey;
+
+}
+.form-class{
+  border: 5px solid black;
+  padding: 5%;
+  background:lightgrey;
+}
+
+
+
+
+
+.settings{
+  border: 1px solid black;
+  padding: 5%;
+  background: white;
+
+}
+
+.order{
+  padding: 5%;
 }
