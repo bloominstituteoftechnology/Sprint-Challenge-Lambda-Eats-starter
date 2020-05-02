@@ -1,7 +1,6 @@
 import React from 'react';
 import {Link, Route} from 'react-router-dom';
 import pizzaForm from './Form';
-import * as Yup from 'yup';
 
 
 const Home = () => {

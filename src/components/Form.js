@@ -1,4 +1,8 @@
 import React, {useState, useEffect} from 'react';
+import axios from 'axios';
+import * as Yup from 'yup';
+
+
 
 
 const pizzaForm = () => {
@@ -40,17 +44,15 @@ const pizzaForm = () => {
        name: Yup
        .string()
        .required("Must input a Name."),
-        email: Yup
+        psize: Yup
+          .dropdown()
+          .required("Must choose a size."),
+        toppings: Yup
+          .checkbox(),
+          
+        instructions: Yup
           .string()
-          .email("Must be a valid email address.")
-          .required("Must include email address."),
-        password: Yup
-          .string()
-          .min(6, "Passwords must be at least 6 characters long.")
-          .required("Password is Required"),
-        terms: Yup
-          .boolean()
-          .oneOf([true], "You must accept Terms and Conditions")
+          
       });
 
       const [isButtonDisabled, setIsButtonDisabled] = useState(true); 
