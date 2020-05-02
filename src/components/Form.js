@@ -10,16 +10,11 @@ const pizzaForm = () => {
     const [post, setPost] = useState([])
 
     
-    // const {inputForms, setInputForms} = props;
 
 
     const [inputForm, setInputForm] = useState({name: "", psize: "", toppings: "", instructions: ""})
     
-    // const handleChange = event => {
-
-    //     setInputForm({...inputForm, [event.target.name]: event.target.value});
-    // }
-
+    
     const handleSubmit = event => {
 
         event.preventDefault();
@@ -45,10 +40,10 @@ const pizzaForm = () => {
        .string()
        .required("Must input a Name."),
         psize: Yup
-          .dropdown()
+          .string()
           .required("Must choose a size."),
         toppings: Yup
-          .checkbox(),
+          .boolean(),
           
         instructions: Yup
           .string()
@@ -115,13 +110,24 @@ const pizzaForm = () => {
                 Name:
             <input id="name" type="text" name="name" value={inputForm.name} onChange={inputChange} />
             </label>
-            <label htmlFor="psize">
+            <select htmlFor="psize">
                 Pizza Size:
-            <input id="psize" type="dropdown" name="psize" value={inputForm.psize} onChange={inputChange} />
-            </label>
+            <options id="psize" type="dropdown" name="psize" value="personal" onChange={inputChange} />
+            <options id="psize" type="dropdown" name="psize" value="small" onChange={inputChange} />
+
+            <options id="psize" type="dropdown" name="psize" value="medium" onChange={inputChange} />
+
+            <options id="psize" type="dropdown" name="psize" value="large" onChange={inputChange} />
+            <options id="psize" type="dropdown" name="psize" value="xtralarge" onChange={inputChange} />
+
+
+            </select>
             <label htmlFor="toppings">
                 Toppings:
-            <input id="toppings" type="checkbox" name="toppings" value={inputForm.toppings} onChange={inputChange} />
+            <input type="radio"  value="Plain" onChange={inputChange} />
+            <input type="radio"    value="Pepperoni" onChange={inputChange} />
+            <input type="radio"   value="Cheese" onChange={inputChange} />
+            <input type="radio"   value="Mushrooms" onChange={inputChange} />
             </label>
             <label htmlFor="instructions">
                 Special instructions:
