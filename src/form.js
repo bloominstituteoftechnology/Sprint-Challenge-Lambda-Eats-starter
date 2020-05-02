@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import * as yup from "yup";
+import * as Yup from "yup";
 import axios from "axios";
 
 export default function Form(){
 
     const initialFormState = {
+        name:"",
         size: "",
         sauce: "",
         pepperoni: false,
@@ -22,17 +23,61 @@ export default function Form(){
 
     const [post, setPost] = useState([]);
 
+    const [serverError, setServerError] = useState("");
+
     const [formState, setFormState] = useState(initialFormState);
+
+    const [isButtonDisabled, setIsButtonDisabled] =useState(true);
+
+    const [errors, setErrors] = useState(initialFormState);
+
+    const formSchema = Yup.object().shape({
+        name: Yup.string().required("Name is required.").min(2, "Name must be at least 2 letters."),
+        size: Yup.string().required("Must choose a size."),
+        sauce: Yup.string().required("Must choose a sauce."),
+        pepperoni: Yup.string(),
+        sausage: Yup.string(),
+        canadianbacon: Yup.string(),
+        peppers: Yup.string(),
+        olives: Yup.string(),
+        veggies: Yup.string(),
+        chicken: Yup.string(),
+        pineapple: Yup.string(),
+        subs: Yup.string().required("Do you want gluten free?"),
+        special: Yup.string(),
+        quantity: Yup.string().required("Must choose QTY of pizza."),
+    });
+
+    const validateChange= e => {
+        Yup
+            .reach(formSchema, e.target.name)
+            .validate(e.target.value)
+            .then(valid => {
+                setErrors({...errors, [e.target.name]: ""});
+            })
+            .catch(err => {
+                console.log("error", err);
+                setErrors({...errors, [e.target.name]: err.console.errors[0]});
+            });
+    };
+
+    useEffect(() => {
+        formSchema.isValid(formState).then(valid => {
+            console.log("valid?", valid);
+            setIsButtonDisabled(!valid);
+        });
+    },[formState]);
 
     const formSubmit = e => {
         e.preventDefault();
         
         axios
-            .post("h", formState)
+            .post("https://reqres.in/api/users", formState)
             .then(response => {
                 setPost(response.data);
 
                 setFormState({
+                    name:"",
                     size: "",
                     sauce: "",
                     pepperoni: false,
@@ -48,6 +93,11 @@ export default function Form(){
                     quantity: "",
                 });
 
+                setServerError(null);
+            })
+
+            .catch(err => {
+                setServerError("Something")
             })
     }
 
@@ -64,6 +114,17 @@ export default function Form(){
 
     return(
         <form onSubmit={formSubmit}>
+             {serverError ? <p className="error">{serverError}</p> : null}
+            <label htmlFor="name">
+                What Shall We Call You?
+                    <textarea
+                        name="name"
+                        onChange={inputChange}
+                        value={formState.name}
+                    />
+                    {errors.name.length > 0 ? (<p className="error">{errors.name}</p> ): null}
+            </label>
+
             <label htmlFor="size">
                 Size
                 <select id="size" name="size" onChange={inputChange}>
@@ -73,6 +134,7 @@ export default function Form(){
                     <option value="Large">Large</option>
                     <option value="Family">Family</option>
                 </select>
+                {errors.size.length > 0 ? (<p className="error">{errors.size}</p>) : null}
             </label>
 
             <label htmlFor="sauce">
@@ -84,6 +146,7 @@ export default function Form(){
                     <option value="Alfredo">Alfredo</option>
                     <option value="Pink">Pink</option>
                 </select>
+                {errors.sauce.length > 0 ? (<p className="error">{errors.sauce}</p>) : null}
             </label>
 
             <div className="Pizza Toppings">
@@ -176,6 +239,7 @@ export default function Form(){
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
+                {errors.subs.length > 0 ? (<p className="error">{errors.subs}</p>) : null}
             </label>
       
             <label htmlFor="special">
@@ -197,9 +261,11 @@ export default function Form(){
                     <option value="four">4</option>
                     <option value="five">5</option>
                 </select>
+                {errors.quantity.length > 0 ? (<p className="error">{errors.quantity}</p>) : null}
             </label>
 
+            <pre>{JSON.stringify(post, null, 2)}</pre>
             <button type="submit">Place Order</button>
         </form>
-    )
+    );
 }
