@@ -36,8 +36,8 @@ Follow these steps to set up and work on your project:
 <!-- - [x] Add your project manager as collaborator on Github. AaronShawnSoler -->
 <!-- - [x] Clone your OWN version of the repository (Not Lambda's by mistake!). -->
 <!-- - [x] CD into the project base directory. -->
-- [ ] Download project dependencies by running `npm install`
-- [ ] Start up the app using `npm start`
+<!-- - [x] Download project dependencies by running `npm install` -->
+<!-- - [x] Start up the app using `npm start` -->
 <!-- - [x] Create a new branch: git checkout -b `<firstName-lastName>`. Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly. -->
 <!-- - [x] Push commits: git push origin `<firstName-lastName>`. -->
 
