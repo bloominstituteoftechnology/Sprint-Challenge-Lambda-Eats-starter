@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
 }
@@ -35,4 +39,44 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 60%;
+  margin: 0 auto;;
+}
+
+form > * {
+  margin: 2% 0;
+  width: 100%;
+}
+
+label {
+  text-align: left;
+}
+
+form > label > input {
+  width: 100%;
+}
+
+.dropdowns {
+  display: flex;
+  justify-content: space-around;
+}
+
+.checklist {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.checklist > * {
+  width: 50%;
+  margin: 1% 0;
+}
+
+.err {
+  color: red;
 }
