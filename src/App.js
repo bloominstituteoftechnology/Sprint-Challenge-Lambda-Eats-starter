@@ -1,4 +1,7 @@
 import React from "react";
+// import { Route } from "react-router-dom";
+// import Home from "./Home";
+// import Pizza from "./Pizza";
 
 const App = () => {
   return (
@@ -9,3 +12,4 @@ const App = () => {
   );
 };
 export default App;
+
