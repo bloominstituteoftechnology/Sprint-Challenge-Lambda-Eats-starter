@@ -13,8 +13,16 @@ Demonstrate your understanding of this week's concepts by answering the followin
 Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
 1. In 1-2 sentences, explain what React's `useRouteMatch` hook is used for.
+
+  - useRouteMatch allows developers the same functionality as rendering a <!-- <Route> --> while allowing access to "match" props which lets the app access URL data.
+
 2. How would you explain form validation to someone who has never programmed before?
+
+  - Forms is a location in the program where the programmer can ask their users to input various types of information which will be captured and sent back to the program. Once the program has the inputed information, it will use form validation to ensure that the information given by the user matches the information that was requested by the programmer. For example, if the form asked for the users nine digit SSN, but they got the users ten digit phone number instead. The form validation will see this as an error and ask the user to reinput the correct information. 
+
 3. In 1-2 sentences, define end to end testing.
+
+  - E2E testing is a way for developers to recreate likely human/end-user activity in the program. Unfortunately, this method is much slower and more complex than other testing methods. 
 
 You are expected to be able to answer all these questions. Your responses contribute to your Sprint Challenge grade. Skipping this section **will** prevent you from passing this challenge.
 
@@ -24,10 +32,10 @@ You are expected to be able to answer all these questions. Your responses contri
 
 Follow these steps to set up and work on your project:
 
-- [ ] Create a forked copy of this project.
-- [ ] Add your project manager as collaborator on Github.
-- [ ] Clone your OWN version of the repository (Not Lambda's by mistake!).
-- [ ] CD into the project base directory.
+- [x] Create a forked copy of this project.
+- [x] Add your project manager as collaborator on Github.
+- [x] Clone your OWN version of the repository (Not Lambda's by mistake!).
+- [x] CD into the project base directory.
 - [ ] Download project dependencies by running `npm install`
 - [ ] Start up the app using `npm start`
 - [ ] Create a new branch: git checkout -b `<firstName-lastName>`. Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly.
