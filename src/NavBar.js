@@ -8,7 +8,6 @@ const NavDiv = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 1rem 2rem;
-  background: aqua;
 `;
 
 const Nav = styled.div`

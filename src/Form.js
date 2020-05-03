@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import * as yup from "yup";
+import axios from "axios";
 
 const FormDiv = styled.div`
   display: flex;
   justify-content: center;
 `;
 
-const H2Div = styled.div`
-  background: gray;
-  padding: 2rem 0;
-`;
+const H2Div = styled.div``;
 
 const PizzaDiv = styled.div`
   width: 70%;
@@ -39,16 +37,23 @@ const Form = () => {
   });
 
   const [buttonDisabled, setButtonDisabled] = useState("");
+  const [post, setPost] = useState([]);
   const [total, setTotal] = useState(10);
 
-  const formSchema = yup.object().shape({
-    name: yup.string().required("Name is a required field"),
+  let formSchema = yup.object().shape({
+    name: yup
+      .string()
+      .min(2, "Name must be at least 2 characters")
+      .required("Name is a required field"),
     size: yup.string().required("Please select a size"),
-    sauce: yup.string(),
-    pepperoni: yup.boolean().oneOf([false, true]).required(),
-    sausage: yup.boolean().oneOf([false, true]).required(),
-    bacon: yup.boolean().oneOf([false, true]).required(),
-    chicken: yup.boolean().oneOf([false, true]).required(),
+    sauce: yup
+      .string()
+      .oneOf(["original", "bbq", "garlic", "spinach"])
+      .required(),
+    pepperoni: yup.boolean(),
+    sausage: yup.boolean(),
+    bacon: yup.boolean(),
+    chicken: yup.boolean(),
     instructions: yup.string(),
   });
 
@@ -93,13 +98,36 @@ const Form = () => {
       });
   };
 
+  const formSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("https://reqres.in/api/users", formState)
+      .then((res) => {
+        setPost(res.data); // get just the form data from the REST api
+        console.log("success", post);
+        // reset form if successful
+        setFormState({
+          name: "",
+          email: "",
+          terms: "",
+          positions: "",
+          motivation: "",
+        });
+      })
+      .catch((err) => console.log(err.response));
+  };
+
   return (
     <FormDiv>
       <PizzaDiv>
         <H2Div>
-          <h2>IMAGE GOES HERE</h2>
+          <img
+            alt="pizza-banner"
+            className="pizza-banner"
+            src="https://st2.depositphotos.com/1000528/8776/i/950/depositphotos_87764256-stock-photo-ham-pizza-close-up-letterbox.jpg"
+          />
         </H2Div>
-        <div className="form-div">
+        <form onSubmit={formSubmit} className="form-div">
           <div className="pizza-heading">
             <h2>Build Your Own Pizza</h2>
           </div>
@@ -115,6 +143,7 @@ const Form = () => {
               className="input"
               onChange={inputChange}
               value={formState.name}
+              data-cy="name"
             />
             {errors.name.length > 0 ? (
               <p className="error">{errors.name}</p>
@@ -124,7 +153,6 @@ const Form = () => {
           <label htmlFor="size" className="input-label">
             <div className="input-head-div">
               <h2>Choice of Size</h2>
-              <p>Required</p>
             </div>
 
             <select
@@ -133,17 +161,17 @@ const Form = () => {
               className="input"
               onChange={inputChange}
               value={formState.size}
+              data-cy="size"
             >
-              <option value="small">Small</option>
-              <option value="medium">Medium</option>
-              <option value="large">Large</option>
+              <option value="Small">Small</option>
+              <option value="Medium">Medium</option>
+              <option value="Large">Large</option>
             </select>
           </label>
 
           <label className="input-label">
             <div className="input-head-div">
               <h2>Choice of Sauce</h2>
-              <p>Required</p>
             </div>
             <label htmfFor="original-red">
               <input
@@ -151,7 +179,7 @@ const Form = () => {
                 id="original-red"
                 name="sauce"
                 onChange={inputChange}
-                value={formState.sauce}
+                value="original"
               />
               Original Red
             </label>
@@ -161,7 +189,7 @@ const Form = () => {
                 type="radio"
                 name="sauce"
                 onChange={inputChange}
-                value={formState.sauce}
+                value="garlic"
               />
               Garlic Ranch
             </label>
@@ -171,7 +199,7 @@ const Form = () => {
                 type="radio"
                 name="sauce"
                 onChange={inputChange}
-                value={formState.sauce}
+                value="bbq"
               />
               BBQ Sauce
             </label>
@@ -181,7 +209,7 @@ const Form = () => {
                 type="radio"
                 name="sauce"
                 onChange={inputChange}
-                value={formState.sauce}
+                value="spinach"
               />
               Spinach Alfredo
             </label>
@@ -257,11 +285,12 @@ const Form = () => {
               <p className="error">{errors.instructions}</p>
             ) : null}
           </label>
+          <pre>{JSON.stringify(post, null, 2)}</pre>
           <button type="submit" disabled={buttonDisabled}>
             <div>Add To Order</div> <div> ${total}</div>
           </button>
           <form />
-        </div>
+        </form>
       </PizzaDiv>
     </FormDiv>
   );
