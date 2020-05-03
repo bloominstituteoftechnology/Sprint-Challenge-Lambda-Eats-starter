@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link, Route} from 'react-router-dom';
-import pizzaForm from './Form';
+import PizzaForm from './Form';
 
 
 const Home = () => {
@@ -22,7 +22,7 @@ const Home = () => {
 
         </Route>
 
-        <Route path="/pizza" component={pizzaForm} />
+        <Route path="/pizza" component={PizzaForm} />
 
 
 

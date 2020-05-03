@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 
 
 
-const pizzaForm = () => {
+const PizzaForm = () => {
 
     const [post, setPost] = useState([])
 
@@ -26,7 +26,7 @@ const pizzaForm = () => {
 
             name: "", 
             psize: "",
-            toppings: "",
+            toppings:"",
             instructions: ""
 
            }) ;
@@ -43,8 +43,7 @@ const pizzaForm = () => {
           .string()
           .required("Must choose a size."),
         toppings: Yup
-          .boolean(),
-          
+          .string(),
         instructions: Yup
           .string()
           
@@ -69,7 +68,7 @@ const pizzaForm = () => {
         const newFormData = {
 
             ...inputForm,
-            [event.target.name]: event.target.type === "checkbox" ? event.target.checked : event.target.value
+            [event.target.name]: event.target.type === "radio" ? event.target.checked : event.target.value
 
         };
         validateChange(event);
@@ -109,31 +108,41 @@ const pizzaForm = () => {
             <label htmlFor="name" >
                 Name:
             <input id="name" type="text" name="name" value={inputForm.name} onChange={inputChange} />
-            </label>
-            <select htmlFor="psize">
-                Pizza Size:
-            <options id="psize" type="dropdown" name="psize" value="personal" onChange={inputChange} />
-            <options id="psize" type="dropdown" name="psize" value="small" onChange={inputChange} />
-
-            <options id="psize" type="dropdown" name="psize" value="medium" onChange={inputChange} />
-
-            <options id="psize" type="dropdown" name="psize" value="large" onChange={inputChange} />
-            <options id="psize" type="dropdown" name="psize" value="xtralarge" onChange={inputChange} />
-
-
+            {errors.name.length > 0 ? <p className="error">{errors.name}</p> : null}
+            </label> 
+           
+            <label htmlFor="psize"> 
+             Pizza Size:
+            <select id="psize" name="psize" onChange={inputChange}>
+            <option  value="Personal" >Personal</option>
+            <option  value="Small" >Small</option>
+            <option  value="Medium">Medium</option>
+            <option  value="Large" >Large</option>
+            <option  value="Xtralarge" >Xtra Large</option>
             </select>
+            {errors.psize.length > 0 ? <p className="error">{errors.psize}</p> : null}
+            </label>
+           
             <label htmlFor="toppings">
                 Toppings:
-            <input type="radio"  value="Plain" onChange={inputChange} />
-            <input type="radio"    value="Pepperoni" onChange={inputChange} />
-            <input type="radio"   value="Cheese" onChange={inputChange} />
-            <input type="radio"   value="Mushrooms" onChange={inputChange} />
+                Plain
+            <input id="toppings1" type="radio" name="toppings" value="Plain"   onChange={inputChange} />
+            Pepporoni
+            <input id="toppings2" type="radio" name="toppings"   value="Pepperoni"  onChange={inputChange} />
+            Cheese
+            <input id="toppings3" type="radio" name="toppings"  value="Cheese"  onChange={inputChange} />
+            Mushrooms
+            <input id="toppings4" type="radio" name="toppings" value="Mushrooms"  onChange={inputChange} />
             </label>
+           
             <label htmlFor="instructions">
                 Special instructions:
-            <input id="instructions" type="textbox" name="instructions" value={inputForm.instructions} onChange={inputChange} />
+            <textarea id="instructions" type="text" name="instructions" value={inputForm.instructions} onChange={inputChange} />
             </label>
+           
             <button >Order Now</button>
+
+            <pre>{JSON.stringify(post, null, 2)}</pre>
 
         </form>
 
@@ -143,4 +152,4 @@ const pizzaForm = () => {
 
 } 
 
-export default pizzaForm;
+export default PizzaForm;
