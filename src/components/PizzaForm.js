@@ -8,10 +8,10 @@ import './styles/form.css'
 const formSchema = yup.object().shape({
     pizzasize: yup.string().required("Must choose a size yo!"),
     sauce: yup.string().required("choose a sauce will ya?"),
+    toppings: yup.boolean().oneOf([true],"destroy what is pure, will ya?"),
     howmany: yup.number().moreThan(0),
+    gluten: yup.boolean().oneOf([true], "bread or pansy food?"),
     terms: yup.boolean().oneOf([true], "please agree to terms of use")
-
-
 });
 
 
@@ -21,7 +21,10 @@ export const PizzaForm = () =>{
         const initialFormState = {
             pizzasize: "",
             sauce: "",
-            howmany:"",
+            toppings: "",
+            howmany: "",
+            gluten: "",
+            textarea: "",
             terms: ""
         };
 
@@ -80,7 +83,10 @@ export const PizzaForm = () =>{
                     setFormState({
                         pizzasize: "",
                         sauce: "",
+                        toppings: "",
                         howmany: "",
+                        gluten: "",
+                        textarea: "",
                         terms: ""
                     });
 
@@ -130,44 +136,41 @@ export const PizzaForm = () =>{
                             <p className="error">{errors.pizzasize}</p>
                         ) : null}
                     </label>
-                    <label 
-                    htmlFor="sauce" 
-                    onChange={inputChange}
-                    value={formState.sauce}
-                    >
+                    <label htmlFor="sauce">
                         <h2>Choice of sawwwce [sauce]</h2>
-                        <input checked={formState.sauce} name="sauce" type="radio" value="marinara" /> Marinara <br/>
-                        <input checked={formState.sauce} name="sauce" type="radio" value="garlic-pesto" /> Garlic &amp; Pesto <br />
-                        <input checked={formState.sauce} name="sauce" type="radio" value="marinara" /> White sauce <br />
-                        <input checked={formState.sauce} name="bbq" type="radio" value="bbq" /> BBQ Sauce...eeeelllll <br />
+                        <input checked={formState.sauce} onChange={inputChange} name="sauce" type="radio" value="marinara" /> Marinara <br/>
+                        <input checked={formState.sauce} onChange={inputChange} name="sauce" type="radio" value="garlic-pesto" /> Garlic &amp; Pesto <br />
+                        <input checked={formState.sauce} onChange={inputChange} name="sauce" type="radio" value="marinara" /> White sauce <br />
+                        <input checked={formState.sauce} onChange={inputChange} name="sauce" type="radio" value="bbq" /> BBQ Sauce...eeeelllll <br />
                     </label>
                         <label htmlFor="toppings">
                             <h2>Add topings... and messup a perfectly fine pizza</h2>
                         <div className="topping-flex">
                         <ul className="topping-1">
-                                <li><input name="pepperoni" type="checkbox" value="1" /> Pepperoni</li>
-                                <li><input name="sausage" type="checkbox" value="1" /> Sausage</li>
-                                <li><input name="bacon" type="checkbox" value="1" /> Beef Bacon</li>
-                                <li><input name="sausage" type="checkbox" value="1" /> Spicy italian sausage</li>
-                                <li><input name="chicken" type="checkbox" value="1" /> Grilled Chicken</li>
+                                <li><input name="toppings" onChange={inputChange} type="checkbox" value="Pepperoni" /> Pepperoni</li>
+                                <li><input name="toppings" onChange={inputChange} type="checkbox" value="Sausage" /> Sausage</li>
+                                <li><input name="toppings" onChange={inputChange} type="checkbox" value="Sausage" /> Beef Bacon</li>
+                                <li><input name="toppings" onChange={inputChange} type="checkbox" value="Spicy italian sausage" /> Spicy italian sausage</li>
+                                <li><input name="toppings" onChange={inputChange} type="checkbox" value="Grilled Chicken" /> Grilled Chicken</li>
 
                         </ul>
                         
                         <ul className="topping-2" >
-                                <li><input name="veggies" type="checkbox" value="1" /> Veggies</li>
-                                <li><input name="pineapple" type="checkbox" value="1" /> Pineapple ..ppffttt</li>
-                                <li><input name="cheese" type="checkbox" value="1" /> Mo' cheese</li>
-                                <li><input name="garlic" type="checkbox" value="1" /> Roasted Garlic</li>
-                                <li><input name="onions" type="checkbox" value="1" /> Grilled Onions</li>
+                                <li><input name="toppings" onChange={inputChange} type="checkbox" value="Veggies" /> Veggies</li>
+                                <li><input name="toppings" onChange={inputChange} type="checkbox" value="Pineapple ..ppffttt" /> Pineapple ..ppffttt</li>
+                                <li><input name="toppings" onChange={inputChange} type="checkbox" value="Mo' cheese" /> Mo' cheese</li>
+                                <li><input name="toppings" onChange={inputChange} type="checkbox" value="Roasted Garlic" /> Roasted Garlic</li>
+                                <li><input name="toppings" onChange={inputChange} type="checkbox" value="Grilled Onions" /> Grilled Onions</li>
 
                         </ul>
                         </div>
                     </label>
                         <h2>Substitute for gluten free, hipster?</h2>
-                        <label className="switch">
+                    <label className="switch" onChange={inputChange}>
                             <input type="checkbox" name="gluten"/>
                             <span className="slider"></span>
                             </label>
+                    <label className="textarea" htmlFor="textarea" onChange={inputChange} value={formState.textarea}></label>
                         <textarea placeholder="Anying else?"></textarea>
                         <div className="amount-btn-tos">
                         <label htmlFor="howmany" onChange={inputChange}>How many wouldya like darling?
