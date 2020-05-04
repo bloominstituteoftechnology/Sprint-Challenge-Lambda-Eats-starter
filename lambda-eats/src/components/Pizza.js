@@ -139,7 +139,7 @@ const Pizza = () => {
                         <option value="five">5</option>
                         <option value="mile">5280</option>
                     </select>
-                    {errors.quantity.length > 0 ? (<p className="error">{errors.quantity}</p>) : null}}
+                    {errors.quantity.length > 0 ? (<p className="error">{errors.quantity}</p>) : null}
                 </label>
 
                 <pre>{JSON.stringify(post, null, 2)}</pre>
