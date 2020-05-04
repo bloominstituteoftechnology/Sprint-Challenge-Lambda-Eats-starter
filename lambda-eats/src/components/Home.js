@@ -1,15 +1,16 @@
 import React from "react";
 import { Link, Route } from "react-router-dom";
+import { Image, Order } from "./Styles";
 
 const Home = () => {
 
     return (
-        <div>
-            <img className="home-img" src ="/Asset/Pizza.jpg" alt="Yummy Pizza" />
+        <Order>
+            <Image src ={require('./Pizza.jpg')} alt="Yummy Pizza" />
             <Route>            
                 <Link to="/Pizza">Order Now!</Link>
             </Route>
-        </div>
+        </Order>
     );
 };
 

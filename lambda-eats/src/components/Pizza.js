@@ -1,30 +1,30 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import axios from "axios";
+import { Form } from "./Styles";
 
 const Pizza = () => {
 
-    const initialState = {
+    const initialFormState = {
         name: "",
         size: "",
         sauce: "",
         toppings: "",
-        substitute: "",
+    //     substitute: "",
         instructions: "",
         quantity: "",
-        add: ""
     }
 
-    const [formState, setFormState] = useState(initialState);
-    const [errors, setErrors] = useState(initialState);
+    const [formState, setFormState] = useState(initialFormState);
+    const [errors, setErrors] = useState(initialFormState);
     const [post, setPost] = useState([]);    
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
     
     const formSchema = yup.object().shape({
         name: yup.string().required("Name is a required field."),
-        size: yup.string().required("Please choose a size"),
-        instructions: yup.string().required("Please add special instructions."),
-        quantity: yup.string().required("Please choose a quantity"),
+        size: yup.string().required("Please pick a size"),
+        instructions: yup.string(),
+        quantity: yup.string().required("Please pick a quantity"),
     });
 
     const validateChange = event => {
@@ -56,10 +56,9 @@ const Pizza = () => {
                 size: "",
                 sauce: "",
                 toppings: "",
-                substitute: "",
+                // substitute: "",
                 instructions: "",
                 quantity: "",
-                add: ""
             });
         })
         .catch(err => console.log(err.response))
@@ -77,75 +76,79 @@ const Pizza = () => {
 
     return (
         <form onSubmit={formSubmit}>
-            <div htmlFor="name">
-                Name
-                <input id="name" type="text" name="name" onChange={inputChange} value={formState.name} data-cy="name" />
-                {errors.name.length > 0 ? (<p className="error">{errors.name}</p>) : null}
-            </div>
+            <Form>
+                <h1>Build a Pizza</h1>
 
-            <div htmlFor="size">
-                Choose a Size
-                <select id="size" name="size" onChange={inputChange}>
-                    <option value="">--Please choose a size--</option>
-                    <option value="Personal">Personal</option>
-                    <option value="Small">Small</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Large">Large</option>
-                    <option value="X-Large">X-Large</option>
-                </select>
-                {errors.size.length > 0 ? (<p className="error">{errors.size}</p>) : null}}
-            </div>
+                <label htmlFor="name">
+                    Name
+                    <input id="name" type="text" name="name" onChange={inputChange} value={formState.name} data-cy="name" />
+                    {errors.name.length > 0 ? (<p className="error">{errors.name}</p>) : null}
+                </label>
 
-            <div htmlFor="sauce">
-                Choose a Sauce
-                <input type="radio" name="sauce" id="original" onChange={inputChange} value={formState.sauce}>Original Red</input>
-                <input type="radio" name="sauce" id="garlic" onChange={inputChange} value={formState.sauce}>Garlic Ranch</input>
-                <input type="radio" name="sauce" id="bbq" onChange={inputChange} value={formState.sauce}>BBQ Sauce</input>
-                <input type="radio" name="sauce" id="alfredo" onChange={inputChange} value={formState.sauce}>Spinach Alfredo</input>\
-                <input type="radio" name="sauce" id="none" onChange={inputChange} value={formState.sauce}>No sauce</input>                
-            </div>
+                <label htmlFor="size">
+                    Pick a Size
+                    <select id="size" name="size" onChange={inputChange}>
+                        <option value="">--Please choose a size--</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Small">Small</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Large">Large</option>
+                        <option value="X-Large">X-Large</option>
+                    </select>
+                {errors.size.length > 0 ? (<p className="error">{errors.size}</p>) : null}
+                </label>
 
-            <div htmlFor="toppings">
-                Add Toppings
-                <input  type="checkbox" name="toppings" id="pepperoni" checked={formState.terms} onChange={inputChange}>Pepperoni</input>
-                <input  type="checkbox" name="toppings" id="sausage" checked={formState.terms} onChange={inputChange}>Sausage</input>
-                <input  type="checkbox" name="toppings" id="canadians" checked={formState.terms} onChange={inputChange}>Canadian Bacon</input>
-                <input  type="checkbox" name="toppings" id="bacon" checked={formState.terms} onChange={inputChange}>Regular Bacon</input>
-                <input  type="checkbox" name="toppings" id="italian" checked={formState.terms} onChange={inputChange}>Italian Sausage</input>
-                <input  type="checkbox" name="toppings" id="chicken" checked={formState.terms} onChange={inputChange}>Grilled Chicken</input>
-                <input  type="checkbox" name="toppings" id="onions" checked={formState.terms} onChange={inputChange}>Onions</input>
-                <input  type="checkbox" name="toppings" id="mushrooms" checked={formState.terms} onChange={inputChange}>Mushrooms</input>
-                <input  type="checkbox" name="toppings" id="peppers" checked={formState.terms} onChange={inputChange}>Green Peppers</input>
-                <input  type="checkbox" name="toppings" id="olives" checked={formState.terms} onChange={inputChange}>Black Olives</input>
-                <input  type="checkbox" name="toppings" id="artichokes" checked={formState.terms} onChange={inputChange}>Artichoke Hearts</input>
-                <input  type="checkbox" name="toppings" id="pineapples" checked={formState.terms} onChange={inputChange}>Pineapple</input>
-            </div>
+                <label htmlFor="sauce">
+                    Choose a Sauce
+                    <input type="radio" name="original" id="original" data-cy="original"/>Original Red
+                    <input type="radio" name="garlic" id="garlic" data-cy="garlic"/>Garlic Ranch
+                    <input type="radio" name="bbq" id="bbq" data-cy="bbq"/>BBQ Sauce
+                    <input type="radio" name="alfredo" id="alfredo" data-cy="alfredo"/>Spinach Alfredo
+                    <input type="radio" name="none" id="none" data-cy="none" />No sauce       
+                </label>
 
+                <label htmlFor="toppings">
+                Select Toppings
+                    <input  type="checkbox" name="pepperoni" data-cy="pepperoni" />Pepperoni
+                    <input  type="checkbox" name="sausage" data-cy="sausage" />Sausage
+                    <input  type="checkbox" name="canadians" data-cy="canadians" />Canadian Bacon
+                    <input  type="checkbox" name="bacon" data-cy="bacon" />Regular Bacon
+                    <input  type="checkbox" name="italians" data-cy="italians" />Italian Sausage
+                    <input  type="checkbox" name="chicken" data-cy="chicken" />Grilled Chicken
+                    <input  type="checkbox" name="onions" data-cy="onions" />Onions
+                    <input  type="checkbox" name="mushrooms" data-cy="mushrooms" />Mushrooms
+                    <input  type="checkbox" name="peppers" data-cy="peppers" />Green Peppers
+                    <input  type="checkbox" name="olives" data-cy="olives" />Black Olives
+                    <input  type="checkbox" name="artichokes" data-cy="artichokes" />Artichoke Hearts
+                    <input  type="checkbox" name="pineapple" data-cy="pineapple" />Pineapple
+                </label>
 
-            <div htmlFor="instructions">
-                Name
-                <input id="instructions" type="text" name="instructions" onChange={inputChange} value={formState.name} data-cy="instructions" />
-                {errors.instructions.length > 0 ? (<p className="error">{errors.instructions}</p>) : null}
-            </div>
+                <label htmlFor="instructions">
+                    Special Instructions
+                    <textarea name="instructions" onChange={inputChange} value={formState.instructions} />
+                    {errors.instructions.length > 0 ? (<p className="error">{errors.instructions}</p>) : null}
+                </label>
 
-            <div htmlFor="quantity">
-                Choose a Quantity
-                <select id="quantity" name="quantity" onChange={inputChange}>
-                    <option value="one">1</option>
-                    <option value="two">2</option>
-                    <option value="three">3</option>
-                    <option value="four">4</option>
-                    <option value="five">5</option>
-                    <option value="mile">5280</option>
-                </select>
-                {errors.quantity.length > 0 ? (<p className="error">{errors.quantity}</p>) : null}}
-            </div>
+                <label htmlFor="quantity">
+                    Choose a Quantity
+                    <select id="quantity" name="quantity" onChange={inputChange}>
+                        <option value="one">1</option>
+                        <option value="two">2</option>
+                        <option value="three">3</option>
+                        <option value="four">4</option>
+                        <option value="five">5</option>
+                        <option value="mile">5280</option>
+                    </select>
+                    {errors.quantity.length > 0 ? (<p className="error">{errors.quantity}</p>) : null}}
+                </label>
 
-            <pre>{JSON.stringify(post, null, 2)}</pre>
+                <pre>{JSON.stringify(post, null, 2)}</pre>
 
-            <button disabled={isButtonDisabled} type="add">Add to Order</button>
+                <button disabled={isButtonDisabled} type="submit">Add to Order</button>
+            </Form>
         </form>
-    ); 
+
+    );
 }
 
-export default Pizza;
+export default Pizza;   
