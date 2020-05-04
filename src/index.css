@@ -99,3 +99,7 @@ textarea {
   width: 50%;
   height: 50px;
 }
+
+.switch {
+  width: 20px;
+}

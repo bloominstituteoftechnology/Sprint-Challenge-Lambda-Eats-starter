@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Switch } from "antd";
 import styled from "styled-components";
 import * as yup from "yup";
 import axios from "axios";
@@ -72,9 +73,27 @@ const Form = () => {
       [e.target.name]:
         e.target.type === "checkbox" ? e.target.checked : e.target.value,
     };
-
+    checkTotal(e);
     validateChange(e);
     setFormState(newFormData);
+  };
+
+  const checkTotal = (e) => {
+    console.log("This is the event", e.target.value);
+    if (e.target.value === "Small") {
+      setTotal(10);
+    } else if (e.target.value === "Medium") {
+      setTotal(12);
+    } else {
+      setTotal(15);
+    }
+    addTopping(e);
+  };
+
+  const addTopping = (e) => {
+    e.target.type === "checkbox" && e.target.checked
+      ? setTotal(total + 1)
+      : setTotal(total);
   };
 
   const validateChange = (e) => {
@@ -214,11 +233,14 @@ const Form = () => {
               Spinach Alfredo
             </label>
           </label>
+          <label>
+            <Switch className="switch" />
+            Gluten free crust( + $1.00)
+          </label>
 
           <label htmlFor="toppings" className="input-label">
             <div className="input-head-div">
               <h2>Add Toppings</h2>
-              <p>Required</p>
             </div>
             <div className="toppings">
               <label htmlFor="pepperoni">
@@ -285,6 +307,7 @@ const Form = () => {
               <p className="error">{errors.instructions}</p>
             ) : null}
           </label>
+
           <pre>{JSON.stringify(post, null, 2)}</pre>
           <button type="submit" disabled={buttonDisabled}>
             <div>Add To Order</div> <div> ${total}</div>
