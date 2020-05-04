@@ -170,8 +170,8 @@ export const PizzaForm = () =>{
                             <input id="gluten" type="checkbox" name="gluten" value="gluten"/>
                             <span className="slider"></span>
                             </label>
-                    <label className="textarea" htmlFor="textarea" name="textarea" onChange={inputChange} value={formState.textarea}></label>
-                        <textarea placeholder="Anying else?"></textarea>
+                    <label className="textarea" htmlFor="textarea" onChange={inputChange} value={formState.textarea}></label>
+                    <textarea placeholder="Anying else?" name="textarea"></textarea>
                         <div className="amount-btn-tos">
                         <label htmlFor="howmany" onChange={inputChange}>How many wouldya like darling?
                             <input type="number" name="howmany" id="howmany" name="howmany" step="1" onChange={inputChange}

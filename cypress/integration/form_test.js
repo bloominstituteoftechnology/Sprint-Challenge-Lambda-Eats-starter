@@ -16,12 +16,17 @@ describe('Test our form inputs', function () {
             .check("Pepperoni")
             .should("be.checked")
 
+        cy.get('[name="gluten"]')
+            .check({ force: true })
+            .should("be.checked")
+
         cy.get('[name="textarea"]')
-            .type({ force: true },'leave it at the door')
-            .should("have.value", "I want a refund")
+            .click()
+            .type("leave it at the door")
+            .should("have.value", "leave it at the door")
 
         cy.contains("Submit")
-            .click();
+            .click({ force: true });
 
     });
 });
