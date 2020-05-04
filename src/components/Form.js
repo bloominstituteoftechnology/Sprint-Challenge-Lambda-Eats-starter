@@ -68,7 +68,7 @@ const PizzaForm = () => {
         const newFormData = {
 
             ...inputForm,
-            [event.target.name]: event.target.type === "radio" ? event.target.checked : event.target.value
+            [event.target.name]: event.target.type === "checkbox" ? event.target.checked : event.target.value
 
         };
         validateChange(event);
@@ -126,13 +126,13 @@ const PizzaForm = () => {
             <label htmlFor="toppings">
                 Toppings:
                 Plain
-            <input id="toppings1" type="radio" name="toppings" value="Plain"   onChange={inputChange} />
+            <input id="toppings1" type="checkbox" name="toppings" value="Plain"   onChange={inputChange} />
             Pepporoni
-            <input id="toppings2" type="radio" name="toppings"   value="Pepperoni"  onChange={inputChange} />
+            <input id="toppings2" type="checkbox" name="toppings"   value="Pepperoni"  onChange={inputChange} />
             Cheese
-            <input id="toppings3" type="radio" name="toppings"  value="Cheese"  onChange={inputChange} />
+            <input id="toppings3" type="checkbox" name="toppings"  value="Cheese"  onChange={inputChange} />
             Mushrooms
-            <input id="toppings4" type="radio" name="toppings" value="Mushrooms"  onChange={inputChange} />
+            <input id="toppings4" type="checkbox" name="toppings" value="Mushrooms"  onChange={inputChange} />
             </label>
            
             <label htmlFor="instructions">
