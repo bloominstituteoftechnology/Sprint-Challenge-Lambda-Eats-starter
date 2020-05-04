@@ -1,0 +1,191 @@
+
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
+body {
+
+    font-family: 'Permanent Marker', cursive;
+    font-size: 18px; 
+    background: url('https://media.istockphoto.com/vectors/pizza-seamless-pattern-background-vector-id917786268') repeat center center;
+    background-attachment: fixed;
+}
+.container{
+    max-width: 90%;
+    margin: 20px auto;
+    
+}
+
+
+.form-style-6{
+	max-width: 75%;
+	margin: 10px auto;
+	padding: 16px;
+	background: #FDE056;
+}
+.form-style-6 h1{
+	background: #53A35C;
+	padding: 20px 0;
+	font-size: 140%;
+	font-weight: 300;
+	text-align: center;
+	color: #fff;
+	margin: -16px -16px 16px -16px;
+}
+.form-style-6 input[type="text"],
+.form-style-6 input[type="date"],
+.form-style-6 input[type="datetime"],
+.form-style-6 input[type="email"],
+.form-style-6 input[type="number"],
+.form-style-6 input[type="search"],
+.form-style-6 input[type="time"],
+.form-style-6 input[type="url"],
+.form-style-6 textarea,
+.form-style-6 select 
+{
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-ms-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+	outline: none;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	width: 100%;
+	background: #fff;
+	margin-bottom: 4%;
+	border: 1px solid #ccc;
+	padding: 3%;
+    color: #555;
+    font-size: large;
+    font-family: 'Permanent Marker', cursive;
+}
+.form-style-6 input[type="text"]:focus,
+.form-style-6 input[type="date"]:focus,
+.form-style-6 input[type="datetime"]:focus,
+.form-style-6 input[type="email"]:focus,
+.form-style-6 input[type="number"]:focus,
+.form-style-6 input[type="search"]:focus,
+.form-style-6 input[type="time"]:focus,
+.form-style-6 input[type="url"]:focus,
+.form-style-6 textarea:focus,
+.form-style-6 select:focus
+{
+	box-shadow: 0 0 5px #43D1AF;
+	padding: 3%;
+	border: 1px solid #43D1AF;
+}
+
+.form-style-6 input[type="submit"],
+.form-style-6 input[type="button"]{
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	width: 100%;
+	padding: 3%;
+	background: #43D1AF;
+	border-bottom: 2px solid #30C29E;
+	border-top-style: none;
+	border-right-style: none;
+	border-left-style: none;	
+	color: #fff;
+}
+.form-style-6 input[type="submit"]:hover,
+.form-style-6 input[type="button"]:hover{
+	background: #2EBC99;
+}
+
+
+
+/* Andre's additives */
+h1 {
+    text-align: center;
+}
+.nav-links {
+    font-size: 30px;
+    padding: 20px;
+    text-align: center;
+    background: #53A35C;
+}
+
+.nav-links a {
+    color: white;
+}
+
+.home-image {
+    min-height: 300px;
+    width:100%;
+    background-color: white;
+}
+
+.form-style-6 .topping-flex, .amount-btn-tos{
+    display: flex;
+    flex-direction: row;
+
+    
+}
+.form-style-6 .topping-1, .topping-2{
+
+    flex-grow: 1;
+    list-style-type: none;
+    
+}
+
+/* All for the extra toggle*/
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 36px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: rgb(96, 145, 7);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px rgb(96, 150, 7);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
