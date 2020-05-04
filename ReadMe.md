@@ -12,9 +12,13 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
-1. In 1-2 sentences, explain what React's `useRouteMatch` hook is used for.
+1. In 1-2 sentences, explain what React's `useRouteMatch` hook is used for.     
+## **Answer: No longer do we have to render a route component, allows access to its match data
+
 2. How would you explain form validation to someone who has never programmed before?
+ ## **Answer: Validate the input values that a user adds to any activity that needs to be verified
 3. In 1-2 sentences, define end to end testing.
+## ** Answer: Test the flow of an app from start to finish - verify the integrity of the app
 
 You are expected to be able to answer all these questions. Your responses contribute to your Sprint Challenge grade. Skipping this section **will** prevent you from passing this challenge.
 
@@ -37,14 +41,14 @@ Follow these steps to set up and work on your project:
 
 Your MVP should include, at a minimum, the following components.
 
-- [ ] A homepage that has a "/" route and links to your form (button, nav bar, or any other type of link is acceptable)
-- [ ] A form with a "/pizza" route
-- [ ] A name text input field
-- [ ] Validation for name - name must be at least 2 characters
-- [ ] Dropdown form component for pizza size
-- [ ] Checklist form component for toppings - at least 4 (hint: name each separately!)
-- [ ] Text input form component for special instructions
-- [ ] An Add to Order button that submits form and returns a database record of name, pizza size, sauce, and special instructions
+- [k] A homepage that has a "/" route and links to your form (button, nav bar, or any other type of link is acceptable)
+- [k] A form with a "/pizza" route
+- [k] A name text input field
+- [k] Validation for name - name must be at least 2 characters
+- [k] Dropdown form component for pizza size
+- [k] Checklist form component for toppings - at least 4 (hint: name each separately!)
+- [k] Text input form component for special instructions
+- [k] An Add to Order button that submits form and returns a database record of name, pizza size, sauce, and special instructions
 
 #### Testing MVP
 

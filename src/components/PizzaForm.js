@@ -7,7 +7,7 @@ import './styles/form.css'
 /// Validate Pizza Form through Yup
 const formSchema = yup.object().shape({
     pizzasize: yup.string().required("Must choose a size yo!"),
-    //sauce: yup.string().required("choose a sauce will ya?"),
+    sauce: yup.string().required("choose a sauce will ya?"),
     howmany: yup.number().moreThan(0),
     terms: yup.boolean().oneOf([true], "please agree to terms of use")
 
@@ -20,7 +20,7 @@ export const PizzaForm = () =>{
         // can declare initialState once and use as initial state for form, for errors, and reset form
         const initialFormState = {
             pizzasize: "",
-            //sauce: "",
+            sauce: "",
             howmany:"",
             terms: ""
         };
@@ -79,7 +79,7 @@ export const PizzaForm = () =>{
                     // clear state, could also use 'initialState' here
                     setFormState({
                         pizzasize: "",
-                       // sauce: "",
+                        sauce: "",
                         howmany: "",
                         terms: ""
                     });
@@ -117,27 +117,32 @@ export const PizzaForm = () =>{
                     <label 
                     onChange={inputChange}
                     value={formState.pizzasize}
-                    >Sizes</label>
+                    >Sizes
                     <select htmlFor="pizzasize"id="pizzasize"htmlFor="sauce" name="pizzasize" onChange={inputChange}>
                             <option value="0">Select yer size</option>
-                            <option value="1">X-small - you want a bib with that?</option>
-                            <option value="2">Small - Enough for the kid</option>
-                            <option value="3">Medium - for sissy men and women who rather a salad</option>
-                            <option value="4">Large - for the New Yorka in you</option>
-                            <option value="5">XL - for the Chi town in you and her</option>
+                            <option value="xs">X-small - you want a bib with that?</option>
+                            <option value="sm">Small - Enough for the kid</option>
+                            <option value="md">Medium - for sissy men and women who rather a salad</option>
+                            <option value="lg">Large - for the New Yorka in you</option>
+                            <option value="xl">XL - for the Chi town in you and her</option>
                         </select>
+                        {errors.pizzasize.length > 0 ? (
+                            <p className="error">{errors.pizzasize}</p>
+                        ) : null}
+                    </label>
                     <label 
                     htmlFor="sauce" 
                     onChange={inputChange}
                     value={formState.sauce}
                     >
-                        <h2>Choice of sawwwce [sauce]</h2></label>
+                        <h2>Choice of sawwwce [sauce]</h2>
                         <input checked={formState.sauce} name="sauce" type="radio" value="marinara" /> Marinara <br/>
                         <input checked={formState.sauce} name="sauce" type="radio" value="garlic-pesto" /> Garlic &amp; Pesto <br />
                         <input checked={formState.sauce} name="sauce" type="radio" value="marinara" /> White sauce <br />
                         <input checked={formState.sauce} name="bbq" type="radio" value="bbq" /> BBQ Sauce...eeeelllll <br />
+                    </label>
                         <label htmlFor="toppings">
-                            <h2>Add topings... and messup a perfectly fine pizza</h2></label>
+                            <h2>Add topings... and messup a perfectly fine pizza</h2>
                         <div className="topping-flex">
                         <ul className="topping-1">
                                 <li><input name="pepperoni" type="checkbox" value="1" /> Pepperoni</li>
@@ -147,6 +152,7 @@ export const PizzaForm = () =>{
                                 <li><input name="chicken" type="checkbox" value="1" /> Grilled Chicken</li>
 
                         </ul>
+                        
                         <ul className="topping-2" >
                                 <li><input name="veggies" type="checkbox" value="1" /> Veggies</li>
                                 <li><input name="pineapple" type="checkbox" value="1" /> Pineapple ..ppffttt</li>
@@ -156,6 +162,7 @@ export const PizzaForm = () =>{
 
                         </ul>
                         </div>
+                    </label>
                         <h2>Substitute for gluten free, hipster?</h2>
                         <label className="switch">
                             <input type="checkbox" name="gluten"/>
@@ -163,8 +170,10 @@ export const PizzaForm = () =>{
                             </label>
                         <textarea placeholder="Anying else?"></textarea>
                         <div className="amount-btn-tos">
-                            <label htmlFor="howmany">How many wouldya like darling?</label>
-                            <input type="number" name="howmany" id="howmany" name="howmany" step="1"/>
+                        <label htmlFor="howmany" onChange={inputChange}>How many wouldya like darling?
+                            <input type="number" name="howmany" id="howmany" name="howmany" step="1" onChange={inputChange}
+                                value={formState.howmany}/>
+                        </label>
                             <button disabled={isButtonDisabled} type="submit">
                                 Submit
       </button>
