@@ -1,25 +1,51 @@
-import React from "react";
-import Main from "./Main"
-import Menu from "./Menu"
-import { Route, Switch } from "react-router-dom";
-import Pizza from "./Pizza"
 
-const App = () => {
+import React from 'react';
+import './App.css';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import Form from './Form';
+import Home from './Home';
+
+function App() {
   return (
-    <div>
-      
-      
-      <Menu />
-      <Switch>
-        <Route exact path ="/">
-          <Main />
-        </Route>
-        <Route>
-          <Pizza />
-        </Route>
-      </Switch>
+    //enrutar
+    <Router>
 
+      <nav className="navbar">
+        <Link to="/">
+          <button name='homebutton'>Home</button>
+        </Link>
+        <br />
+        <Link to="/form">
+          <button name='orderbutton'>Order</button>
+        </Link>
+      </nav>
+      <div className="App-header">
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/form" component={Form} />
+        </Switch>
       </div>
+    </Router>
   );
-};
+}
+
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
