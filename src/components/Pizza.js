@@ -44,7 +44,7 @@ const Pizza = () => {
             console.log("Is this valid?!?", valid);
             setIsButtonDisabled(!valid);
         });
-    }, [formState]);
+    }, []);
 
     const formSubmit = event => {
         event.preventDefault();
