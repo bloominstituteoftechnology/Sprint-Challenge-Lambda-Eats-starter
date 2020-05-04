@@ -24,7 +24,6 @@ Form validation is you telling the user why something isn't working (like passwo
 
 End to end testing is when you test the app from start to finish to see if it is working correctly. 
 
-
 You are expected to be able to answer all these questions. Your responses contribute to your Sprint Challenge grade. Skipping this section **will** prevent you from passing this challenge.
 
 ## Instructions

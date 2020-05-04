@@ -9,10 +9,14 @@ const App = () => {
   return (
     <div>
       <Nav />
-      <Switch>
-        <Route path="/Pizza" component={Pizza} />
-        <Route path="/" component={Home} />
-      </Switch>
+        <Switch>
+          <Route path="/Pizza" >
+            <Pizza />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
     </div>
   );
 };
