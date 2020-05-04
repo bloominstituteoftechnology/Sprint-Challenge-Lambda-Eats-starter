@@ -143,7 +143,7 @@ export const PizzaForm = () =>{
                         <input checked={formState.sauce} onChange={inputChange} name="sauce" type="radio" value="marinara" /> White sauce <br />
                         <input checked={formState.sauce} onChange={inputChange} name="sauce" type="radio" value="bbq" /> BBQ Sauce...eeeelllll <br />
                     </label>
-                        <label htmlFor="toppings">
+                        <label id="toppings" htmlFor="toppings">
                             <h2>Add topings... and messup a perfectly fine pizza</h2>
                         <div className="topping-flex">
                         <ul className="topping-1">
@@ -167,10 +167,10 @@ export const PizzaForm = () =>{
                     </label>
                         <h2>Substitute for gluten free, hipster?</h2>
                     <label className="switch" onChange={inputChange}>
-                            <input type="checkbox" name="gluten"/>
+                            <input id="gluten" type="checkbox" name="gluten" value="gluten"/>
                             <span className="slider"></span>
                             </label>
-                    <label className="textarea" htmlFor="textarea" onChange={inputChange} value={formState.textarea}></label>
+                    <label className="textarea" htmlFor="textarea" name="textarea" onChange={inputChange} value={formState.textarea}></label>
                         <textarea placeholder="Anying else?"></textarea>
                         <div className="amount-btn-tos">
                         <label htmlFor="howmany" onChange={inputChange}>How many wouldya like darling?
