@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function NavBar() {
+function Nav() {
   return (
     <nav>
       <div className='nav-header'>
@@ -15,4 +15,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default Nav;
