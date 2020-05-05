@@ -9,6 +9,7 @@ describe('test our form inputs', function () {
 			.type('This is working')
 			.should('have.value', 'This is working');
 		cy.get('[type="checkbox"').check().should('be.checked');
-		cy.contains('Submit').click();
+		// cy.contains('Submit').click();
+		cy.get('[disabled]').click({ force: true }); //this is how you activate a button using Cypress
 	});
 });

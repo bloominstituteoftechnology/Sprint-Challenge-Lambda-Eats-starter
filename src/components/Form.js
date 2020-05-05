@@ -160,7 +160,6 @@ export default function Form() {
 					name="toppings"
 					checked={formState.terms}
 					onChange={inputChange}
-					data-cy="sausage"
 				/>
 				Pepperoni
 				<input
