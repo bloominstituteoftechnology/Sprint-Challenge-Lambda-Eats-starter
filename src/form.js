@@ -118,10 +118,12 @@ export default function Form(){
              {serverError ? <p className="error">{serverError}</p> : null}
             <label htmlFor="name">
                 What Shall We Call You?
-                    <textarea
+                    <input
                         name="name"
+                        type="text"
                         onChange={inputChange}
                         value={formState.name}
+                        data-cy="name"
                     />
                     {errors.name.length > 0 ? (<p className="error">{errors.name}</p> ): null}
             </label>
@@ -249,6 +251,7 @@ export default function Form(){
                         name="special"
                         onChange={inputChange}
                         value={formState.special}
+                        data-cy="special"
                     />
             </label>
 
