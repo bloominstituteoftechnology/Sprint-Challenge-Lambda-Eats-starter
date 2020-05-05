@@ -1,12 +1,15 @@
 import React from 'react';
-import './App.css';
+import { Route } from 'react-router-dom';
+import Home from './components/Home';
 import Form from './components/Form';
+import './App.css';
 
-export default function App() {
+const App = () => {
 	return (
 		<div className="App">
-			<h1>Lambda Eats</h1>
-			<Form />
+			<Route exact path="/" component={Home} /> {/* this is a route for home */}
+			<Route path="/pizza" component={Form} /> {/* this is a route for form */}
 		</div>
 	);
-}
+};
+export default App;
