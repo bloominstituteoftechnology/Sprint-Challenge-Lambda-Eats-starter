@@ -6,11 +6,13 @@ import './styles/form.css'
 
 /// Validate Pizza Form through Yup
 const formSchema = yup.object().shape({
-    pizzasize: yup.string().required("Must choose a size yo!"),
+    name: yup.string().required("Listen..... we gotta have a name"),
+    pizzasize: yup.string().required(`You have to pick a size, I'm not gonna do it for you`),
     sauce: yup.string().required("choose a sauce will ya?"),
-    toppings: yup.boolean().oneOf([true],"destroy what is pure, will ya?"),
-    howmany: yup.number().moreThan(0),
-    gluten: yup.boolean().oneOf([true], "bread or pansy food?"),
+    toppings: yup.string().required("destroy what is pure, will ya?"),
+    howmany: yup.number().min(1).required('How many we getting guy?'),
+    gluten: yup.string().required("yes..no?..pansy"),
+    textarea: yup.string().required("now you want me to do extra? fine..."),
     terms: yup.boolean().oneOf([true], "please agree to terms of use")
 });
 
@@ -19,6 +21,7 @@ export const PizzaForm = () =>{
 
         // can declare initialState once and use as initial state for form, for errors, and reset form
         const initialFormState = {
+            name:"",
             pizzasize: "",
             sauce: "",
             toppings: "",
@@ -41,7 +44,17 @@ export const PizzaForm = () =>{
         const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
         // managing state for errors. empty unless inline validation (validateInput) updates key/value pair to have error
-        const [errors, setErrors] = useState(initialFormState);
+        // state for our errors
+        const [errors, setErrors] = useState({
+            name: "",
+            pizzasize: "",
+            sauce: "",
+            toppings: "",
+            howmany: "",
+            gluten: "",
+            textarea: "",
+            terms: ""
+        });
 
         // inline validation, validating one key/value pair
         const validateChange = e => {
@@ -62,7 +75,7 @@ export const PizzaForm = () =>{
         // whenever state updates, validate the entire form. if valid, then change button to be enabled.
         useEffect(() => {
             formSchema.isValid(formState).then(valid => {
-                //console.log("valid?", valid);
+                console.log("valid?", valid);
                 setIsButtonDisabled(!valid);
             });
         }, [formState]);
@@ -81,6 +94,7 @@ export const PizzaForm = () =>{
 
                     // clear state, could also use 'initialState' here
                     setFormState({
+                        name: "",
                         pizzasize: "",
                         sauce: "",
                         toppings: "",
@@ -111,6 +125,7 @@ export const PizzaForm = () =>{
             }; // remember value of the checkbox is in "checked" and all else is "value"
             validateChange(e); // for each change in input, do inline validation
             setFormState(newFormData); // update state with new data
+            console.log(e.target.name.howmany)
         };
 
         return (
@@ -120,12 +135,29 @@ export const PizzaForm = () =>{
                     { serverError?<p className = "error">{ serverError }</p> : null}
                     
                         <h1>Build yer pizza:</h1>
+                    <label htmlFor="name">
+                        Name
+                    <input
+                    id="name"
+                    type="text"
+                    name="name"
+                    onChange={inputChange}
+                    value={formState.name}
+                        />
+                        {errors.name.length > 0 ? <p className="error">{errors.name}</p> : null}
+                    </label>
                     <label 
                     onChange={inputChange}
                     value={formState.pizzasize}
                     >Sizes
-                    <select htmlFor="pizzasize"id="pizzasize"htmlFor="sauce" name="pizzasize" onChange={inputChange}>
-                            <option value="0">Select yer size</option>
+                    <select
+                     htmlFor="pizzasize" 
+                     id="pizzasize" 
+                     name="pizzasize" 
+                     onChange={inputChange}
+                     >
+
+                            <option value="">Select yer size</option>
                             <option value="xs">X-small - you want a bib with that?</option>
                             <option value="sm">Small - Enough for the kid</option>
                             <option value="md">Medium - for sissy men and women who rather a salad</option>
@@ -135,6 +167,7 @@ export const PizzaForm = () =>{
                         {errors.pizzasize.length > 0 ? (
                             <p className="error">{errors.pizzasize}</p>
                         ) : null}
+                        {console.log(errors.pizzasize)}
                     </label>
                     <label htmlFor="sauce">
                         <h2>Choice of sawwwce [sauce]</h2>
@@ -164,24 +197,67 @@ export const PizzaForm = () =>{
 
                         </ul>
                         </div>
+                        {errors.toppings.length > 0 ? (
+          <p className="error">{errors.toppings}</p>
+        ) : null}
                     </label>
                         <h2>Substitute for gluten free, hipster?</h2>
-                    <label className="switch" onChange={inputChange}>
-                            <input id="gluten" type="checkbox" name="gluten" value="gluten"/>
+                    <label 
+                    className="switch" 
+                    onChange={inputChange}
+                    >
+                            <input 
+                            id="gluten" 
+                            type="checkbox" 
+                            name="gluten" 
+                            value="gluten"
+                            /> 
                             <span className="slider"></span>
+                        {errors.gluten.length > 0 ? (
+                            <p className="error">{errors.gluten}</p>
+                        ) : null}
                             </label>
-                    <label className="textarea" htmlFor="textarea" onChange={inputChange} value={formState.textarea}></label>
-                    <textarea placeholder="Anying else?" name="textarea"></textarea>
+
+                    <label htmlFor="textarea">
+                        
+                     <textarea
+                            placeholder="Anything else?"
+                            name="textarea"
+                            onChange={inputChange}
+                            value={formState.textarea}
+                        />
+                        {errors.textarea.length > 0 ? (
+                            <p className="error">{errors.textarea}</p>
+                        ) : null}
+                    </label>
                         <div className="amount-btn-tos">
-                        <label htmlFor="howmany" onChange={inputChange}>How many wouldya like darling?
-                            <input type="number" name="howmany" id="howmany" name="howmany" step="1" onChange={inputChange}
-                                value={formState.howmany}/>
+                        <label 
+                        htmlFor="howmany" 
+                        onChange={inputChange}
+                        >How many wouldya like darling?
+                            <input 
+                            type="number" 
+                            name="howmany" 
+                            id="howmany" 
+                            name="howmany" 
+                            step="1" 
+                            onChange={inputChange}
+                            value={formState.howmany}
+                            />
+                            {errors.howmany === 0 ? (
+                                <p className="error">{errors.howmany}</p>
+                            ) : null}
                         </label>
                             <button disabled={isButtonDisabled} type="submit">
                                 Submit
       </button>
-                            <input type="checkbox" name="terms" checked={formState.terms} onChange={inputChange}/>
-                            {JSON.stringify(post, null, 2)}
+                            <input 
+                            type="checkbox" 
+                            name="terms" 
+                            checked={formState.terms} 
+                            onChange={inputChange}
+                            />
+                            {JSON.stringify(post, 'http://localhost.3000', 2)}
 
                         </div>
                   

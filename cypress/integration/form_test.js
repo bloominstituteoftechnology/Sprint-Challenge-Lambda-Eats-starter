@@ -13,11 +13,7 @@ describe('Test our form inputs', function () {
             .check('marinara')
 
         cy.get('[type="checkbox"]')
-            .check("Pepperoni")
-            .should("be.checked")
-
-        cy.get('[name="gluten"]')
-            .check({ force: true })
+            .check()
             .should("be.checked")
 
         cy.get('[name="textarea"]')
