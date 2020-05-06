@@ -7,11 +7,15 @@ const NavDiv = styled.div`
 
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem;
+  padding: 1% 15%;
 `;
 
 const Nav = styled.div`
   font-size: 1.5rem;
+  display: flex;
+
+  width: 200px;
+  justify-content: space-around;
 `;
 
 const Navbar = () => {

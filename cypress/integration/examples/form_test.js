@@ -12,6 +12,7 @@ describe("Testing our form inputs", function () {
     cy.get("textarea")
       .type("please send my pizza")
       .should("have.value", "please send my pizza");
-    cy.get("button").click();
+
+    cy.get("button").click({ multiple: true });
   });
 });

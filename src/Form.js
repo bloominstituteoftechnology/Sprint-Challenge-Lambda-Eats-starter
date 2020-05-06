@@ -39,7 +39,8 @@ const Form = () => {
 
   const [buttonDisabled, setButtonDisabled] = useState("");
   const [post, setPost] = useState([]);
-  const [total, setTotal] = useState(10);
+  const [total, setTotal] = useState(16.99);
+  const [toggle, setToggle] = useState(false);
 
   let formSchema = yup.object().shape({
     name: yup
@@ -73,27 +74,9 @@ const Form = () => {
       [e.target.name]:
         e.target.type === "checkbox" ? e.target.checked : e.target.value,
     };
-    checkTotal(e);
+
     validateChange(e);
     setFormState(newFormData);
-  };
-
-  const checkTotal = (e) => {
-    console.log("This is the event", e.target.value);
-    if (e.target.value === "Small") {
-      setTotal(10);
-    } else if (e.target.value === "Medium") {
-      setTotal(12);
-    } else {
-      setTotal(15);
-    }
-    addTopping(e);
-  };
-
-  const addTopping = (e) => {
-    e.target.type === "checkbox" && e.target.checked
-      ? setTotal(total + 1)
-      : setTotal(total);
   };
 
   const validateChange = (e) => {
@@ -134,6 +117,11 @@ const Form = () => {
         });
       })
       .catch((err) => console.log(err.response));
+  };
+
+  const toggler = () => {
+    toggle ? setToggle(false) : setToggle(true);
+    toggle ? setTotal(total - 1) : setTotal(total + 1);
   };
 
   return (
@@ -194,6 +182,7 @@ const Form = () => {
             </div>
             <label htmfFor="original-red">
               <input
+                className="radio"
                 type="radio"
                 id="original-red"
                 name="sauce"
@@ -205,6 +194,7 @@ const Form = () => {
 
             <label htmfFor="garlic">
               <input
+                className="radio"
                 type="radio"
                 name="sauce"
                 onChange={inputChange}
@@ -215,6 +205,7 @@ const Form = () => {
 
             <label htmfFor="bbq">
               <input
+                className="radio"
                 type="radio"
                 name="sauce"
                 onChange={inputChange}
@@ -225,6 +216,7 @@ const Form = () => {
 
             <label htmfFor="spinach">
               <input
+                className="radio"
                 type="radio"
                 name="sauce"
                 onChange={inputChange}
@@ -232,10 +224,6 @@ const Form = () => {
               />
               Spinach Alfredo
             </label>
-          </label>
-          <label>
-            <Switch className="switch" />
-            Gluten free crust( + $1.00)
           </label>
 
           <label htmlFor="toppings" className="input-label">
@@ -245,6 +233,7 @@ const Form = () => {
             <div className="toppings">
               <label htmlFor="pepperoni">
                 <input
+                  className="checkbox"
                   type="checkbox"
                   id="pepperoni"
                   name="pepperoni"
@@ -256,6 +245,7 @@ const Form = () => {
               <br />
               <label htmlFor="sausage">
                 <input
+                  className="checkbox"
                   type="checkbox"
                   id="sausage"
                   name="sausage"
@@ -267,6 +257,7 @@ const Form = () => {
               <br />
               <label htmlFor="bacon">
                 <input
+                  className="checkbox"
                   type="checkbox"
                   id="bacon"
                   name="bacon"
@@ -280,6 +271,7 @@ const Form = () => {
               <br />
               <label htmlFor="chicken">
                 <input
+                  className="checkbox"
                   type="checkbox"
                   id="chicken"
                   name="chicken"
@@ -309,10 +301,20 @@ const Form = () => {
           </label>
 
           <pre>{JSON.stringify(post, null, 2)}</pre>
-          <button type="submit" disabled={buttonDisabled}>
-            <div>Add To Order</div> <div> ${total}</div>
-          </button>
-          <form />
+          <div className="button-div">
+            <button type="submit" disabled={buttonDisabled}>
+              <div>Add To Order</div> <div> ${total}</div>
+            </button>
+            <label>
+              <Switch
+                name="gluten"
+                onClick={toggler}
+                className="switch"
+                data-cy="gluten"
+              />
+              Gluten free crust( + $1.00)
+            </label>
+          </div>
         </form>
       </PizzaDiv>
     </FormDiv>
