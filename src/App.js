@@ -3,6 +3,7 @@ import Pizza from "./components/Pizza"
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Home from "./components/Home"
+import "./App.css"
 
 const App = () => {
   return (
