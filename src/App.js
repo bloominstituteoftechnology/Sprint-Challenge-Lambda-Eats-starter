@@ -4,7 +4,7 @@ const App = () => {
   return (
     <>
       <h1>Lambda Eats</h1>
-      <p>header</p>
+      <p>headerr</p>
     </>
   );
 };
