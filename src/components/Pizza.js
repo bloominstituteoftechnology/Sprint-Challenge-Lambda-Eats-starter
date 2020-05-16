@@ -13,7 +13,36 @@ const formSchema = yup.object().shape({
   terms: yup.boolean().oneOf([true], "Please agree to terms of use"),
   garlicRanch: yup.bool().oneOf([true], "Choose a sauce"),
   bbqSauce: yup.bool().oneOf([true], "Choose a sauce"),
-  spinachAlfredo: yup.bool().oneOf([true], "Choose a sauce")
+  spinachAlfredo: yup.bool().oneOf([true], "Choose a sauce"),
+//   toppings: yup.array(), "Choose a topping"),
+//     pepperoni
+//     sausage
+//     canadianBacon
+//     spicyItalianSausage
+//     grilledChicken
+//     onion
+//     greenPepper
+//     dicedTomatoes
+//     blackOlives
+//     roastedGarlic
+//     artichokeHearts
+//     threeCheese
+//     pineapple
+//     extraCheese
+    pepperoni: yup.bool().oneOf([true], "Choose a topping"),
+    sausage: yup.bool().oneOf([true], "Choose a topping"),
+    canadianBacon: yup.bool().oneOf([true], "Choose a topping"),
+    spicyItalianSausage: yup.bool().oneOf([true], "Choose a topping"),
+    grilledChicken: yup.bool().oneOf([true], "Choose a topping"),
+    onion: yup.bool().oneOf([true], "Choose a topping"),
+    greenPepper: yup.bool().oneOf([true], "Choose a topping"),
+    dicedTomatoes: yup.bool().oneOf([true], "Choose a topping"),
+    blackOlives: yup.bool().oneOf([true], "Choose a topping"),
+    roastedGarlic: yup.bool().oneOf([true], "Choose a topping"),
+    artichokeHearts: yup.bool().oneOf([true], "Choose a topping"),
+    threeCheese: yup.bool().oneOf([true], "Choose a topping"),
+    pineapple: yup.bool().oneOf([true], "Choose a topping"),
+    extraCheese: yup.bool().oneOf([true], "Choose a topping"),
 });
 
 export default function Pizza() {
