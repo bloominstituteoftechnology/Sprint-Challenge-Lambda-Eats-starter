@@ -1,10 +1,20 @@
 import React from "react";
+import {Route} from "react-router-dom"
+import HomePage from './Component/HomePage'
+import Pizza from "./Component/Pizza";
+import './App.css'
+
 
 const App = () => {
+ 
   return (
     <>
-      <h1>Lambda Eats</h1>
-      <h2>winner winner get some dinner...</h2>
+    <Route exact path="/">
+      <HomePage/>
+    </Route>
+    <Route path="/pizza">
+      <Pizza />
+    </Route>
     </>
   );
 };
