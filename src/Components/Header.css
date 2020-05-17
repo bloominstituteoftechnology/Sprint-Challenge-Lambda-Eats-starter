@@ -1,0 +1,12 @@
+.headerContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.headerImg {
+  display: flex;
+  height: 30%;
+  margin: 2%;
+}
