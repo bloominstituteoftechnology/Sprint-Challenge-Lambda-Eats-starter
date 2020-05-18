@@ -9,11 +9,9 @@ const formSchema = yup.object().shape({
   .required('Please input your name.')
   .min(2, 'Name must be longer than 2 characters.'),
   size: yup
-  .string()
-  .required('Please select a size.'),
+  .string(),
   sauce: yup
-  .string()
-  .required('Please choose a sauce.'),
+  .string(),
   pepperoni: yup
   .boolean(),
   sausage: yup
@@ -25,9 +23,7 @@ const formSchema = yup.object().shape({
   specialInstruction: yup
   .string(),
    amountOrdered: yup
-   .number()
-   .required('At least 1 pizza needed for purchase')
-   .min(1, 'Amount can not be lower than 1.')
+   .number(),
 });
 
 
@@ -109,7 +105,7 @@ const OrderForm = () => {
       <FormGroup>
         <Label for='person'>
           <h2>Your Name</h2>
-          <Input type='text' name='person' id='person' placeholder='Name or no pizza' onChange={inputChange} value={formState.name}/>
+          <Input type='text' name='person' id='person' placeholder='Name or no pizza' onChange={inputChange} value={formState.name} data-cy="name-input"/>
           {errorState.person.length > 0 ? <FormFeedback>{errorState.person}</FormFeedback> : null}
         </Label>
       </FormGroup>
@@ -145,17 +141,17 @@ const OrderForm = () => {
       <FormGroup check>
       <h2>Choose Your Toppings</h2>
         <Label check for='pepperoni'>
-            <Input type='checkbox' name='pepperoni' id='pepperoni' onChange={inputChange} value={formState.pepperoni}/>{' '}
+            <Input type='checkbox' name='pepperoni' id='pepperoni' onChange={inputChange} value={formState.pepperoni} data-cy="checkbox" />{' '}
               Pepperoni
         </Label>
         {errorState.pepperoni.length > 0 ? <FormFeedback>{errorState.pepperoni}</FormFeedback> : null}
        <Label check for='sausage'>
-            <Input type='checkbox' name='sausage' id='sausage' onChange={inputChange} value={formState.sausage}/>{' '}
+            <Input type='checkbox' name='sausage' id='sausage' onChange={inputChange} value={formState.sausage} data-cy="checkbox" />{' '}
               Sausage
         </Label>
         {errorState.sausage.length > 0 ? <FormFeedback>{errorState.sausage}</FormFeedback> : null}
         <Label check for='bacon'>
-              <Input type='checkbox' name='bacon' id='bacon' onChange={inputChange} value={formState.bacon} />{' '}
+              <Input type='checkbox' name='bacon' id='bacon' onChange={inputChange} value={formState.bacon} data-cy="checkbox" />{' '}
               Bacon
         </Label>
         {errorState.bacon.length > 0 ? <FormFeedback>{errorState.bacon}</FormFeedback> : null}
@@ -179,7 +175,7 @@ const OrderForm = () => {
         </Label>
       </FormGroup>
       <pre>{JSON.stringify(formState, null, 2)}</pre>
-      <Button disabled={buttonDisabled}>Add to Order</Button>
+      <Button disabled={buttonDisabled} data-cy="submit">Add to Order</Button>
     </Form>
   )
 }
