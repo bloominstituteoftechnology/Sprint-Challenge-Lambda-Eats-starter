@@ -7,6 +7,6 @@
 
 .headerImg {
   display: flex;
-  height: 30%;
+  max-height: 400px;
   margin: 2%;
 }

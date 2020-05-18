@@ -1,5 +1,6 @@
 import React from "react";
 import headerImg from './Assets/Pizza.jpg';
+import './Header.css';
 
 
 const MainHeader = () => {

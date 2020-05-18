@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Form, Input, FormGroup, Label, CustomInput, Button, FormFeedback } from 'reactstrap';
 import * as yup from 'yup';
 import axios from 'axios';
+import './Form.css';
 
 const formSchema = yup.object().shape({
   person: yup
@@ -116,7 +117,7 @@ const OrderForm = () => {
       <FormGroup>
         <Label for='size'>
           <h2>Choice of Size</h2>
-          <p>Required</p>
+          <p>*Required</p>
           <div>
           <Input type='select' name='size' id='size' placeholder='Select' onChange={inputChange} value={formState.size}>
             <option>Small</option>
@@ -131,7 +132,7 @@ const OrderForm = () => {
       <FormGroup>
         <Label for='c'>
           <h3>Choice of sauce</h3>
-          <p>Required</p>
+          <p>*Required</p>
         <div>
         <Input type='select' name='sauce' id='sauce' placeholder='Select' onChange={inputChange} value={formState.size}>
             <option>Original Red</option>

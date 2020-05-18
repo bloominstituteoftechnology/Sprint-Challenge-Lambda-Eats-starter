@@ -2,6 +2,7 @@ import React from "react";
 import MainHeader from './Components/Home';
 import Form from './Components/Form';
 import { Route, Link} from 'react-router-dom';
+import './App.css';
 
 const App = () => {
   return (
