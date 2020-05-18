@@ -1,10 +1,13 @@
 import React from "react";
-import MainHeader from './Components/Header';
+import MainHeader from './Components/Home';
+import Form from './Components/Form';
+import { Route } from 'react-router-dom';
 
 const App = () => {
   return (
     <>
-      <MainHeader />
+      <Route path='/pizza' component={Form}/>
+      <Route exact path='/' component={MainHeader} />
     </>
   );
 };
