@@ -18,6 +18,8 @@ const formSchema = yup.object().shape({
   .boolean(),
   bacon: yup
   .boolean(),
+  extraCheese: yup
+  .boolean(),
   gfSelector: yup
   .boolean(),
   specialInstruction: yup
@@ -37,6 +39,7 @@ const OrderForm = () => {
     pepperoni: false,
     sausage: false,
     bacon: false,
+    extraCheese: false,
     gfSelector: false,
     specialInstruction: '',
     amountOrdered: "",
@@ -58,6 +61,7 @@ const OrderForm = () => {
     pepperoni: '',
     sausage: '',
     bacon: '',
+    extraCheese: '',
     gfSelector: '',
     specialInstruction: '',
     amountOrdered: "",
@@ -65,7 +69,7 @@ const OrderForm = () => {
 
   // Check Validation for name and amount ordered
   const validate = e => {
-    let value = e.target.type === 'checkbox' || e.target.type === 'radio' ? e.target.checked : e.target.value
+    let value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
     yup
       .reach(formSchema, e.target.name)
       .validate(value)
@@ -155,6 +159,11 @@ const OrderForm = () => {
               Bacon
         </Label>
         {errorState.bacon.length > 0 ? <FormFeedback>{errorState.bacon}</FormFeedback> : null}
+        <Label check for='extraCheese'>
+              <Input type='checkbox' name='extraCheese' id='extraCheese' onChange={inputChange} value={formState.extraCheese} data-cy="checkbox" />{' '}
+              Bacon
+        </Label>
+        {errorState.extraCheese.length > 0 ? <FormFeedback>{errorState.extraCheese}</FormFeedback> : null}
       </FormGroup>
       <FormGroup>
         <Label for='gfSelector'>
