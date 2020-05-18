@@ -12,9 +12,14 @@ const formSchema = yup.object().shape({
   .string()
   .required('Please select a size.'),
   sauce: yup
-  .string(),
-  toppings: yup
-  .string(),
+  .string()
+  .required('Please choose a sauce.'),
+  pepperoni: yup
+  .boolean(),
+  sausage: yup
+  .boolean(),
+  bacon: yup
+  .boolean(),
   gfSelector: yup
   .boolean(),
   specialInstruction: yup
@@ -33,7 +38,9 @@ const OrderForm = () => {
     person: '',
     size: '',
     sauce: '',
-    toppings: '',
+    pepperoni: false,
+    sausage: false,
+    bacon: false,
     gfSelector: false,
     specialInstruction: '',
     amountOrdered: "",
@@ -52,22 +59,17 @@ const OrderForm = () => {
     person: '',
     size: '',
     sauce: '',
-    toppings: '',
-    gfSelector: "",
+    pepperoni: '',
+    sausage: '',
+    bacon: '',
+    gfSelector: '',
     specialInstruction: '',
     amountOrdered: "",
   });
 
   // Check Validation for name and amount ordered
   const validate = e => {
-    let value = '';
-    if (e.target.type === 'checkbox' || e.target.type === 'radio') {
-      if (e.target.checked) {
-        value = e.target.value;
-      }
-    } else {
-      value = e.target.value;
-    }
+    let value = e.target.type === 'checkbox' || e.target.type === 'radio' ? e.target.checked : e.target.value
     yup
       .reach(formSchema, e.target.name)
       .validate(value)
@@ -88,14 +90,7 @@ const OrderForm = () => {
   const inputChange = e => {
     e.persist();
     validate(e);
-    let value = '';
-    if (e.target.type === 'checkbox' || e.target.type === 'radio') {
-      if (e.target.checked) {
-        value = e.target.value;
-      }
-    } else {
-      value = e.target.value;
-    }
+    let value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
     setFormState({ ...formState, [e.target.name]: value });
     };
 
@@ -129,38 +124,41 @@ const OrderForm = () => {
             <option>Large</option>
             <option>Extra Large</option>
           </Input>
-          {errorState.size.length > 0 ? <FormFeedback>{errorState.person}</FormFeedback> : null}
+          {errorState.size.length > 0 ? <FormFeedback>{errorState.size}</FormFeedback> : null}
           </div>
         </Label>
       </FormGroup>
       <FormGroup>
-        <Label for='sauce'>
+        <Label for='c'>
           <h3>Choice of sauce</h3>
           <p>Required</p>
         <div>
-          <Input type='radio' name='sauce' id='sauceOR' onChange={inputChange} value ='OriginalRed' />
-          Original Red
-          <Input type='radio' name='sauce' id='sauceGR' onChange={inputChange} value='GarlicRanch' />
-          Garlic Ranch
-          <Input type='radio' name='sauce' id='sauceBBQ' onChange={inputChange} value='BBQSuace' />
-          BBQ Sauce
+        <Input type='select' name='sauce' id='sauce' placeholder='Select' onChange={inputChange} value={formState.size}>
+            <option>Original Red</option>
+            <option>Garlic Ranch</option>
+            <option>BBQ</option>
+          </Input>
+          {errorState.sauce.length > 0 ? <FormFeedback>{errorState.sauce}</FormFeedback> : null}
         </div>
-        {errorState.sauce.length > 0 ? <FormFeedback>{errorState.sauce}</FormFeedback> : null}
         </Label>
       </FormGroup>
       <FormGroup check>
-        <Label check for='toppings'>
-          <h2>Choose Your Toppings</h2>
-          <div className='toppingCheckboxes'>
-            <Input type='checkbox' name='toppings' id='pepperoni' onChange={inputChange} value='Pepperoni'/>{' '}
+      <h2>Choose Your Toppings</h2>
+        <Label check for='pepperoni'>
+            <Input type='checkbox' name='pepperoni' id='pepperoni' onChange={inputChange} value={formState.pepperoni}/>{' '}
               Pepperoni
-            <Input type='checkbox' name='toppings' id='sausage' onChange={inputChange} value='Sausage'/>{' '}
-              Sausage
-            <Input type='checkbox' name='toppings' id='bacon' onChange={inputChange} value='Bacon'/>{' '}
-              Bacon
-          </div>
-          {errorState.toppings.length > 0 ? <FormFeedback>{errorState.toppings}</FormFeedback> : null}
         </Label>
+        {errorState.pepperoni.length > 0 ? <FormFeedback>{errorState.pepperoni}</FormFeedback> : null}
+       <Label check for='sausage'>
+            <Input type='checkbox' name='sausage' id='sausage' onChange={inputChange} value={formState.sausage}/>{' '}
+              Sausage
+        </Label>
+        {errorState.sausage.length > 0 ? <FormFeedback>{errorState.sausage}</FormFeedback> : null}
+        <Label check for='bacon'>
+              <Input type='checkbox' name='bacon' id='bacon' onChange={inputChange} value={formState.bacon} />{' '}
+              Bacon
+        </Label>
+        {errorState.bacon.length > 0 ? <FormFeedback>{errorState.bacon}</FormFeedback> : null}
       </FormGroup>
       <FormGroup>
         <Label for='gfSelector'>
@@ -180,6 +178,7 @@ const OrderForm = () => {
           <Input type='number' name='amountOrdered' id='amountOrdered' onChange={inputChange} value={formState.amountOrdered} />
         </Label>
       </FormGroup>
+      <pre>{JSON.stringify(formState, null, 2)}</pre>
       <Button disabled={buttonDisabled}>Add to Order</Button>
     </Form>
   )
