@@ -6,6 +6,20 @@
   height: 40vmin;
   pointer-events: none;
 }
+form {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 10px 0;
+  font-size: 1.4rem;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
