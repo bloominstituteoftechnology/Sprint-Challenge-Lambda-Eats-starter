@@ -8,7 +8,12 @@ const formSchema = yup.object().shape({
     .required("Name is a required field")
     .min(2, "Name must be at least 2 characters long"),
   sizes: yup.string().required("Please choose a size"),
-//   toppings: yup.string(),
+  //   toppings: yup.string(),
+  pepperoni: yup.boolean(),
+  pineapple: yup.boolean(),
+  olives: yup.boolean(),
+  mushrooms: yup.boolean(),
+
   instructions: yup.string(),
 });
 
@@ -16,8 +21,11 @@ export default function Form(props) {
   // managing state for our form inputs
   const [formState, setFormState] = useState({
     name: "",
-    sizes: "",
-    toppings: "",
+    sizes: "Small",
+    pepperoni: false,
+    pineapple: false,
+    olives: false,
+    mushrooms: false,
     instructions: "",
   });
 
@@ -27,6 +35,8 @@ export default function Form(props) {
     toppings: "",
     instructions: "",
   });
+
+  const [order, setOrder] = useState({});
 
   // anytime you're working with checkboxes, the value will be called value, not e.target.value
   const validate = (e) => {
@@ -66,8 +76,7 @@ export default function Form(props) {
     axios
       .post("https://reqres.in/api/users", formState)
       .then((response) => {
-        console.log(props.addOrder);
-        props.addOrder(response.data);
+        setOrder(response.data);
       })
       .catch((err) => console.log(err));
   };
@@ -90,7 +99,12 @@ export default function Form(props) {
       <div className="component">
         <form>
           Size
-          <select id="sizes" name="sizes">
+          <select
+            id="sizes"
+            name="sizes"
+            value={formState.sizes}
+            onChange={inputChange}
+          >
             <option value="Large"> large</option>
             <option value="Medium"> medium </option>
             <option value="Small"> small </option>
@@ -99,26 +113,30 @@ export default function Form(props) {
         </form>
       </div>
 
-      <p> Age Range: </p>
-          <label>
-          pepperoni ($1)
-            <input type="radio" onChange={event => inputChange(event)} />
-            mushrooms ($.50)
-            <input type="radio" onChange={event => inputChange(event)} />
-            pineapple ($.50)
-            <input type="radio" onChange={event => inputChange(event)} />
-            olives ($.50)
-            <input type="radio" onChange={event => inputChange(event)} />
-            </label>
+      {/* <label>
+        pepperoni ($1)
+        <input
+          type="radio"
+          onChange={(event) => inputChange(event)}
+          data-test-id="bestTopping"
+        />
+        mushrooms ($.50)
+        <input type="radio" onChange={(event) => inputChange(event)} />
+        pineapple ($.50)
+        <input type="radio" onChange={(event) => inputChange(event)} />
+        olives ($.50)
+        <input type="radio" onChange={(event) => inputChange(event)} />
+      </label> */}
 
-      {/* <div className="toppingComponent">
+      <div className="toppingComponent">
         <h3> Choose your toppings </h3>
         <label htmlFor="pepperoni">
           <input
+            data-test-id="bestTopping"
             type="checkbox"
             id="pepperoni"
-            name="toppings"
-            checked={formState.toppings}
+            name="pepperoni"
+            checked={formState.pepperoni}
             onChange={inputChange}
           ></input>
           add pepperoni for $1
@@ -128,8 +146,8 @@ export default function Form(props) {
           <input
             type="checkbox"
             id="mushrooms"
-            name="toppings"
-            checked={formState.toppings}
+            name="mushrooms"
+            checked={formState.mushrooms}
             onChange={inputChange}
           ></input>
           add mushrooms for $.50
@@ -139,8 +157,8 @@ export default function Form(props) {
           <input
             type="checkbox"
             id="pineapple"
-            name="toppings"
-            checked={formState.toppings}
+            name="pineapple"
+            checked={formState.pineapple}
             onChange={inputChange}
           ></input>
           add pineapple for $.50
@@ -150,8 +168,8 @@ export default function Form(props) {
           <input
             type="checkbox"
             id="olives"
-            name="toppings"
-            checked={formState.toppings}
+            name="olives"
+            checked={formState.olives}
             onChange={inputChange}
           ></input>
           add olives for $.50
@@ -170,10 +188,10 @@ export default function Form(props) {
             onChange={inputChange}
           ></input>
         </label>
-      </div> */}
+      </div>
 
-      <button>Submit</button>
-      <pre>{JSON.stringify(props.formUsers, null, 2)}</pre>
+      <button data-test-id="submitButton">Submit</button>
+      <pre>{JSON.stringify(order, null, 2)}</pre>
     </form>
   );
 }

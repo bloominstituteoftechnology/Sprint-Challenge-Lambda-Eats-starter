@@ -4,20 +4,7 @@ import Home from "./components/Home";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const App = () => {
-  const [orders, setOrders] = useState([]);
-
-  // addOrder is a function – pass user as a prop
-  const addOrder = (order) => {
-    const newOrder = {
-      name: order.name,
-      sizes: order.sizes,
-      toppings: order.toppings,
-      instructions: order.instructions,
-    };
-    setOrders([...orders, newOrder]);
-  };
-  console.log(orders);
-
+ 
   return (
     <div className="App">
       <nav>
@@ -30,7 +17,7 @@ const App = () => {
       <Route exact path="/">
         <Home home={Home} />
       </Route>
-      <Route path="/pizza" component={Form} addOrder={addOrder} formsers={orders}/>
+      <Route path="/pizza" component={Form}/>
     </div>
   );
 };
