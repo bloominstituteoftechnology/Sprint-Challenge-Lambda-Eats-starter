@@ -1,10 +1,32 @@
 .App {
-  text-align: center;
+ 
+  background-color: ghostwhite
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 10px 0;
+  font-size: 1.4rem;
+}
+.OTW{
+  display: block;
+  justify-content: center;
+  margin: 10%;
+  margin-left: 35%;
+  font-size: 2.0rem;
 }
 
 @media (prefers-reduced-motion: no-preference) {
