@@ -8,7 +8,7 @@ const formSchema = yup.object().shape({
     .required("Name is a required field")
     .min(2, "Name must be at least 2 characters long"),
   sizes: yup.string().required("Please choose a size"),
-  topings: yup.string(),
+//   toppings: yup.string(),
   instructions: yup.string(),
 });
 
@@ -66,8 +66,8 @@ export default function Form(props) {
     axios
       .post("https://reqres.in/api/users", formState)
       .then((response) => {
-        console.log(props.addUser);
-        props.addUser(response.data);
+        console.log(props.addOrder);
+        props.addOrder(response.data);
       })
       .catch((err) => console.log(err));
   };
@@ -99,7 +99,19 @@ export default function Form(props) {
         </form>
       </div>
 
-      <div className="toppingComponent">
+      <p> Age Range: </p>
+          <label>
+          pepperoni ($1)
+            <input type="radio" onChange={event => inputChange(event)} />
+            mushrooms ($.50)
+            <input type="radio" onChange={event => inputChange(event)} />
+            pineapple ($.50)
+            <input type="radio" onChange={event => inputChange(event)} />
+            olives ($.50)
+            <input type="radio" onChange={event => inputChange(event)} />
+            </label>
+
+      {/* <div className="toppingComponent">
         <h3> Choose your toppings </h3>
         <label htmlFor="pepperoni">
           <input
@@ -158,7 +170,7 @@ export default function Form(props) {
             onChange={inputChange}
           ></input>
         </label>
-      </div>
+      </div> */}
 
       <button>Submit</button>
       <pre>{JSON.stringify(props.formUsers, null, 2)}</pre>

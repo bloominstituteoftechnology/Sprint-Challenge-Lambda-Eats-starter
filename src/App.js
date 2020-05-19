@@ -4,19 +4,19 @@ import Home from "./components/Home";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const App = () => {
-  const [users, setUsers] = useState([]);
+  const [orders, setOrders] = useState([]);
 
-  // addUser is a function – pass user as a prop
-  const addUser = (user) => {
-    const newUser = {
-      name: user.name,
-      sizes: user.sizes,
-      toppings: user.toppings,
-      instructions: user.instructions,
+  // addOrder is a function – pass user as a prop
+  const addOrder = (order) => {
+    const newOrder = {
+      name: order.name,
+      sizes: order.sizes,
+      toppings: order.toppings,
+      instructions: order.instructions,
     };
-    setUsers([...users, newUser]);
+    setOrders([...orders, newOrder]);
   };
-  console.log(users);
+  console.log(orders);
 
   return (
     <div className="App">
@@ -30,7 +30,7 @@ const App = () => {
       <Route exact path="/">
         <Home home={Home} />
       </Route>
-      <Route path="/pizza" component={Form} addUser={addUser} users={users}/>
+      <Route path="/pizza" component={Form} addOrder={addOrder} formsers={orders}/>
     </div>
   );
 };
