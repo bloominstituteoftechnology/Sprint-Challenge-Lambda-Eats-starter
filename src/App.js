@@ -13,8 +13,11 @@ const App = () => {
           <Link to = "/">Home</Link>
         </div>
       </nav>
-      <Route exact path="/" Home component={Home} />
-      <Route path="/pizza" component={Form}/>
+      <Route exact path="/"> 
+      <Home component={Home}/>
+      </Route> 
+      <Form/>
+      {/* <Route path="/pizza" component={Form}/> */}
     </div>
   );
 };
