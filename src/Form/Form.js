@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import axios from "axios";
+import { Link, Route } from 'react-router-dom';
 
 const formSchema = yup.object().shape({
     id: Date.now(),
@@ -149,7 +150,7 @@ export default function Form(){
                 value = {formState.Instructions}
                 onChange = {changeHandler}
                 />
-            <button>Add to Order</button>
+           <Link to = "/Done"> <button>Add to Order</button></Link>
             <pre>{JSON.stringify(post, null, 2)}</pre>
             
         </form>
