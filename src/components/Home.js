@@ -5,7 +5,9 @@ function Home() {
   const history = useHistory();
   return (
     <div className="home-wrapper">
-      <button onClick={() => history.push("/pizza")}>Pizza?</button>
+      <button data-test-id="homePizzaButton" onClick={() => history.push("/pizza")}>
+        Pizza?
+      </button>
     </div>
   );
 }

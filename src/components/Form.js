@@ -120,6 +120,7 @@ export default function Form() {
         <h3> Choose your sauce </h3>
         <label htmlFor="marinara">
           <input
+            data-test-id="selectSauce"
             type="checkbox"
             id="marinara"
             name="marinara"
@@ -130,6 +131,7 @@ export default function Form() {
         </label>
         <label htmlFor="whiteGarlic">
           <input
+          data-test-id="selectSauce"
             type="checkbox"
             id="whiteGarlic"
             name="whiteGarlic"
@@ -164,7 +166,7 @@ export default function Form() {
         <h3> Choose your toppings </h3>
         <label htmlFor="pepperoni">
           <input
-            data-test-id="bestTopping"
+            data-test-id="bestToppings"
             type="checkbox"
             id="pepperoni"
             name="pepperoni"
@@ -187,6 +189,7 @@ export default function Form() {
 
         <label htmlFor="pineapple">
           <input
+          data-test-id="bestToppings"
             type="checkbox"
             id="pineapple"
             name="pineapple"
@@ -221,7 +224,7 @@ export default function Form() {
           ></input>
         </label>
       </div>
-      <button>Submit</button>
+      <button data-test-id="submitButton">Submit</button>
       <pre>{JSON.stringify(order, null, 2)}</pre>
     </form>
   );
