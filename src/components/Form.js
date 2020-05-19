@@ -6,9 +6,10 @@ const formSchema = yup.object().shape({
   name: yup
     .string()
     .required("Name is a required field")
-    .min(2, "Valid name must be at least 2 characters long"),
-  size: yup.string().required("Please choose a size"),
-  toppings: yup.string(),
+    .min(2, "Name must be at least 2 characters long"),
+  sizes: yup.string().required("Please choose a size"),
+  topings: yup.string(),
+  instructions: yup.string(),
 });
 
 export default function Form(props) {
@@ -17,7 +18,6 @@ export default function Form(props) {
     name: "",
     sizes: "",
     toppings: "",
-    pepperoni: false,
     instructions: "",
   });
 
@@ -28,17 +28,41 @@ export default function Form(props) {
     instructions: "",
   });
 
+  // anytime you're working with checkboxes, the value will be called value, not e.target.value
+  const validate = (e) => {
+    const value =
+      e.target.type === "checkbox" ? e.target.checked : e.target.value;
+    yup
+      .reach(formSchema, e.target.name)
+      .validate(value)
+      .then((valid) => {
+        setErrors({
+          ...errors,
+          [e.target.name]: "",
+        });
+      })
+      .catch((err) => {
+        setErrors({
+          ...errors,
+          [e.target.name]: err.errors[0],
+        });
+      });
+    setFormState({
+      ...formState,
+      [e.target.name]: value,
+    });
+  };
 
   // onChange function
   const inputChange = (e) => {
     e.persist();
     console.log("input changed!", e.target.value, e.target.checked);
-    // validate(e);
+    validate(e);
   };
 
   const formSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted!");
+    console.log("Pizza ordered!");
     axios
       .post("https://reqres.in/api/users", formState)
       .then((response) => {
@@ -81,64 +105,63 @@ export default function Form(props) {
           <input
             type="checkbox"
             id="pepperoni"
-            name="pepperoni"
+            name="toppings"
             checked={formState.toppings}
             onChange={inputChange}
           ></input>
           add pepperoni for $1
-          </label>
+        </label>
 
-          <label htmlFor="mushrooms">
+        <label htmlFor="mushrooms">
           <input
             type="checkbox"
             id="mushrooms"
-            name="mushrooms"
+            name="toppings"
             checked={formState.toppings}
             onChange={inputChange}
           ></input>
-          add mushrooms for $.50 
-          </label>
+          add mushrooms for $.50
+        </label>
 
-          <label htmlFor="pineapple">
+        <label htmlFor="pineapple">
           <input
             type="checkbox"
             id="pineapple"
-            name="pineapple"
+            name="toppings"
             checked={formState.toppings}
             onChange={inputChange}
           ></input>
-          add pineapple for $.50 
-          </label>
-         
-          <label htmlFor="olives">
+          add pineapple for $.50
+        </label>
+
+        <label htmlFor="olives">
           <input
             type="checkbox"
             id="olives"
-            name="olives"
+            name="toppings"
             checked={formState.toppings}
             onChange={inputChange}
           ></input>
-          add olives for $.50 
-          </label>
-        </div> 
+          add olives for $.50
+        </label>
+      </div>
 
-
-    <div className= "component">
-    <label htmlFor="instructions">
-        Please note any special instructions
-        <input
-          type="text"
-          name="instructions"
-          id="instructions"
-          placeholder="instructions"
-          value={formState.instructions}
-          onChange={inputChange}
-        ></input>
-      </label>
-    </div>
+      <div className="component">
+        <label htmlFor="instructions">
+          Please note any special instructions
+          <input
+            type="text"
+            name="instructions"
+            id="instructions"
+            placeholder="instructions"
+            value={formState.instructions}
+            onChange={inputChange}
+          ></input>
+        </label>
+      </div>
 
       <button>Submit</button>
-  
+      <pre>{JSON.stringify(props.formUsers, null, 2)}</pre>
     </form>
   );
 }
