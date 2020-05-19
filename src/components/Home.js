@@ -1,13 +1,11 @@
 import React from "react";
-
+import { useHistory } from "react-router-dom";
 
 function Home() {
-
+  const history = useHistory();
   return (
     <div className="home-wrapper">
-      <button>
-        Pizza?
-      </button>
+      <button onClick={() => history.push("/pizza")}>Pizza?</button>
     </div>
   );
 }

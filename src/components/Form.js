@@ -31,7 +31,7 @@ export default function Form() {
     pineapple: false,
     olives: false,
     mushrooms: false,
-    instructions: false,
+    instructions: "",
   });
 
   const [errors, setErrors] = useState({

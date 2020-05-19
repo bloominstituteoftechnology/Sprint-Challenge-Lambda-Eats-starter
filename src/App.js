@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Home from "./components/Home";
 import Form from "./components/Form";
 
@@ -14,10 +14,9 @@ const App = () => {
         </div>
       </nav>
       <Route exact path="/"> 
-      <Home component={Home}/>
+      <Home home={Home}/>
       </Route> 
-      <Form/>
-      {/* <Route path="/pizza" component={Form}/> */}
+      <Route path="/pizza" component={Form}/>
     </div>
   );
 };
