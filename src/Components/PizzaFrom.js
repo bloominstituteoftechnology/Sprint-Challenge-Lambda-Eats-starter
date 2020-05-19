@@ -65,18 +65,52 @@ return(
             </select>
         </label><br/>
 
-        <label>toppings
-            <input value='Cheese' type="checkbox" id="cheese" name="cheese" checked={pizza.toppings} onChange={inputChange}/>
-            <input value='Pepperoni' type="checkbox" id="pepperoni" name="pepperoni" checked={pizza.toppings} onChange={inputChange}/>
-            <input value='Sausage' type="checkbox" id="sausage" name="sausage" checked={pizza.toppings} onChange={inputChange}/>
-            <input type="checkbox" id="pickles" name="pickles" checked={pizza.toppings} onChange={inputChange}/>
-        </label><br/>
+        <p>Toppings:</p>
+            <input value='cheese'
+            type="checkbox" 
+            id="cheese" 
+            name="cheese" 
+            checked={pizza.toppings} 
+            onChange={inputChange}
+            />
+            <label for='cheese'>Cheese</label>
+            
+            <input 
+            value='pepperoni' 
+            type="checkbox" 
+            id="pepperoni" 
+            name="pepperoni" 
+            checked={pizza.toppings} 
+            onChange={inputChange}
+            />
+            <label for='pepperoni'>Pepperoni</label>
+            
+            <input 
+            value='sausage' 
+            type="checkbox" 
+            id="sausage" 
+            name="sausage" 
+            checked={pizza.toppings} 
+            onChange={inputChange}
+            />
+            <label for='sausage'>Sausage</label>
+            
+            <input
+            value='pickles'
+            type="checkbox" 
+            id="pickles" 
+            name="pickles" 
+            checked={pizza.toppings} 
+            onChange={inputChange}
+            />
+            <label for='pickles'>Pickles</label>
+            <br/>
 
         <label>Special Instructions
             <textarea name='instructions' id='instructions' value={pizza.Instructions} />
         </label>
         <button>Submit</button>
     </form>
-)
-}
+);
+};
 export default Form;
