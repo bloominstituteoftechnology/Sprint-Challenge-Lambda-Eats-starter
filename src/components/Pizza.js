@@ -1,107 +1,37 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import * as yup from "yup";
 import axios from "axios";
 
+
 const formSchema = yup.object().shape({
-  name: yup.string().required("Name is a required field"),
-  email: yup
-    .string()
-    .email("Must be a valid email address")
-    .required("Must include email address"),
-  sizeChoice: yup.string().required("Must include a size"),
-  specialInstructions: yup.string(),
-  terms: yup.boolean().oneOf([true], "Please agree to terms of use"),
-  garlicRanch: yup.bool().oneOf([true], "Choose a sauce"),
-  bbqSauce: yup.bool().oneOf([true], "Choose a sauce"),
-  spinachAlfredo: yup.bool().oneOf([true], "Choose a sauce"),
-//   toppings: yup.array(), "Choose a topping"),
-//     pepperoni
-//     sausage
-//     canadianBacon
-//     spicyItalianSausage
-//     grilledChicken
-//     onion
-//     greenPepper
-//     dicedTomatoes
-//     blackOlives
-//     roastedGarlic
-//     artichokeHearts
-//     threeCheese
-//     pineapple
-//     extraCheese
-    pepperoni: yup.bool().oneOf([true], "Choose a topping"),
-    sausage: yup.bool().oneOf([true], "Choose a topping"),
-    canadianBacon: yup.bool().oneOf([true], "Choose a topping"),
-    spicyItalianSausage: yup.bool().oneOf([true], "Choose a topping"),
-    grilledChicken: yup.bool().oneOf([true], "Choose a topping"),
-    onion: yup.bool().oneOf([true], "Choose a topping"),
-    greenPepper: yup.bool().oneOf([true], "Choose a topping"),
-    dicedTomatoes: yup.bool().oneOf([true], "Choose a topping"),
-    blackOlives: yup.bool().oneOf([true], "Choose a topping"),
-    roastedGarlic: yup.bool().oneOf([true], "Choose a topping"),
-    artichokeHearts: yup.bool().oneOf([true], "Choose a topping"),
-    threeCheese: yup.bool().oneOf([true], "Choose a topping"),
-    pineapple: yup.bool().oneOf([true], "Choose a topping"),
-    extraCheese: yup.bool().oneOf([true], "Choose a topping"),
+    name: yup
+      .string()
+      .min(2, "Your name should have at least 2 characters")
+      .required("Name is a required field"),
+    sizeChoice: yup
+      .string()
+      .required("Must include a size"),
+    specialInstructions: yup.string(),
+    addOns: yup
+      .array()
+      .min(1, "at least 1")
+      .required("Please select"),
 });
 
 export default function Pizza() {
   // managing state for our form inputs
   const [formState, setFormState] = useState({
     name: "",
-    email: "",
     sizeChoice: "",
     specialInstructions: "",
-    terms: false,
-    garlicRanch: false,
-    bbqSauce: "",
-    spinachAlfredo: "",
-    pepperoni: false,
-    sausage: false,
-    canadianBacon: false,
-    spicyItalianSausage: false,
-    grilledChicken: false,
-    onion: false,
-    greenPepper: false,
-    dicedTomatoes: false,
-    blackOlives: false,
-    roastedGarlic: false,
-    artichokeHearts: false,
-    threeCheese: false,
-    pineapple: false,
-    extraCheese: false
+    addOns: []
   });
-
-  const [buttonDisabled, setButtonDisabled] = useState(true);
-  useEffect(() => {
-    formSchema.isValid(formState).then(valid => {
-      setButtonDisabled(!valid);
-    });
-  }, [formState]);
 
   const [errorState, setErrorState] = useState({
     name: "",
-    email: "",
     sizeChoice: "",
     specialInstructions: "",
-    terms: "",
-    garlicRanch: "",
-    bbqSauce: "",
-    spinachAlfredo: "",
-    pepperoni: "",
-    sausage: "",
-    canadianBacon: "",
-    spicyItalianSausage: "",
-    grilledChicken: "",
-    onion: "",
-    greenPepper: "",
-    dicedTomatoes: "",
-    blackOlives: "",
-    roastedGarlic: "",
-    artichokeHearts: "",
-    threeCheese: "",
-    pineapple: "",
-    extraCheese: ""
+    addOns: []
   });
 
   const validate = e => {
@@ -127,14 +57,30 @@ export default function Pizza() {
   // onChange function
   const inputChange = e => {
     e.persist();
-    // console.log("input changed!", e.target.value, e.target.checked);
     validate(e);
-    let value =
+    console.log(e.target.value);
+    const value =
       e.target.type === "checkbox" ? e.target.checked : e.target.value;
     setFormState({ ...formState, [e.target.name]: value });
   };
 
-  const formSubmit = e => {
+  const handleCheck = e => {
+    e.persist();
+    setFormState({
+      ...formState,
+      addOns: [formState.addOns, e.target.value]
+    })
+  }
+
+  const toppingsCheck = e => {
+    e.persist();
+    setFormState({
+      ...formState,
+      addOns: [formState.addOns, e.target.value]
+    })
+  }
+
+  const formSubmit = (e) => {
     e.preventDefault();
     console.log("form submitted!");
     axios
@@ -146,11 +92,12 @@ export default function Pizza() {
   return (
     <form onSubmit={formSubmit}>
       <label htmlFor="name">
-        Name
+        <h5>Name</h5>
         <input
           type="text"
           name="name"
           id="name"
+          placeholder="Enter name here..."
           value={formState.name}
           onChange={inputChange}
         />
@@ -158,21 +105,8 @@ export default function Pizza() {
           <p className="error">{errorState.name}</p>
         ) : null}
       </label>
-      <label htmlFor="email">
-        Email
-        <input
-          type="email"
-          name="email"
-          id="email"
-          value={formState.email}
-          onChange={inputChange}
-        />
-        {errorState.email.length > 0 ? (
-          <p className="error">{errorState.email}</p>
-        ) : null}
-      </label>
       <label htmlFor="specialInstructions">
-        Special Instructions
+        <h5>Special Instructions</h5>
         <textarea
           name="specialInstructions"
           id="specialInstructions"
@@ -184,257 +118,199 @@ export default function Pizza() {
         ) : null}
       </label>
       <label htmlFor="sizeChoice">
-        Choice of Size
+        <h5>Choice of Size</h5>
         <select
           value={formState.sizeChoice}
           name="sizeChoice"
           id="sizeChoice"
           onChange={inputChange}
         >
+            <option value="">--Please choose an option--</option>
           <option value="Small">Small</option>
           <option value="Medium">Medium</option>
           <option value="Large">Large</option>
           <option value="Extra Large">Extra Large</option>
         </select>
-        {errorState.sizeChoice.length > 0 ? (
-          <p className="error">{errorState.sizeChoice}</p>
-        ) : null}
       </label>
-      <label htmlFor="terms">
-        <input
-          type="checkbox"
-          id="terms"
-          name="terms"
-          checked={formState.terms}
-          onChange={inputChange}
-        />
-        Terms & Conditions
-        {errorState.terms.length > 0 ? (
-          <p className="error">{errorState.terms}</p>
-        ) : null}
-      </label>
+      <p> Choose Your Sauce: </p>
       <label>
         <input
           type="radio"
           id="garlicRanch"
-          name="garlicRanch"
-          checked={formState.garlicRanch}
-          onChange={inputChange}
+          name="addOns"
+          onChange={handleCheck}
         />
         Garlic Ranch
-        {errorState.garlicRanch.length > 0 ? (
-          <p className="error">{errorState.garlicRanch}</p>
-        ) : null}
       </label>
       <label>
         <input
           type="radio"
           id="bbqSauce"
-          name="bbqSauce"
-          checked={formState.bbqSauce}
-          onChange={inputChange}
+          name="addOns"
+          onChange={handleCheck}
         />
         BBQ Sauce
-        {errorState.bbqSauce.length > 0 ? (
-          <p className="error">{errorState.bbqSauce}</p>
-        ) : null}
       </label>
       <label>
         <input
           type="radio"
           id="spinachAlfredo"
-          name="spinachAlfredo"
-          checked={formState.spinachAlfredo}
-          onChange={inputChange}
+          name="addOns"
+          onChange={handleCheck}
         />
         Spinach Alfredo
-        {errorState.spinachAlfredo.length > 0 ? (
-          <p className="error">{errorState.spinachAlfredo}</p>
-        ) : null}
       </label>
+      <p> Choose Your Toppings: </p>
       <label>
         <input
           type="checkbox"
           id="pepperoni"
-          name="pepperoni"
-          checked={formState.pepperoni}
-          onChange={inputChange}
+          name="toppings"
+          checked={formState.toppings}
+          onChange={toppingsCheck}
         />
         Pepperoni
-        {errorState.pepperoni.length > 0 ? (
-          <p className="error">{errorState.pepperoni}</p>
-        ) : null}
       </label>
       <label>
         <input
           type="checkbox"
           id="sausage"
-          name="sausage"
-          checked={formState.sausage}
-          onChange={inputChange}
+          name="toppings"
+          checked={formState.toppings}
+          onChange={toppingsCheck}
         />
         Sausage
-        {errorState.sausage.length > 0 ? (
-          <p className="error">{errorState.sausage}</p>
-        ) : null}
       </label>
       <label>
         <input
           type="checkbox"
           id="canadianBacon"
-          name="canadianBacon"
-          checked={formState.canadianBacon}
-          onChange={inputChange}
+          name="toppings"
+          checked={formState.toppings}
+          onChange={toppingsCheck}
         />
         Canadian Bacon
-        {errorState.canadianBacon.length > 0 ? (
-          <p className="error">{errorState.canadianBacon}</p>
-        ) : null}
       </label>
       <label>
         <input
           type="checkbox"
           id="spicyItalianSausage"
-          name="spicyItalianSausage"
-          checked={formState.spicyItalianSausage}
-          onChange={inputChange}
+          name="toppings"
+          checked={formState.toppings}
+          onChange={toppingsCheck}
         />
         Spicy Italian Sausage
-        {errorState.spicyItalianSausage.length > 0 ? (
-          <p className="error">{errorState.spicyItalianSausage}</p>
-        ) : null}
       </label>
       <label>
         <input
           type="checkbox"
           id="grilledChicken"
-          name="grilledChicken"
-          checked={formState.grilledChicken}
-          onChange={inputChange}
+          name="toppings"
+          checked={formState.toppings}
+          onChange={toppingsCheck}
         />
        Grilled Chicken
-        {errorState.grilledChicken.length > 0 ? (
-          <p className="error">{errorState.grilledChicken}</p>
-        ) : null}
       </label>
       <label>
         <input
           type="checkbox"
           id="onion"
-          name="onion"
-          checked={formState.onion}
-          onChange={inputChange}
+          name="toppings"
+          checked={formState.toppings}
+          onChange={toppingsCheck}
         />
         Onion
-        {errorState.onion.length > 0 ? (
-          <p className="error">{errorState.onion}</p>
-        ) : null}
       </label>
       <label>
         <input
           type="checkbox"
           id="greenPepper"
-          name="greenPepper"
-          checked={formState.greenPepper}
-          onChange={inputChange}
+          name="toppings"
+          checked={formState.toppings}
+          onChange={toppingsCheck}
         />
         Green Pepper
-        {errorState.greenPepper.length > 0 ? (
-          <p className="error">{errorState.greenPepper}</p>
-        ) : null}
       </label>
       <label>
         <input
           type="checkbox"
           id="dicedTomatoes"
-          name="dicedTomatoes"
-          checked={formState.dicedTomatoes}
-          onChange={inputChange}
+          name="toppings"
+          checked={formState.toppings}
+          onChange={toppingsCheck}
         />
         Diced Tomatoes
-        {errorState.dicedTomatoes.length > 0 ? (
-          <p className="error">{errorState.dicedTomatoes}</p>
-        ) : null}
       </label>
        <label>
          <input
            type="checkbox"
            id="blackOlives"
-           name="blackOlives"
-           checked={formState.blackOlives}
-           onChange={inputChange}
+           name="toppings"
+           checked={formState.toppings}
+           onChange={toppingsCheck}
          />
          Black Olives
-         {errorState.blackOlives.length > 0 ? (
-           <p className="error">{errorState.blackOlives}</p>
-         ) : null}
+
        </label>
        <label>
        <input
          type="checkbox"
          id="roastedGarlic"
-         name="roastedGarlic"
-         checked={formState.roastedGarlic}
-         onChange={inputChange}
+         name="toppings"
+         checked={formState.toppings}
+         onChange={toppingsCheck}
        />
        Roasted Garlic
-       {errorState.roastedGarlic.length > 0 ? (
-         <p className="error">{errorState.roastedGarlic}</p>
-       ) : null}
      </label>
      <label>
      <input
        type="checkbox"
        id="artichokeHearts"
-       name="artichokeHearts"
-       checked={formState.artichokeHearts}
-       onChange={inputChange}
+       name="toppings"
+       checked={formState.toppings}
+       onChange={toppingsCheck}
      />
      Artichoke Hearts
-     {errorState.artichokeHearts.length > 0 ? (
-       <p className="error">{errorState.artichokeHearts}</p>
-     ) : null}
-   </label>
-   <label>
-   <input
-     type="checkbox"
-     id="threeCheese"
-     name="threeCheese"
-     checked={formState.threeCheese}
-     onChange={inputChange}
-   />
-   Three Cheese
-   {errorState.threeCheese.length > 0 ? (
-     <p className="error">{errorState.threeCheese}</p>
-   ) : null}
- </label>
- <label>
+     
+       </label>
+          <label>
+          <input
+            type="checkbox"
+            id="threeCheese"
+            name="toppings"
+            checked={formState.toppings}
+            onChange={toppingsCheck}
+          />
+          Three Cheese
+          
+        </label>
+        <label>
          <input
            type="checkbox"
            id="pineapple"
-           name="pineapple"
-           checked={formState.pineapple}
-           onChange={inputChange}
+           name="toppings"
+           checked={formState.toppings}
+           onChange={toppingsCheck}
          />
          Pineapple
-         {errorState.pineapple.length > 0 ? (
-           <p className="error">{errorState.pineapple}</p>
-         ) : null}
+        
        </label>
        <label>
        <input
          type="checkbox"
          id="extraCheese"
-         name="extraCheese"
-         checked={formState.extraCheese}
-         onChange={inputChange}
+         name="toppings"
+         checked={formState.toppings}
+         onChange={toppingsCheck}
        />
        Extra Cheese
-       {errorState.extraCheese.length > 0 ? (
-         <p className="error">{errorState.extraCheese}</p>
-       ) : null}
+      
      </label>
-      <button disabled={buttonDisabled}>Add to Order</button>
+     <div>
+       <p>
+      <button type="submit">Add to Order</button>
+      </p>
+      </div>
     </form>
   );
 }
