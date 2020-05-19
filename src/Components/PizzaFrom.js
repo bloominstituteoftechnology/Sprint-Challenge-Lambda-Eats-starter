@@ -20,36 +20,36 @@ function Form() {
     ])
 
 
-const [errors, setErrors] = useState([
-    {
-        name: "",
-        pizzaSize:"",
-        toppings:"",
-        Instructions:''
-    }
-]);
+    const [errors, setErrors] = useState([
+        {
+            name: "",
+            pizzaSize:"",
+            toppings:"",
+            Instructions:''
+        }
+    ]);
 
-const formSubmit = (e) => {
-    e.preventDefault();
-    axios.post('', pizza)
-    .then(response => console.log(response))
-    .catch(err => console.log(err))
-};
+    const formSubmit = (e) => {
+        e.preventDefault();
+        axios.post('http://localhost:3000', pizza)
+        .then(response => console.log(response))
+        .catch(err => console.log(err))
+    };
 
-const validate = (e) => {
-    yup.reach(formSchema, e.target.name)
-    .validate(e.target.value)
-    .catch(err => {
+    const validate = (e) => {
+        yup.reach(formSchema, e.target.toppings)
+        .validate(e.target.value)
+        .catch(err => {
         console.log(err)
-    })
-};
+        })
+    };
 
-const inputChange = (e) => {
-    e.persist();
-    validate(e);
-    let value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
-    setPizza({...pizza, [e.target.name]:value});
-};
+    const inputChange = (e) => {
+        e.persist();
+        validate(e);
+        let value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
+        setPizza({...pizza, [e.target.name]:value});
+    };
 
 return(
     <form onSubmit={formSubmit}>
@@ -109,6 +109,7 @@ return(
         <label>Special Instructions
             <textarea name='instructions' id='instructions' value={pizza.Instructions} />
         </label>
+        <br/>
         <button>Submit</button>
     </form>
 );
