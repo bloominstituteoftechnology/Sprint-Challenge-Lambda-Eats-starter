@@ -10,11 +10,21 @@ In this challenge you will be working from the `Lambda Eats` homepage to create 
 
 Demonstrate your understanding of this week's concepts by answering the following free-form questions.
 
-Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
+Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead. 
+
+yeeks
 
 1. In 1-2 sentences, explain what React's `useRouteMatch` hook is used for.
+
+The `useRouteMatch` hook allows change of a single parameter in the URL without rendering a new Route. 
+
 2. How would you explain form validation to someone who has never programmed before?
+
+There are many forms you can enter on the internet, which means that there are endless inputs. Form validation allows for better inputs, such as ensuring passwords are safe, or ensuring a valid email entry, by requiring certain things of inputs. 
+
 3. In 1-2 sentences, define end to end testing.
+
+End to end testing is testing a user’s entire UI experience and if a user can accomplish what the code sets out to do. 
 
 You are expected to be able to answer all these questions. Your responses contribute to your Sprint Challenge grade. Skipping this section **will** prevent you from passing this challenge.
 
