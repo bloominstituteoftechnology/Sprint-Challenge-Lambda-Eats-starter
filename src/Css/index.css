@@ -1,0 +1,266 @@
+header nav {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
+}
+header nav .titleDiv {
+  color: #ec3944;
+  font-size: 35px;
+  letter-spacing: 3px;
+  padding-left: 30px;
+}
+header nav .linkDiv {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  width: 320px;
+  padding-right: 30px;
+}
+header nav .linkDiv .link {
+  height: 40px;
+  width: 150px;
+  background-color: white;
+  color: black;
+  text-align: center;
+  line-height: 40px;
+  border: 1px solid black;
+  transition: 0.25s all ease-in-out;
+}
+header nav .linkDiv .link:hover {
+  cursor: pointer;
+  transition: 0.25s all ease-in-out;
+  background-color: black;
+  color: white;
+}
+header .banner {
+  width: 100%;
+  height: 700px;
+  background-image: url("../Images/pizza2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  box-shadow: 2.5px 2.5px 2.5px 0px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+header .banner h2 {
+  width: 100%;
+  letter-spacing: 3px;
+  text-align: center;
+  font-size: 45px;
+  height: 55px;
+  color: white;
+}
+header .banner p {
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 25px;
+  letter-spacing: 3px;
+  margin: 0 auto;
+}
+header .banner button.pizzaButton {
+  width: 150px;
+  height: 35px;
+  color: white;
+  letter-spacing: 3px;
+  background-color: #ec3944;
+  border: 0.5px solid black;
+  box-shadow: 2.5px 2.5px 2.5px 0px rgba(0, 0, 0, 0.4);
+}
+header .banner button.pizzaButton:hover {
+  cursor: pointer;
+  box-shadow: none;
+}
+.foodOptionContainer {
+  height: 550px;
+  width: 525px;
+  display: flex;
+  flex-wrap: wrap;
+  transition: 0.25s all ease-in-out;
+  margin-bottom: 30vh;
+}
+.foodOptionContainer:hover {
+  transition: 0.25s all ease-in-out;
+  cursor: pointer;
+  background-color: #e6e6e6;
+}
+.foodOptionContainer h2 {
+  width: 100%;
+  height: 15px;
+  margin: 0 auto;
+  padding-left: 10px;
+  letter-spacing: 2px;
+}
+.foodOptionContainer p {
+  margin: 0 auto;
+  width: 100%;
+  height: 12px;
+  padding-left: 10px;
+  letter-spacing: 2px;
+}
+.foodOptionContainer .averageTime {
+  border: 0.5px solid black;
+  height: 15px;
+  padding: 5px;
+  font-size: 15px;
+  margin: 0 5px 0 10px;
+}
+.foodOptionContainer .fee {
+  border: 0.5px solid black;
+  height: 15px;
+  padding: 5px;
+  font-size: 15px;
+  margin: 0 ;
+}
+.foodSection {
+  margin-top: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.foodSection .title {
+  margin-bottom: 80px;
+  width: 90%;
+  font-size: 30px;
+  letter-spacing: 3px;
+  text-align: left;
+}
+.pizzaForm {
+  margin: 30px auto 200px auto;
+}
+.orderTitle {
+  width: 100%;
+  font-size: 25px;
+  letter-spacing: 3px;
+  text-align: center;
+}
+.orderText {
+  width: 100%;
+  font-size: 15px;
+  letter-spacing: 3px;
+  text-align: center;
+  margin: 15px auto;
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+html {
+  font-size: 62.5%;
+}
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 10px 0;
+  font-size: 1.4rem;
+}
+input,
+select,
+textarea {
+  margin: 5px 0 0;
+  display: block;
+  width: 100%;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 10px;
+  transition: all 0.3s;
+  font-size: 1.4rem;
+  letter-spacing: 0.5px;
+  background-color: white;
+}
+select {
+  height: 40px;
+  width: 325px;
+}
+select:focus {
+  outline: none;
+  border-color: #1ee7e2;
+}
+input:focus {
+  outline: none;
+  border-color: #1ee7e2;
+}
+input:placeholder {
+  color: #a8b2b2;
+}
+button {
+  width: 150px;
+  display: inline-block;
+  padding: 8px 11px;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  border: 0;
+  border-radius: 5px;
+  letter-spacing: 2px;
+  outline: none;
+  background-color: #4dd0e1;
+  background-image: linear-gradient(to right, #4dd0e1, #1ee7e2);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+button:hover {
+  background-image: none;
+  background-color: #4dd0e1;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+}
+button:disabled {
+  background-image: none;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.1);
+  cursor: not-allowed;
+}
+.error {
+  font-size: 1.2rem;
+  color: red;
+}
+.terms {
+  display: inline-block;
+  align-self: self-start;
+}
+.terms input {
+  width: 15px;
+  display: inline-block;
+  margin-right: 5px;
+  text-align: left;
+}
+input[type='checkbox'] {
+  text-align: left;
+}
+pre {
+  font-size: 20px;
+}
+.dataBack {
+  font-size: 12px;
+  width: 100%;
+}

@@ -30,5 +30,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "axios": "^0.19.2",
+    "cypress": "^4.5.0",
+    "react-router-dom": "^5.2.0",
+    "yup": "^0.28.5"
   }
 }
