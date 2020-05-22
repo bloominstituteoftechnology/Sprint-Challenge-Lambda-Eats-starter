@@ -8,13 +8,16 @@ export default function PizzaForm(props){
       onInputChange,
       onCheckboxChange,
       onOrder,
-      onOrderPage,
       errors
    }=props
 
 
   return(
+          <>
+        <h2> Build Your Own Pizza</h2>
+
      <form onSubmit={onOrder}>
+      
         <p>Please enter your name</p>
        <input type='text' value={values.name} onChange={onInputChange} name="name"/>
        <p>{errors.name}</p>
@@ -60,7 +63,7 @@ export default function PizzaForm(props){
  
       </form>
 
-
+   </>
   )
 
 
