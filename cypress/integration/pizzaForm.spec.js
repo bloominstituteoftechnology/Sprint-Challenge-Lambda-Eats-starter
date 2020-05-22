@@ -5,7 +5,7 @@
 describe('Form input', ()=>{
 
     it('can navigate to the site',()=>{
-        cy.visit('http://localhost:3000/pizza')
+        cy.visit('http://localhost:3000/pizzaForm')
     })
 //test that you can add text to the box
     it('can add name to the input box',()=>{
@@ -38,5 +38,11 @@ describe('Form input', ()=>{
     //click order button form submit and the form inputs are cleared
     it('can submit the form',()=>{
         cy.get('button').click()
+       
+
+    })
+
+    it('check if order page has the info',()=>{
+        cy.get('p').contains('wei peluso')
     })
 })
