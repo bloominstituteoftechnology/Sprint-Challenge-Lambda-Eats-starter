@@ -2,6 +2,8 @@ import React from "react";
 import Home from './Home'
 import PizzaForm from './PizzaForm'
 import {BrowserRouter as Route, Link, Switch} from 'react-router-dom'
+import './App.css'
+
 
 const App = () => {
   return (

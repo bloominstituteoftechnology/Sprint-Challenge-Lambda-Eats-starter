@@ -2,6 +2,39 @@
   text-align: center;
 }
 
+.error{
+  font-size: 1.2 rem;
+  color: red;
+}
+nav{
+  display:flex;
+  justify-content: space-evenly;
+}
+
+a{
+  text-decoration: none;
+}
+
+img{
+  width:100%;
+}
+.container{
+  margin: 0 auto;
+}
+
+.title{
+  display:flex;
+  align-items: baseline;
+}
+h1{
+  margin-right: 8%;
+}
+
+form{
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 
 
