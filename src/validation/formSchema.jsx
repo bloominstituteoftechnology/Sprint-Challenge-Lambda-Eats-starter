@@ -8,7 +8,9 @@ const formSchema = yup.object().shape({
     .required('The username is a required field'),
     size:yup.string()
     .trim()
-    .required('The size is a required field')
+    .required('The size is a required field'),
+    specialInstructions: yup.string()
+    .trim()
 
 })
 

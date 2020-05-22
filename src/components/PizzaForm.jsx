@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 export default function PizzaForm(props){
 
@@ -7,6 +8,7 @@ export default function PizzaForm(props){
       onInputChange,
       onCheckboxChange,
       onOrder,
+      onOrderPage,
       errors
    }=props
 
@@ -51,10 +53,10 @@ export default function PizzaForm(props){
                 onChange={onCheckboxChange}/>
         </label>
        <p>Special Instructions</p>
-       <input type='text' name="special instructions" 
+       <input type='text' name="specialInstructions" 
        onChange={onInputChange} value={values.specialInstructions}/>
 
-      <button>Order Now</button>
+      <Link to='/order'><button>Order Now</button></Link>
  
       </form>
 

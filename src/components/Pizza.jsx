@@ -14,12 +14,13 @@ const initalFormValues={
         spicyChicken:false,
         sausage:false,
     },
-    specialInstruction:''
+    specialInstructions:''
   }
 
   const initialFormErrors={
     name:'',
     size:'',
+    specialInstructions:'',
 
   }
 
@@ -35,7 +36,8 @@ export default function Pizza(){
         name: formValues.name.trim(),
         size:formValues.size,
         toppings: Object.keys(formValues.toppings)
-        .filter(topping=>formValues.toppings[topping]===true)
+        .filter(topping=>formValues.toppings[topping]===true),
+        specialInstructions:formValues.specialInstructions
     }
   
     postPizzaOrder(newPizzaOrder)
@@ -95,9 +97,7 @@ export default function Pizza(){
         })
     
     })
-   
-
-         
+     
 
    return(
 
