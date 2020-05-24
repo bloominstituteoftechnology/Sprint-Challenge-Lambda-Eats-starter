@@ -1,19 +1,20 @@
 import React, { useState } from "react";
-import Form from "./Form";
+
 import Pizza from "./Pizza";
+import Home from "./Home";
 import { Route } from "react-router-dom";
 
 const App = () => {
   return (
     <>
       <h1>Lambda Eats</h1>
-      <Route>
-        <Form />
-      </Route>
-      <Route>
-        <Pizza />
-      </Route>
+
+      <Route path="/Pizza" component={Pizza} />
+
+      <Route exact path="/" component={Home} />
     </>
   );
 };
 export default App;
+
+//add switch
