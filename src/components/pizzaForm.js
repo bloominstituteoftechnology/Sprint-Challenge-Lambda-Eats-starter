@@ -16,11 +16,11 @@ const formSchema = yup.object().shape({
     cheese: yup.boolean().oneOf([true, false]),
     pinneapple: yup.boolean().oneOf([true, false]),
     olives: yup.boolean().oneOf([true, false]),
-    dropdown: yup.boolean().oneOf([true, ""]).required("Please choose a size"),
+    dropdown: yup.string().oneOf(["optionOne", "optionTwo"]).required("Please choose a size"),
     special: yup.string() 
-    
-})
+});
 
+console.log("hello, outside of PizzaForm");
  //form styling
  const FormWrapper = styled.div`
  display: flex;
@@ -44,9 +44,10 @@ const PizzaForm = () => {
         cheese: false,
         pinneapple: false,
         olives: false,
-        dropdown: "",
+        dropdown: "optionOne",
         special: ""
     });
+    console.log("Formstate dropdown", formState.dropdown)
 
     //errors
     const [errors, setErrors] = useState({
@@ -66,40 +67,47 @@ const PizzaForm = () => {
     useEffect(() => {
         formSchema.isValid(formState).then(valid => {
           setButtonDisabled(!valid);
+          console.log(valid);
+          console.log(buttonDisabled);
         });
       }, [formState]);
 
 
+    // const inputChanges = e => {
+    //     e.persist();
+    //     console.log("change input", e.target.value);
+
+    //     const  newFormData = {
+    //         ...formState, [e.target.name] :
+    //         e.target.type === "checkbox" ? e.target.checked : e.target.value 
+    //     };
+
+    //     validate(e);
+    //     setFormState(newFormData);
+    // };
+
+        
     const inputChanges = e => {
         e.persist();
-        console.log("change input", e.target.value);
-
-        const  newFormData = {
-            ...formState, [e.target.name] :
-            e.target.type === "checkbox" ? e.target.checked : e.target.value 
-        };
+        
+        console.log("input changed!", e.target.value);
 
         validate(e);
-        setFormState(newFormData);
-    };
+        const value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
 
-                    // onChange function
-            // const inputChanges = e => {
-            //     console.log("input changed!", e.target.value);
+        setFormState({ ...formState, [e.target.name]: value });
 
-            //     validate(e);
-            //     const value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+       
+    
+    }
 
-            //     setFormState({ ...formState, [e.target.name]: value });
-
-            //     e.persist();
-            
-            // }
 
     const validate = e => {
+        let value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+
         yup 
             .reach(formSchema, e.target.name)
-            .validate(e.target.value)
+            .validate(value)
             .then(valid => {
             setErrors({
                 ...errors,
@@ -236,13 +244,13 @@ const PizzaForm = () => {
                         />
                     </label>
 
-                    <button disabled={buttonDisabled} className="submit">Add to Order</button>
+                    <button type="submit" disabled={buttonDisabled}>Add to Order</button>
             
                     <pre>{JSON.stringify(post, null, 2)}</pre>
 
                 </FormColumn>
                 <Link to="/" >
-                            <button>~ Home Page ~ </button>
+                            <button> ~ Home Page ~ </button>
                 </Link>
             </FormWrapper>
             </div>
