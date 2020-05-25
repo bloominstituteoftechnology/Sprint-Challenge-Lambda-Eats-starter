@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Home from './components/home';
-import PizzaForm from './components/pizzaForm';
+import Home from './components/Home';
+import PizzaForm from './components/PizzaForm';
 
 const App = () => {
   return (

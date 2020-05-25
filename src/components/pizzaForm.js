@@ -21,6 +21,19 @@ const formSchema = yup.object().shape({
     
 })
 
+ //form styling
+ const FormWrapper = styled.div`
+ display: flex;
+ flex-direction: column;
+ width: 80%;
+ margin: 0 auto;
+ padding: 5%;
+`;
+
+const FormColumn = styled.form`
+ display: flex;
+ flex-direction: column;
+`;
 
 const PizzaForm = () => {     
 
@@ -133,22 +146,6 @@ const PizzaForm = () => {
 
             //do I need to put setFormState in here? or is that what I'm doing with post?
     }
-
-
-
-    //form styling
-    const FormWrapper = styled.div`
-        display: flex;
-        flex-direction: column;
-        width: 80%;
-        margin: 0 auto;
-        padding: 5%;
-    `;
-
-    const FormColumn = styled.form`
-        display: flex;
-        flex-direction: column;
-    `;
 
 
     //to return database record you need to 1. create a new state, 2. post to reqres database w/axios, and 3. log data to the consol
