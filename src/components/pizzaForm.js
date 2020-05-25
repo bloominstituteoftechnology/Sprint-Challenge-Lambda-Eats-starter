@@ -134,12 +134,14 @@ const PizzaForm = () => {
     const formSubmit = e => {
         e.preventDefault();
         console.log("Submitted");
+        
         axios
-            .post('https://reqres.in/api/', formState)
+            .post('https://reqres.in/api/users/', formState)
             .then(res => {
+                console.log('axios post request', res);
+                console.log('axios post request', res.data);
                 setPost(res.data);
                 // setPost([...post, res.data]);
-                console.log('Success', post);
                 setFormState({
                     name: "",
                     sausage: "",
@@ -244,7 +246,7 @@ const PizzaForm = () => {
                         />
                     </label>
 
-                    <button type="submit" disabled={buttonDisabled}>Add to Order</button>
+                    <button type="submit" data-cy="submit" disabled={buttonDisabled}>Add to Order</button>
             
                     <pre>{JSON.stringify(post, null, 2)}</pre>
 
