@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Checklist from "./Checklist";
 import Dropdown from "./Dropdown";
 import pizzaSizeOptions from "./pizzaSizeOption";
 import * as yup from "yup";
+import axios from "axios";
 
 //******validation schema******
 // yup NOT Yup
@@ -32,7 +33,17 @@ function Form(props) {
 
   //dropdown state
 
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+
   const [size, setSize] = useState(pizzaSizeOptions[0]);
+  {
+    name: string;
+  }
+  useEffect(() => {
+    formSchema.isValid(name).then((v) => {
+      setButtonDisabled(!v);
+    });
+  }, [name.name]);
 
   //*****validation******
 
@@ -72,13 +83,25 @@ function Form(props) {
   }
 
   function handlePizzaFormSubmission(e) {
+    const formData = {
+      name: name.name,
+      size: size.value,
+      toppings,
+      instruction,
+    };
     e.preventDefault();
-
-    const selectedToppings = Object.keys(toppings).filter(
+    axios
+      .post("https://reqres.in/api/users/1", formData)
+      .then((res) => {
+        // setPost(res.data);
+        console.log("success", res);
+      })
+      .catch((err) => console.log(err.response));
+    /*const selectedToppings = Object.keys(toppings).filter(
       (key) => toppings[key]
-      // axios call
-    );
-    console.log(selectedToppings);
+    ); */
+    // console.log(selectedToppings, name, instruction, size);
+
     //do a react router redirect to the home route
   }
 
@@ -118,7 +141,9 @@ function Form(props) {
         placeholder="Special instructions"
       />
 
-      <button type="submit">Place Order</button>
+      <button type="submit" disabled={buttonDisabled}>
+        Place Order
+      </button>
     </form>
   );
 }
