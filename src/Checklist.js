@@ -9,6 +9,7 @@ function Checklist(props) {
         type="checkbox"
         checked={props.toppingsList.olives}
         onChange={props.handleCheckboxChanged}
+        data-test-id="Checklist-olives"
       />
       <label htmlFor="jalapenos">Jalapeno</label>
       <input

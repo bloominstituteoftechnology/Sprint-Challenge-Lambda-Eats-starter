@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import Pizza from "./Pizza";
 import Home from "./Home";
-import { Route } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 
 const App = () => {
   return (
