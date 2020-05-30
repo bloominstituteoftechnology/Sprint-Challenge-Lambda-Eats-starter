@@ -36,9 +36,7 @@ function Form(props) {
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
   const [size, setSize] = useState(pizzaSizeOptions[0]);
-  {
-    name: string;
-  }
+
   useEffect(() => {
     formSchema.isValid(name).then((v) => {
       setButtonDisabled(!v);
@@ -97,9 +95,7 @@ function Form(props) {
         console.log("success", res);
       })
       .catch((err) => console.log(err.response));
-    /*const selectedToppings = Object.keys(toppings).filter(
-      (key) => toppings[key]
-    ); */
+
     // console.log(selectedToppings, name, instruction, size);
 
     //do a react router redirect to the home route
