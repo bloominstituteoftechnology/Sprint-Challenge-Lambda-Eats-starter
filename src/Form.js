@@ -23,8 +23,7 @@ const Form = () => {
         beef: '',
         chicken: '',
         pepperoni: '',
-        sausage: '',
-        terms: ''
+        sausage: ''
     
     })
 
@@ -148,7 +147,7 @@ const Form = () => {
 
                 <form onSubmit={orderPizza}>
                 <label htmlFor='name'>Name:&nbsp;
-                    <input id='name' name='name' type='text' value={formState.name} onChange={updateInputs} />
+                    <input id='name' name='name' type='text' data-cy="name" value={formState.name} onChange={updateInputs} />
                     {errors.name.length > 0 ? <p className='error'>{errors.name}</p> : null}
                 </label>
 
@@ -168,13 +167,13 @@ const Form = () => {
                             
                             <li>
                                 <label htmlFor='jalapenos'> 
-                                    <input id='jalapenos' name='jalapenos' type='checkbox' checked={formState.jalapenos} onChange={updateInputs} />
+                                    <input id='jalapenos' name='jalapenos' type='checkbox' data-cy="veggie1"  onChange={updateInputs} />
                                     Jalapeños:&nbsp;
                                 </label>
                             </li>
                             <li>
                                 <label htmlFor='mushrooms'>
-                                    <input id='mushrooms' name='mushrooms' type='checkbox' checked={formState.mushrooms} onChange={updateInputs} />
+                                    <input id='mushrooms' name='mushrooms' type='checkbox' data-cy="veggie2"  onChange={updateInputs} />
                                     Mushrooms:&nbsp; 
                                 </label>
                             </li>
@@ -211,13 +210,13 @@ const Form = () => {
                             
                             <li>
                                 <label htmlFor='canadian_bacon'> 
-                                    <input id='canadian_bacon' name='canadian_bacon' type='checkbox' checked={formState.canadian_bacon} onChange={updateInputs} />
+                                    <input id='canadian_bacon' name='canadian_bacon' type='checkbox' data-cy="meat1" onChange={updateInputs} />
                                     Canadian Bacon:&nbsp;
                                 </label>
                             </li>
                             <li>
                                 <label htmlFor='bacon'> 
-                                    <input id='bacon' name='bacon' type='checkbox'checked={formState.bacon} onChange={updateInputs} />
+                                    <input id='bacon' name='bacon' type='checkbox' data-cy="meat2" onChange={updateInputs} />
                                     Bacon:&nbsp;
                                 </label>     
                             </li>
@@ -254,7 +253,7 @@ const Form = () => {
                     <textarea id='instructions' name='instructions' type='text' />
                 </label>
 
-                <button type='submit' >Order</button> 
+                <button type='submit' data-cy="order" >Order</button> 
                 <pre>{JSON.stringify(formPost, null, 2)}</pre> 
                 </form>
     </div>
