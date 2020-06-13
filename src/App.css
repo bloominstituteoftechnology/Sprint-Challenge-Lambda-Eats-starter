@@ -28,6 +28,62 @@
   color: #61dafb;
 }
 
+.form-container {
+  max-width: 600px;
+  display:flex;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.header {
+  text-align: center;
+}
+
+h2, h3, h4 {
+  text-align: center;
+}
+
+.nav-buttons {
+  display:flex;
+}
+
+.nav-buttons a {
+  text-decoration: none;
+  color: black;
+}
+.nav-buttons a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.nav-buttons div:hover {
+  background-color: black;
+  color: white;
+  font-weight: 900;
+}
+
+.nav-buttons div {
+  border: 1px solid black;
+  width: 100px;
+  text-align: center;
+  padding: 5px;
+}
+
+.toppings-container {
+  display: flex;
+}
+
+.top-nav {
+  display:flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+ul {
+  list-style-type: none;
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

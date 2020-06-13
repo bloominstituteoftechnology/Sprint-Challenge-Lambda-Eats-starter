@@ -16,6 +16,7 @@ const App = () => {
           <Home />
           <Link to='/pizza'>Get Some Za - Routes to your Form page</Link>
         </Route>
+        
 
         <Route path='/pizza'>
           <Form />
