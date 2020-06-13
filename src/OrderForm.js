@@ -24,7 +24,7 @@ const OrderForm = () => {
     });
 
     const formSchema = yup.object().shape({
-        name: yup.string().required().min(2),
+        name: yup.string().required(),
         size: yup.string().required(),
         sauce: yup.string().required(),
         meat: yup.string().required(),
@@ -42,7 +42,7 @@ const OrderForm = () => {
     const submit = () => {
         formSchema.validate(formData)
             .then(() => {
-                axios.post('https://reqres.in/', formData)
+                axios.post('https://reqres.in/api/users', formData)
                     .then((res) => {
                         console.log('This is your order post', res.data)
                     })
@@ -91,25 +91,25 @@ const OrderForm = () => {
                         <DropdownMenu>
                             <div onClick={() => {
                                 toggle();
-                                setFormData({ size: 'personal' })
+                                setFormData({ ...formData, size: 'personal' })
                             }}>
                                 Personal
                             </div>
                             <div onClick={() => {
                                 toggle();
-                                setFormData({ size: 'small' })
+                                setFormData({ ...formData, size: 'small' })
                             }}>
                                 Small
                             </div>
                             <div onClick={() => {
                                 toggle();
-                                setFormData({ size: 'medium' })
+                                setFormData({ ...formData, size: 'medium' })
                             }}>
                                 Medium
                             </div>
                             <div onClick={() => {
                                 toggle();
-                                setFormData({ size: 'large' })
+                                setFormData({ ...formData, size: 'large' })
                             }}>
                                 Large
                             </div>
