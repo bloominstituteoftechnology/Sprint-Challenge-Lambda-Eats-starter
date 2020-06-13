@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Card, CardImg, Button, Form, FormGroup, Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
+import axios from 'axios';
+import * as yup from 'yup';
 
 const OrderForm = () => {
     const [DropDownOpen, setDropDownOpen] = useState(false);
@@ -13,17 +15,61 @@ const OrderForm = () => {
         greenPepper: false,
         tomato: false,
         bolives: false,
+        garlic: false,
+        hearts: false,
         pineApple: false,
         tcheese: false,
         xcheese: false,
         special: ''
     });
+
+    const formSchema = yup.object().shape({
+        name: yup.string().required().min(2),
+        size: yup.string().required(),
+        sauce: yup.string().required(),
+        meat: yup.string().required(),
+        onions: yup.boolean(),
+        greenPepper: yup.boolean(),
+        tomato: yup.boolean(),
+        bolives: yup.boolean(),
+        garlic: yup.boolean(),
+        hearts: yup.boolean(),
+        pineApple: yup.boolean(),
+        tcheese: yup.boolean(),
+        xcheese: yup.boolean(),
+        special: yup.string()
+    });
+    const submit = () => {
+        formSchema.validate(formData)
+            .then(() => {
+                axios.post('https://reqres.in/', formData)
+                    .then((res) => {
+                        console.log('This is your order post', res.data)
+                    })
+            })
+    }
+
+    const onInputChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
+    const handleToppings = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.checked
+        });
+    };
     return (
         <>
             <Card style={{ width: '80%', margin: '0 auto' }}>
                 <CardImg src={require('./Pizza.jpg')} />
             </Card>
-            <Form
+            <Form onSubmit={(e) => {
+                e.preventDefault();
+                submit();
+            }}
                 style={{ margin: '5%' }}>
                 <FormGroup>
                     <legend>
@@ -31,7 +77,9 @@ const OrderForm = () => {
                     </legend>
                     <input
                         type='name'
-                        name='name' />
+                        name='name'
+                        value={formData.name}
+                        onChange={onInputChange} />
                 </FormGroup>
                 <FormGroup>
                     <legend>Build Your Own Pizza
@@ -75,7 +123,8 @@ const OrderForm = () => {
                             <input
                                 type='radio'
                                 name='sauce'
-                                value='red' />
+                                value='red'
+                                onChange={onInputChange} />
                                 Original Red
                         </label>
                     </FormGroup>
@@ -84,7 +133,8 @@ const OrderForm = () => {
                             <input
                                 type='radio'
                                 name='sauce'
-                                value='salfredo' />
+                                value='salfredo'
+                                onChange={onInputChange} />
                                 Spinach Alfredo
 
                         </label>
@@ -95,7 +145,8 @@ const OrderForm = () => {
                                 <input
                                     type='radio'
                                     name='sauce'
-                                    value='granch' />
+                                    value='granch'
+                                    onChange={onInputChange} />
                                 Garlic Ranch
 
                         </label>
@@ -105,7 +156,8 @@ const OrderForm = () => {
                                 <input
                                     type='radio'
                                     name='sauce'
-                                    value='bbq' />
+                                    value='bbq'
+                                    onChange={onInputChange} />
                                 BBQ Sauce
 
                         </label>
@@ -120,7 +172,8 @@ const OrderForm = () => {
                                 <input
                                     type='radio'
                                     name='meat'
-                                    value='pepperoni' />
+                                    value='pepperoni'
+                                    onChange={onInputChange} />
                                 Pepperoni
 
                         </label>
@@ -130,7 +183,8 @@ const OrderForm = () => {
                                 <input
                                     type='radio'
                                     name='meat'
-                                    value='sausage' />
+                                    value='sausage'
+                                    onChange={onInputChange} />
                                 Sausage
 
                         </label>
@@ -140,7 +194,8 @@ const OrderForm = () => {
                                 <input
                                     type='radio'
                                     name='meat'
-                                    value='cbacon' />
+                                    value='cbacon'
+                                    onChange={onInputChange} />
                                 Canadian Bacon
 
                         </label>
@@ -150,7 +205,8 @@ const OrderForm = () => {
                                 <input
                                     type='radio'
                                     name='meat'
-                                    value='spicy' />
+                                    value='spicy'
+                                    onChange={onInputChange} />
                                 Spicy Italian Sausage
 
                         </label>
@@ -160,7 +216,8 @@ const OrderForm = () => {
                                 <input
                                     type='radio'
                                     name='meat'
-                                    value='chicken' />
+                                    value='chicken'
+                                    onChange={onInputChange} />
                                 Grilled Chicken
 
                         </label>
@@ -173,11 +230,98 @@ const OrderForm = () => {
                         <label check>
                             <input
                                 type='checkbox'
-                                name='onion'
-                                checked={false} />
+                                name='onions'
+                                checked={formData.onions}
+                                onChange={handleToppings} />
                                 Onions
                         </label>
                     </FormGroup>
+                    <FormGroup check>
+                        <label check>
+                            <input
+                                type='checkbox'
+                                name='greePepper'
+                                checked={formData.greenPepper}
+                                onChange={handleToppings} />
+                                Green Pepper
+                        </label>
+                    </FormGroup>
+                    <FormGroup check>
+                        <label check>
+                            <input
+                                type='checkbox'
+                                name='tomato'
+                                checked={formData.tomato}
+                                onChange={handleToppings} />
+                                Diced Tomatos
+                        </label>
+                    </FormGroup>
+                    <FormGroup check>
+                        <label check>
+                            <input
+                                type='checkbox'
+                                name='bolives'
+                                checked={formData.bolives}
+                                onChange={handleToppings} />
+                                Black olives
+                        </label>
+                    </FormGroup>
+                    <FormGroup check>
+                        <label check>
+                            <input
+                                type='checkbox'
+                                name='garlic'
+                                checked={formData.garlic}
+                                onChange={handleToppings} />
+                                Roasted Garlic
+                        </label>
+                    </FormGroup>
+                    <FormGroup check>
+                        <label check>
+                            <input
+                                type='checkbox'
+                                name='hearts'
+                                checked={formData.hearts}
+                                onChange={handleToppings} />
+                                Artichoke Hearts
+                        </label>
+                    </FormGroup>
+                    <FormGroup check>
+                        <label check>
+                            <input
+                                type='checkbox'
+                                name='tcheese'
+                                checked={formData.tcheese}
+                                onChange={handleToppings} />
+                                Three Cheese
+                        </label>
+                    </FormGroup>
+                    <FormGroup check>
+                        <label check>
+                            <input
+                                type='checkbox'
+                                name='pineApple'
+                                checked={formData.pineApple}
+                                onChange={handleToppings} />
+                                Pineapple
+                        </label>
+                    </FormGroup>
+                    <FormGroup check>
+                        <label check>
+                            <input
+                                type='checkbox'
+                                name='xcheese'
+                                checked={formData.xcheese}
+                                onChange={handleToppings} />
+                                Extra Cheese
+                        </label>
+                    </FormGroup>
+                    <FormGroup>
+                        <legend>Special Instructions</legend>
+                        <input type='textarea' name='special' value={formData.special}
+                            onChange={onInputChange} />
+                    </FormGroup>
+                    <Button>Add to Order</Button>
                 </FormGroup>
 
             </Form >
