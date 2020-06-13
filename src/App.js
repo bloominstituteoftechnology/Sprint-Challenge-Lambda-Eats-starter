@@ -1,9 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router,
-   Route,
-   Link,
-   Switch
-  } from 'react-router-dom';
+import { Route, Link, Switch } from 'react-router-dom';
 import '../src/App.css';
 import Form from './Form';
 import Home from './Home';
@@ -14,7 +10,7 @@ const App = () => {
 
         <Route exact path='/'>
           <Home />
-          <Link to='/pizza'>Get Some Za - Routes to your Form page</Link>
+          
         </Route>
         
 

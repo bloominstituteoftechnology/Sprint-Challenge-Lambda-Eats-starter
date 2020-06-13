@@ -21,6 +21,3 @@ describe('Testing Form Functionality', function() {
         cy.get('[data-cy="order"]').click();
     });
 });
-
-
-// cy.get('[data-cy=""]')
