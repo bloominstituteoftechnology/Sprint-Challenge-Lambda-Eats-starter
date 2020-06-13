@@ -1,11 +1,39 @@
 import React from "react";
+import Header from '../src/components/header'
+import CTA from './components/home'
+import {Switch, Route, Link} from 'react-router-dom';
+import Form from '../../Sprint-Challenge-Lambda-Eats-starter/src/components/Form';
 
 const App = () => {
   return (
-    <>
-      <h1>Lambda Eats</h1>
-      <p>You can remove this code and create your own header</p>
-    </>
+    
+    <Switch>
+
+    <Route path="/">
+
+      <Header />
+
+      <Route path="/">
+
+        <CTA />
+
+      </Route>
+
+      <Route exact path="/pizza">
+
+        <Form />
+
+      </Route>
+
+
+
+
+    </Route> 
+
+
+
+    </Switch>
+    
   );
 };
 export default App;
