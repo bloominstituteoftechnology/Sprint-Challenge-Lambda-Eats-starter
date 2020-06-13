@@ -78,6 +78,7 @@ const OrderForm = () => {
                     <input
                         type='name'
                         name='name'
+                        data-cy='name'
                         value={formData.name}
                         onChange={onInputChange} />
                 </FormGroup>
@@ -172,6 +173,7 @@ const OrderForm = () => {
                                 <input
                                     type='radio'
                                     name='meat'
+                                    data-cy='name'
                                     value='pepperoni'
                                     onChange={onInputChange} />
                                 Pepperoni
@@ -183,6 +185,7 @@ const OrderForm = () => {
                                 <input
                                     type='radio'
                                     name='meat'
+                                    data-cy='name'
                                     value='sausage'
                                     onChange={onInputChange} />
                                 Sausage
@@ -194,6 +197,7 @@ const OrderForm = () => {
                                 <input
                                     type='radio'
                                     name='meat'
+                                    data-cy='name'
                                     value='cbacon'
                                     onChange={onInputChange} />
                                 Canadian Bacon
@@ -205,6 +209,7 @@ const OrderForm = () => {
                                 <input
                                     type='radio'
                                     name='meat'
+                                    data-cy='name'
                                     value='spicy'
                                     onChange={onInputChange} />
                                 Spicy Italian Sausage
@@ -216,6 +221,7 @@ const OrderForm = () => {
                                 <input
                                     type='radio'
                                     name='meat'
+                                    data-cy='name'
                                     value='chicken'
                                     onChange={onInputChange} />
                                 Grilled Chicken
@@ -231,6 +237,7 @@ const OrderForm = () => {
                             <input
                                 type='checkbox'
                                 name='onions'
+                                data-cy='checkbox1'
                                 checked={formData.onions}
                                 onChange={handleToppings} />
                                 Onions
@@ -241,6 +248,7 @@ const OrderForm = () => {
                             <input
                                 type='checkbox'
                                 name='greePepper'
+                                data-cy='checkbox2'
                                 checked={formData.greenPepper}
                                 onChange={handleToppings} />
                                 Green Pepper
@@ -251,6 +259,7 @@ const OrderForm = () => {
                             <input
                                 type='checkbox'
                                 name='tomato'
+                                data-cy='checkbox3'
                                 checked={formData.tomato}
                                 onChange={handleToppings} />
                                 Diced Tomatos
@@ -261,6 +270,7 @@ const OrderForm = () => {
                             <input
                                 type='checkbox'
                                 name='bolives'
+                                data-cy='checkbox4'
                                 checked={formData.bolives}
                                 onChange={handleToppings} />
                                 Black olives
@@ -271,6 +281,7 @@ const OrderForm = () => {
                             <input
                                 type='checkbox'
                                 name='garlic'
+                                data-cy='checkbox5'
                                 checked={formData.garlic}
                                 onChange={handleToppings} />
                                 Roasted Garlic
@@ -281,6 +292,7 @@ const OrderForm = () => {
                             <input
                                 type='checkbox'
                                 name='hearts'
+                                data-cy='checkbox6'
                                 checked={formData.hearts}
                                 onChange={handleToppings} />
                                 Artichoke Hearts
@@ -291,6 +303,7 @@ const OrderForm = () => {
                             <input
                                 type='checkbox'
                                 name='tcheese'
+                                data-cy='checkbox7'
                                 checked={formData.tcheese}
                                 onChange={handleToppings} />
                                 Three Cheese
@@ -301,6 +314,7 @@ const OrderForm = () => {
                             <input
                                 type='checkbox'
                                 name='pineApple'
+                                data-cy='checkbox8'
                                 checked={formData.pineApple}
                                 onChange={handleToppings} />
                                 Pineapple
@@ -311,6 +325,7 @@ const OrderForm = () => {
                             <input
                                 type='checkbox'
                                 name='xcheese'
+                                data-cy='checkbox9'
                                 checked={formData.xcheese}
                                 onChange={handleToppings} />
                                 Extra Cheese
@@ -321,7 +336,7 @@ const OrderForm = () => {
                         <input type='textarea' name='special' value={formData.special}
                             onChange={onInputChange} />
                     </FormGroup>
-                    <Button>Add to Order</Button>
+                    <Button data-cy='sumbit'>Add to Order</Button>
                 </FormGroup>
 
             </Form >
