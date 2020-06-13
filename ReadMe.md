@@ -101,3 +101,5 @@ Follow these steps for completing your project.
 ## Grading rubric
 
 [NEED TO ADD: Sprint challenge grading rubric](https://www.notion.so/e7b32e56ebad4f57b3521efb886f4508)
+
+Douglas Little
