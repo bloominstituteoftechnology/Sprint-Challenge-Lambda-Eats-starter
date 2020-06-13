@@ -28,6 +28,23 @@
   color: #61dafb;
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+  }
+
+  .form {
+    width: 400px;
+    border:1px solid black;  
+  }
+
+  .check {
+    display: grid;
+    grid-template-areas: "a a";
+    grid-gap: 10px;
+    grid-auto-columns: 200px;
+  }
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
