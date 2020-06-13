@@ -52,10 +52,24 @@ import {Route, Link} from 'react-router-dom'
             `
             //end header styling
 
+            const ComingSoon = styled.div`
+            background-color: #3d3d3d;
+            min-height: 60vh;`
+
+            const ComingSoonH2 = styled.h2`
+            padding-top: 10rem;
+            color: white;
+            margin: 0 auto;
+            text-align: center;
+            `
+
+
+
+
 
 const CTA = () => {
     return (
-
+        <>
     <HeroContainer>
 
       <HeroContainerInner>
@@ -77,6 +91,23 @@ const CTA = () => {
       </HeroContainerInner>
 
     </HeroContainer>
+
+    <Route exact path="/">
+
+    <ComingSoon>
+        
+        <ComingSoonH2>Featured in VSCode Magazine</ComingSoonH2>
+
+
+    </ComingSoon>
+
+
+
+    </Route>
+
+
+    </>
+    
 
 )
 }
