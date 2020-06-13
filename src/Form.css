@@ -1,0 +1,110 @@
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 0 2rem;
+
+}
+
+button {
+    font-family: 'Indie Flower', cursive;
+}
+
+html, body {
+    font-family: 'Indie Flower', cursive;
+}
+
+label {
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.5rem;
+}
+
+form h1 {
+    font-family: 'Indie Flower', cursive;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+#customerName {
+    background-color: lightgrey;
+    padding: 1rem 2rem;
+    margin: 0 -2rem;
+    font-weight: 700;
+}
+
+#sizeID {
+    background-color: lightgrey;
+    padding: 1rem 2rem;
+    margin: 0 -2rem;
+    font-weight: 700;
+}
+
+#nameinput {
+    width: 18rem;
+    height: 2rem;
+    border-radius: .35rem;
+    padding: .5rem;
+}
+
+select#sizeinput {
+    width: 10rem;
+    height: 3rem;
+    border-radius: .35rem;
+    padding: rem;
+}
+
+.toppingsChecklist label {
+    font-size: 1.2rem;
+}
+
+.toppingsChecklist p {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+#orderNotesInput {
+    width: calc(100% - 1.1rem);
+    min-height: 3rem;
+    border-radius: .35rem;
+    padding: .5rem;
+}
+
+th {
+    text-align: left;
+    min-width: 20vw;
+    padding-right: 1rem;
+}
+
+span {
+    font-size: 1.2rem;
+}
+
+#submit {
+    height: 3rem;
+    width: 12rem;
+    background-color: #d81833;
+    color: white;
+    font-size: 1.5rem;
+    border-radius: .35rem;
+    border: 0px solid transparent;
+    box-shadow: 3px 3px 0px black;
+
+}
+
+#submit:disabled {
+    background-color:#f07485;
+    color: black;
+}
+
+#submit:hover {
+    height: 3rem;
+    width: 12rem;
+    color: white;
+    font-size: 1.5rem;
+    border-radius: .35rem;
+    border: 0px solid transparent;   
+
+
+}
+
