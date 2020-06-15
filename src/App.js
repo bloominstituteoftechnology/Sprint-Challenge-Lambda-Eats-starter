@@ -14,13 +14,16 @@ const App = () => {
         <Button>Home</Button>
       </Link> 
     </Navbar>
-    <Route>
+    <Route exact path='/'>
       <Card>
         <CardImg></CardImg>
-        <Link>
+        <Link to={'/Pizza'}>
           <Button>Order Here</Button>
         </Link>
       </Card>
+    </Route>
+    <Route path='/Pizza'>
+      <OrderForm/>
     </Route>
 
       
