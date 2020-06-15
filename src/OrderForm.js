@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Form,Card,CardHeader,Dropdown,DropdownItem,DropdownMenu,FormGroup,Label,CardBody,Row,Col, DropdownToggle} from 'reactstrap'
+import {Form,Card, Button,CardHeader,Dropdown,DropdownItem,DropdownMenu,FormGroup,Label,CardBody,Row,Col, DropdownToggle} from 'reactstrap'
 import * as yup from 'yup';
 import Axios from 'axios'
 
@@ -8,7 +8,31 @@ const OrderForm = () => {
 
     const validate = (event) => {
         yup.reach(schema, event.target.name)
+            .validate(event.target.value)
+            .then( valid => {
+                setErrors({
+                    ...errors, [event.target.name]:''
+                })
+            })
+            .catch( errors => {
+                console.log(errors)
+                setErrors({...errors,
+                [event.target.name]:errors.errors[0]})
+            })
     }
+
+    const [errors,setErrors] = useState({
+        name:'',
+        size:'',
+        pepperoni:'',
+        chicken:'',
+        onion:'',        
+        peppers:'',
+        pineapple:'',
+        bacon:'',
+        tofu:'',   
+        special:''  
+    })
 
     const schema = yup.object().shape({
         name:yup.string().required('must include at least 2 characters').min(2),
@@ -19,7 +43,8 @@ const OrderForm = () => {
         peppers:yup.boolean(),
         pineapple:yup.boolean(),
         bacon:yup.boolean(),
-        tofu:yup.boolean(),        
+        tofu:yup.boolean(),  
+        special:yup.string()      
     })
 
     const [formdata, setFormdata] = useState({
@@ -32,6 +57,7 @@ const OrderForm = () => {
         pineapple:false,
         bacon:false,
         tofu:false,
+        special:''
     })
 
     const [dropdownOpen, setDropdownOpen]=useState(false)
@@ -42,12 +68,13 @@ const OrderForm = () => {
 
     const eventChange = (event) => {
         event.persist()
+        validate(event)
         setFormdata({...formdata,
-            [event.target.name]: event.target.type === 'checKbox'? event.target.checked: event.target.value
+            [event.target.name]: event.target.type === 'checkbox'? event.target.checked: event.target.value 
         })
     }
    
-    console.log(formdata)
+    console.log(errors)
     return(
     
     <Card>
@@ -55,11 +82,18 @@ const OrderForm = () => {
 
         </CardHeader>
         <CardBody>
-            <Form>
+            <Form onSubmit={(event) => {
+                event.preventDefault()
+                schema.validate(formdata)
+                Axios.post('https://reqres.in/api/users', formdata).then((resp) => {
+                    console.log('response data:', resp.data)
+                })
+            }}>
                 <FormGroup>
                     <input type='text' name='name' data-cy='name' value={formdata.name} onChange={eventChange} placeholder='Name here'></input>
+                    {errors.name.length > 0? <p style={{color:"red"}}>**{errors.name}</p>:null}
                     <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-                        <DropdownToggle caret>choose size</DropdownToggle>
+                        <DropdownToggle caret>{formdata.size === ''? 'choose size':formdata.size}</DropdownToggle>
                         <DropdownMenu>
                             <DropdownItem onClick={ () => {
                                 setFormdata({...formdata, size:'small'})
@@ -128,7 +162,13 @@ const OrderForm = () => {
                             Tofu
                         </Label>
                     </FormGroup>
+                    <Label check>
+                     Special Instructions  <br/>  
+                        <input name='special' type='text' onChange={eventChange} value={formdata.special}></input>
+                   
+                    </Label>
                 </FormGroup>
+                <Button>Done</Button>
             </Form>
         </CardBody>
     </Card>
