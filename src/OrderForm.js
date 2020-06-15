@@ -24,6 +24,9 @@ const OrderForm = () => {
     const [errors,setErrors] = useState({
         name:'',
         size:'',
+        red:'',
+        bbq:'',
+        white:'',
         pepperoni:'',
         chicken:'',
         onion:'',        
@@ -37,6 +40,9 @@ const OrderForm = () => {
     const schema = yup.object().shape({
         name:yup.string().required('must include at least 2 characters').min(2),
         size:yup.string().required('size required'),
+        red:yup.boolean(),
+        bbq:yup.boolean(),
+        white:yup.boolean(),
         pepperoni:yup.boolean(),
         chicken:yup.boolean(),
         onion:yup.boolean(),        
@@ -50,6 +56,9 @@ const OrderForm = () => {
     const [formdata, setFormdata] = useState({
         name:'',
         size:'',
+        red:false,
+        bbq:false,
+        white:false,
         pepperoni:false,
         chicken:false,
         onion:false,        
@@ -119,10 +128,30 @@ const OrderForm = () => {
                     </Dropdown>
                 </FormGroup>
                 <FormGroup>
+                <FormGroup>
+                        <Label>
+                            <input type ="checkbox" name='red' data-cy='red' value={formdata.red} onChange={eventChange}></input>
+                            Red
+                        </Label>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label>
+                            <input type ="checkbox" name='bbq' data-cy='bbq' value={formdata.bbq} onChange={eventChange}></input>
+                            BBQ
+                        </Label>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label>
+                            <input type ="checkbox" name='white' data-cy='white' value={formdata.white} onChange={eventChange}></input>
+                            White
+                        </Label>
+                    </FormGroup>
+                </FormGroup>
+                <FormGroup>
                     <h4>Toppings</h4>
                     <FormGroup>
                         <Label>
-                            <input type ="checkbox" name='pepperoni' data-cy='pepperoni' value={formdata.pepperoni} onChange={eventChange}></input>
+                            <input  type ="checkbox" name='pepperoni' data-cy='pepperoni' value={formdata.pepperoni} onChange={eventChange}></input>
                             Pepperoni
                         </Label>
                     </FormGroup>
@@ -146,7 +175,7 @@ const OrderForm = () => {
                     </FormGroup>
                     <FormGroup>
                         <Label>
-                            <input type ="checkbox" name='pineapple' data-cy='pineapple'value={formdata.pineapple} onChange={eventChange}></input>
+                            <input  type ="checkbox" name='pineapple' data-cy='pineapple'value={formdata.pineapple} onChange={eventChange}></input>
                             Pineapple
                         </Label>
                     </FormGroup>
@@ -168,7 +197,7 @@ const OrderForm = () => {
                    
                     </Label>
                 </FormGroup>
-                <Button>Done</Button>
+                <Button data-cy='submit'>Done</Button>
             </Form>
         </CardBody>
     </Card>
