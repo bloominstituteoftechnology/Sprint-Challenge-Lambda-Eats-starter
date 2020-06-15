@@ -147,6 +147,8 @@ const OrderForm = () => {
                         </Label>
                     </FormGroup>
                 </FormGroup>
+                
+                <Col>
                 <FormGroup>
                     <h4>Toppings</h4>
                     <FormGroup>
@@ -197,6 +199,7 @@ const OrderForm = () => {
                    
                     </Label>
                 </FormGroup>
+                </Col>
                 <Button data-cy='submit'>Done</Button>
             </Form>
         </CardBody>

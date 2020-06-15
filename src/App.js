@@ -16,7 +16,7 @@ const App = () => {
     </Navbar>
     <Route exact path='/'>
       <Card>
-        <CardImg></CardImg>
+        <CardImg src={require('./Pizza.jpg')}></CardImg>
         <Link to={'/Pizza'}>
           <Button>Order Here</Button>
         </Link>
