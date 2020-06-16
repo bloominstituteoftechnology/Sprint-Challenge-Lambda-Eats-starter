@@ -13,8 +13,16 @@ Demonstrate your understanding of this week's concepts by answering the followin
 Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
 1. In 1-2 sentences, explain what React's `useRouteMatch` hook is used for.
+
+The useRouteMatch hook matches the current URL in the same way a Route would. It’s useful for gaining access to the match data without actually rendering a Route.
+
 2. How would you explain form validation to someone who has never programmed before?
+
+Validation is what communicates to the user what type of information a form needs in order to function properly and keeps all other data from being entered that might break the code. It is also a good reminder if any required fields are left blank.
+
 3. In 1-2 sentences, define end to end testing.
+
+End to end testing ensures the code integrity is maintained between all the system components in an application from start to finish.
 
 You are expected to be able to answer all these questions. Your responses contribute to your Sprint Challenge grade. Skipping this section **will** prevent you from passing this challenge.
 
@@ -24,27 +32,27 @@ You are expected to be able to answer all these questions. Your responses contri
 
 Follow these steps to set up and work on your project:
 
-- [ ] Create a forked copy of this project.
-- [ ] Add your project manager as collaborator on Github.
-- [ ] Clone your OWN version of the repository (Not Lambda's by mistake!).
-- [ ] CD into the project base directory.
-- [ ] Download project dependencies by running `npm install`
-- [ ] Start up the app using `npm start`
-- [ ] Create a new branch: git checkout -b `<firstName-lastName>`. Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly.
-- [ ] Push commits: git push origin `<firstName-lastName>`.
+- [X] Create a forked copy of this project.
+- [X] Add your project manager as collaborator on Github.
+- [X] Clone your OWN version of the repository (Not Lambda's by mistake!).
+- [X] CD into the project base directory.
+- [X] Download project dependencies by running `npm install`
+- [X] Start up the app using `npm start`
+- [X] Create a new branch: git checkout -b `<firstName-lastName>`. Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly.
+- [X] Push commits: git push origin `<firstName-lastName>`.
 
 ### Task 2: Minimum Viable Product
 
 Your MVP should include, at a minimum, the following components.
 
-- [ ] A homepage that has a "/" route and links to your form (button, nav bar, or any other type of link is acceptable)
-- [ ] A form with a "/pizza" route
-- [ ] A name text input field
-- [ ] Validation for name - name must be at least 2 characters
-- [ ] Dropdown form component for pizza size
-- [ ] Checklist form component for toppings - at least 4 (hint: name each separately!)
-- [ ] Text input form component for special instructions
-- [ ] An Add to Order button that submits form and returns a database record of name, pizza size, sauce, and special instructions
+- [X] A homepage that has a "/" route and links to your form (button, nav bar, or any other type of link is acceptable)
+- [X] A form with a "/pizza" route
+- [X] A name text input field
+- [X] Validation for name - name must be at least 2 characters
+- [X] Dropdown form component for pizza size
+- [X] Checklist form component for toppings - at least 4 (hint: name each separately!)
+- [X] Text input form component for special instructions
+- [X] An Add to Order button that submits form and returns a database record of name, pizza size, sauce, and special instructions
 
 #### Testing MVP
 
