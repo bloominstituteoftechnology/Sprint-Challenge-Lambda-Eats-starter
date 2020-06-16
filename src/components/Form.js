@@ -165,7 +165,7 @@ const Form = (props) => {
               onChange={inputChange} />
             </label><br></br>
             <label htmlFor="topping2">
-              Ham
+              Ham 
               <input
               id="topping2"
               type="checkbox"
@@ -204,7 +204,7 @@ const Form = (props) => {
             <Toggle name="toggle" value={pizza.toggle} onChange={inputChange} />
             Gluten-Free Crust (+$100)
             <pre>{JSON.stringify(post, null, 2)}</pre>        
-            <button id="submitter" className = 'submit-btn' disable={buttonDisabled}>Add to Order</button>
+            <button id="submitter" className = 'submit-btn' disable={buttonDisabled}>Place Order</button>
           </form>
     ); //end of returns
     

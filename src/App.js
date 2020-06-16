@@ -8,11 +8,11 @@ const App = () => {
     <div className="app">
     <Router>
       <div className = 'header'>
-          <h1 className = 'site-name'>Lambda Eats</h1>
-          
+          <h1 className = 'site-name'>Lambda Pizza</h1>
+          <img src={require('./img/usethis.jpg')}/>
           <button><Link to="/">Home</Link></button>
           <Route exact path="/" />
-          <button><Link to="/pizza">Take Me To Pizza</Link></button>
+          <button><Link to="/pizza">Place Order!</Link></button>
           <br></br>
           <Route path="/pizza" component={Form} />
       </div>
