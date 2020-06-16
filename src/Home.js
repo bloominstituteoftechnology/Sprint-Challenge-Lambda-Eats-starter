@@ -1,4 +1,5 @@
 import React from 'react';
+import * as yup from 'yup';
 
 export default function Home(props){
     return(

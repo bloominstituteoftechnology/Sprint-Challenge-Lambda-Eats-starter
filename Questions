@@ -1,0 +1,8 @@
+In 1-2 sentences, explain what React's useRouteMatch hook is used for.
+    useRouteMatch is used so whenever you use route you can use it's match attribute to check if the URL matches the current Route. Very useful, because of it's added functionality.
+
+How would you explain form validation to someone who has never programmed before?
+    Form validation is just the process that you code in so the page checks certain things while the user is trying to fill out the form such as validating if they actually entered and email or their password is long enough etc.
+
+In 1-2 sentences, define end to end testing.
+    End to end testing is used to mimic a user's input and checking if everything checks out. Used for user experience, accessibility, quality control and quality assurance.

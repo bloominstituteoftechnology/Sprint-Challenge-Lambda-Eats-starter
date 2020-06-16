@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import * as yup from 'yup';
 
 export default function Form(props){
     const [formState, setFormState] = useState({
@@ -8,14 +9,19 @@ export default function Form(props){
         toppings : [],
         special_instructions: ''
     })
+    let toppingArray = [];
     const inputChange = e => {
-        setFormState({...formState, [e.target.name]: e.target.value});
-        if(e.target.type === "checkbox"){
-            setFormState({...formState, toppings : e.target.name})
+        e.persist();
+        if(e.target.type === 'checkbox'){
+            formState.toppings.push(e.target.value);
+        }else{
+            setFormState({...formState, [e.target.name]: e.target.value});
         }
+        validation(e);
     }
     const formSubmit = e => {
         e.preventDefault();
+        setFormState({...formState, toppings : toppingArray})
         axios
         .post('https://reqres.in/api/users', formState)
         .then(res => {
@@ -23,24 +29,109 @@ export default function Form(props){
         setFormState({
             name: '',
             size: '',
-            toppings : '',
-            special_instructions: ''
+            toppings : [],
+            special_instructions: '',
+            })
         })
-        })
+    }
+    const [errors, setErrors] = useState({
+        name: '',
+        size: '',
+        toppings : [],
+        special_instructions: '',
+    })
+    const formSchema = yup.object().shape({
+        name : yup
+            .string()
+            .required('Need to Have a name with more than 2 characters.'),
+        size : yup
+            .string()
+            .oneOf(['S', 'M', 'L']),
+        toppings : yup
+            .min(1),
+        special_instructions : yup
+            .string()
+    })
+    const validation = e => {
+        yup
+            .reach(formSchema, e.target.name)
+            .validate(e.target.name === "terms" ? e.target.checked : e.target.value)
+            .then(inputIsValid => {
+                setErrors({
+                    ...errors,
+                    [e.target.name]: ''
+                });
+            })
+            .catch(err => {
+                console.log(e.target.name)
+                setErrors({
+                    ...errors, 
+                    [e.target.name]: err.errors[0]
+                })
+            })
     }
     const [post, setPost] = useState([]); 
     return(
         <div>
             <h1>Build Your Own Pizza</h1>
             <form onSubmit={formSubmit}>
-                <h2>Toppings</h2>
-                <label htmlFor="pepperoni">Pepperoni
-                    <input 
-                    type="checkbox"
-                    name="pepperoni"
-                    id="pepperoni"
+                <label htmlFor='name'>
+                    <input
+                    type='text'
+                    name='name'
+                    cy-data='name'
+                    id='name'
+                    placeholder='Enter your name'
+                    value={formState.name} 
                     onChange={inputChange} />
                 </label>
+                <select
+                onChange={inputChange}
+                value={formState.size}
+                name="size">Pizza Size
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+                </select>
+                <br/>
+                <h2>Toppings</h2>
+                <label>Pepperoni
+                    <input 
+                    type='checkbox'
+                    cy-data='pepperoni'
+                    name='pepperoni'
+                    value='pepperoni'
+                    onChange={inputChange} />
+                </label>
+                <br/>
+                <label>Sausage
+                    <input 
+                    type='checkbox'
+                    cy-data='sausage'
+                    name='sausage'
+                    value='sausage'
+                    onChange={inputChange} />
+                </label>
+                <br/>
+                <label>Olives
+                    <input 
+                    type='checkbox'
+                    cy-data='olives'
+                    name='olives'
+                    value='olives'
+                    onChange={inputChange} />
+                </label>
+                <br/>
+                <label>None (Just Cheese)
+                    <input 
+                    type='checkbox'
+                    cy-data='none'
+                    name='none'
+                    value='none'
+                    onChange={inputChange} />
+                </label>
+                <br/>
+                {errors.toppings.length > 0 ? <p className="error">{errors.toppings}</p> : null}
                 <h3>Additional Instructions</h3>
                 <textarea
                 placeholder="Any additional instructions? Add them here:"
@@ -48,7 +139,7 @@ export default function Form(props){
                 name="special_instructions"
                 value={formState.special_instructions}></textarea>
                 <br/>
-                <button type='submit'>Add to Order</button>
+                <button type='submit' cy-data='submit'>Add to Order</button>
                 <pre>{JSON.stringify(post, null, 2)}</pre>
             </form>
         </div>
