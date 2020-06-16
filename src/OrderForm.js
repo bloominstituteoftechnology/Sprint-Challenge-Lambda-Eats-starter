@@ -6,11 +6,16 @@ import * as yup from 'yup';
 const OrderForm = () => {
     const [DropDownOpen, setDropDownOpen] = useState(false);
     const toggle = () => setDropDownOpen((prevState) => !prevState);
+    const [post, setPost] = useState([]);
     const [formData, setFormData] = useState({
         name: '',
         size: '',
         sauce: '',
-        meat: '',
+        pepperoni: false,
+        sausage: false,
+        cbacon: false,
+        spicy: false,
+        chicken: false,
         onions: false,
         greenPepper: false,
         tomato: false,
@@ -26,8 +31,12 @@ const OrderForm = () => {
     const formSchema = yup.object().shape({
         name: yup.string().required(),
         size: yup.string().required(),
-        sauce: yup.string().required(),
-        meat: yup.string().required(),
+        sauce: yup.string(),
+        pepperoni: yup.boolean(),
+        sausage: yup.boolean(),
+        cbacon: yup.boolean(),
+        spicy: yup.boolean(),
+        chicken: yup.boolean(),
         onions: yup.boolean(),
         greenPepper: yup.boolean(),
         tomato: yup.boolean(),
@@ -41,12 +50,32 @@ const OrderForm = () => {
     });
     const submit = () => {
         formSchema.validate(formData)
-            .then(() => {
-                axios.post('https://reqres.in/api/users', formData)
-                    .then((res) => {
-                        console.log('This is your order post', res.data)
-                    })
+        axios.post('https://reqres.in/api/users', formData)
+            .then((res) => {
+                setPost(res.data);
+                console.log('This is your order post', res.data)
+                setFormData({
+                    name: '',
+                    size: '',
+                    sauce: '',
+                    pepperoni: false,
+                    sausage: false,
+                    cbacon: false,
+                    spicy: false,
+                    chicken: false,
+                    onions: false,
+                    greenPepper: false,
+                    tomato: false,
+                    bolives: false,
+                    garlic: false,
+                    hearts: false,
+                    pineApple: false,
+                    tcheese: false,
+                    xcheese: false,
+                    special: ''
+                });
             })
+
     }
 
     const onInputChange = (e) => {
@@ -66,10 +95,13 @@ const OrderForm = () => {
             <Card style={{ width: '80%', margin: '0 auto' }}>
                 <CardImg src={require('./Pizza.jpg')} />
             </Card>
-            <Form onSubmit={(e) => {
-                e.preventDefault();
-                submit();
-            }}
+            <Form
+                data-cy='submit'
+                onSubmit={(e) => {
+                    e.preventDefault();
+
+                    submit(post);
+                }}
                 style={{ margin: '5%' }}>
                 <FormGroup>
                     <legend>
@@ -171,11 +203,11 @@ const OrderForm = () => {
                         <FormGroup check>
                             <label check>
                                 <input
-                                    type='radio'
-                                    name='meat'
-                                    data-cy='name'
-                                    value='pepperoni'
-                                    onChange={onInputChange} />
+                                    type='checkbox'
+                                    name='pepperoni'
+                                    data-cy='checkboxmeat1'
+                                    checked={formData.pepperoni}
+                                    onChange={handleToppings} />
                                 Pepperoni
 
                         </label>
@@ -183,11 +215,11 @@ const OrderForm = () => {
                         <FormGroup check>
                             <label check>
                                 <input
-                                    type='radio'
-                                    name='meat'
-                                    data-cy='name'
-                                    value='sausage'
-                                    onChange={onInputChange} />
+                                    type='checkbox'
+                                    name='sausage'
+                                    data-cy='checkboxmeat2'
+                                    checked={formData.sausage}
+                                    onChange={handleToppings} />
                                 Sausage
 
                         </label>
@@ -195,11 +227,11 @@ const OrderForm = () => {
                         <FormGroup check>
                             <label check>
                                 <input
-                                    type='radio'
-                                    name='meat'
-                                    data-cy='name'
-                                    value='cbacon'
-                                    onChange={onInputChange} />
+                                    type='checkbox'
+                                    name='cbacon'
+                                    data-cy='checkboxmeat3'
+                                    checked={formData.cbacon}
+                                    onChange={handleToppings} />
                                 Canadian Bacon
 
                         </label>
@@ -207,11 +239,11 @@ const OrderForm = () => {
                         <FormGroup check>
                             <label check>
                                 <input
-                                    type='radio'
-                                    name='meat'
-                                    data-cy='name'
-                                    value='spicy'
-                                    onChange={onInputChange} />
+                                    type='checkbox'
+                                    name='spicy'
+                                    data-cy='checkboxmeat4'
+                                    checked={formData.spicy}
+                                    onChange={handleToppings} />
                                 Spicy Italian Sausage
 
                         </label>
@@ -219,11 +251,11 @@ const OrderForm = () => {
                         <FormGroup check>
                             <label check>
                                 <input
-                                    type='radio'
-                                    name='meat'
-                                    data-cy='name'
-                                    value='chicken'
-                                    onChange={onInputChange} />
+                                    type='checkbox'
+                                    name='chicken'
+                                    data-cy='checkboxmeat5'
+                                    checked={formData.chicken}
+                                    onChange={handleToppings} />
                                 Grilled Chicken
 
                         </label>
@@ -247,7 +279,7 @@ const OrderForm = () => {
                         <label check>
                             <input
                                 type='checkbox'
-                                name='greePepper'
+                                name='greenPepper'
                                 data-cy='checkbox2'
                                 checked={formData.greenPepper}
                                 onChange={handleToppings} />
@@ -336,8 +368,9 @@ const OrderForm = () => {
                         <input type='textarea' name='special' value={formData.special}
                             onChange={onInputChange} />
                     </FormGroup>
-                    <Button data-cy='sumbit'>Add to Order</Button>
+                    <Button>Add to Order</Button>
                 </FormGroup>
+                <pre>{JSON.stringify(post, null, 2)}</pre>
 
             </Form >
 
