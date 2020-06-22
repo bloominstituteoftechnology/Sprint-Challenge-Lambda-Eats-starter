@@ -7,17 +7,12 @@ import Home from './Home';
 const App = () => {
   return (
       <Switch>
-
         <Route exact path='/'>
-          <Home />
-          
+          <Home /> 
         </Route>
-        
-
         <Route path='/pizza'>
           <Form />
         </Route>
-
       </Switch> 
   );
 };

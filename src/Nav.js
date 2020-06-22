@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom';
 
 const Nav = () => {
 
+const getHelp = () => {
+    alert('call 1-800-123-4567')
+}
+
 return (
 <>
-<header className='header'>
-        <h1>Food For Days</h1>
-    </header>
+
     
     <nav className="top-nav">
         <div className='nav-left'>
@@ -15,7 +17,7 @@ return (
         </div>
         <div className='nav-buttons'>
             <div><Link to='/'>Home</Link></div>
-            <div>Help</div>
+            <div id='help' onClick={getHelp}>Help</div>
         </div>        
     </nav>
 </>);

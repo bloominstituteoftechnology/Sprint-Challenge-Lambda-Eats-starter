@@ -250,22 +250,20 @@ const Form = () => {
 
                 <div className='form-footer'>
                     <div>
-                    <label htmlFor='instructions'>
-                        Special Instructions:&nbsp;<br/>
-                        <textarea id='instructions' name='instructions' type='text' />
-                    </label>
+                        <label htmlFor='instructions'>
+                            Special Instructions:&nbsp;<br/>
+                            <textarea id='instructions' name='instructions' type='text' onChange={updateInputs} />
+                        </label>
                     </div>
                     <div>
-                    <button type='submit' data-cy="order" >Order</button> 
-                    <pre>{JSON.stringify(formPost, null, 2)}</pre> 
-
+                        <button type='submit' data-cy="order" >Order</button> 
+                        <pre>{JSON.stringify(formPost, null, 2)}</pre> 
                     </div>
                     
 
                     
-                </div>
-                
-                </form>
+                </div>  
+            </form>
     </div>
 </div>
             

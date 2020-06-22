@@ -1,6 +1,6 @@
 describe('Testing Form Functionality', function() {
     beforeEach(() => {
-        cy.visit('http://localhost:3000/pizza');
+        cy.visit('http://localhost:3001/pizza');
     });
     it('Typing into name field', function() {
         cy.get('[data-cy="name"]')
