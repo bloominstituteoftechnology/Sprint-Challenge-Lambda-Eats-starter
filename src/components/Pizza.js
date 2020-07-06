@@ -4,7 +4,7 @@ import axios from 'axios';
 
 function Pizza() {
     const [post, setPost] = useState({});
-    const initialState = {size: "", sauce: "", toppings: "" };
+    const initialState = {size: "", sauce: "", toppings: [] };
     const [pizza, setPizza] = useState(initialState);
 
     const [errors, setErrors] = useState(initialState);
