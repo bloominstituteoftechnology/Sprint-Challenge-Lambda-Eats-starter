@@ -4,7 +4,7 @@ import axios from 'axios';
 
 function Pizza() {
     const [post, setPost] = useState({});
-    const initialState = {size: "", sauce: "", toppings: [] };
+    const initialState = {size: "", sauce: false };
     const [pizza, setPizza] = useState(initialState);
 
     const [errors, setErrors] = useState(initialState);
@@ -12,7 +12,20 @@ function Pizza() {
     const formSchema = yup.object().shape({
         size: yup.mixed().required("Size is required"),
         sauce: yup.mixed().required("Sauce is required"),
-        toppings: yup.array().max(10, "Maximum 10 items")
+        pepperoni: yup.boolean(),
+        tomatoes: yup.boolean(),
+        sausage: yup.boolean(),
+        olives: yup.boolean(),
+        canadian: yup.boolean(),
+        garlic: yup.boolean(),
+        artichoke: yup.boolean(),
+        'spicy sausage': yup.boolean(),
+        chicken: yup.boolean(),
+        '3 cheese': yup.boolean(),
+        onions: yup.boolean(),
+        pineapple: yup.boolean(),
+        'g pep': yup.boolean(),
+        'x cheese': yup.boolean()
     });
 
     useEffect(() => {
@@ -96,21 +109,21 @@ function Pizza() {
                 <p>Choose up to 10</p>
             </div>
             <div className="check">
-                <label><input type="checkbox" id="pepperoni" name="toppings[]" value="pepperoni" onChange={handleChange} />Pepperoni</label>
-                <label><input type="checkbox" id="tomatoes" name="toppings[]" value="tomatoes" onChange={handleChange} />Diced Tomatoes</label>
-                <label><input type="checkbox" id="sausage" name="toppings[]" value="sausage" onChange={handleChange} />Sausage</label>
-                <label><input type="checkbox" id="olives" name="toppings[]" value="olives" onChange={handleChange} />Black Olives</label>
-                <label><input type="checkbox" id="canadian" name="toppings[]" value="canadian" onChange={handleChange} />Canadian Bacon</label>
-                <label><input type="checkbox" id="garlic" name="toppings[]" value="garlic" onChange={handleChange} />Roasted Garlic</label>
-                <label><input type="checkbox" id="spicy sausage" name="toppings[]" value="spicy sausage" onChange={handleChange} />Spicy Italian Sausage</label>
-                <label><input type="checkbox" id="artichoke" name="toppings[]" value="artichoke" onChange={handleChange} />Artichoke Hearts</label>
-                <label><input type="checkbox" id="chicken" name="toppings[]" value="chicken" onChange={handleChange} />Grilled Chicken</label>
-                <label><input type="checkbox" id="3 cheese" name="toppings[]" value="3 cheese" onChange={handleChange} />Three Cheese</label>
-                <label><input type="checkbox" id="onions" name="toppings[]" value="onions" onChange={handleChange} />Onions</label>
-                <label><input type="checkbox" id="pineapple" name="toppings[]" value="pineapple" onChange={handleChange} />Pineapple</label>
-                <label><input type="checkbox" id="g pep" name="toppings[]" value="g pep" onChange={handleChange} />Green Pepper</label>
-                <label><input type="checkbox" id="x cheese" name="toppings[]" value="x cheese" onChange={handleChange} />Extra Cheese</label>
-                {errors.toppings.length > 0 ? <p className="error">{errors.toppings}</p> : null}
+                <label><input type="checkbox" id="pepperoni" name="pepperoni" value="pepperoni" onChange={handleChange} />Pepperoni</label>
+                <label><input type="checkbox" id="tomatoes" name="tomatoes" value="tomatoes" onChange={handleChange} />Diced Tomatoes</label>
+                <label><input type="checkbox" id="sausage" name="sausage" value="sausage" onChange={handleChange} />Sausage</label>
+                <label><input type="checkbox" id="olives" name="olives" value="olives" onChange={handleChange} />Black Olives</label>
+                <label><input type="checkbox" id="canadian" name="canadian" value="canadian" onChange={handleChange} />Canadian Bacon</label>
+                <label><input type="checkbox" id="garlic" name="garlic" value="garlic" onChange={handleChange} />Roasted Garlic</label>
+                <label><input type="checkbox" id="spicy sausage" name="spicy sausage" value="spicy sausage" onChange={handleChange} />Spicy Italian Sausage</label>
+                <label><input type="checkbox" id="artichoke" name="artichoke" value="artichoke" onChange={handleChange} />Artichoke Hearts</label>
+                <label><input type="checkbox" id="chicken" name="chicken" value="chicken" onChange={handleChange} />Grilled Chicken</label>
+                <label><input type="checkbox" id="3 cheese" name="3 cheese" value="3 cheese" onChange={handleChange} />Three Cheese</label>
+                <label><input type="checkbox" id="onions" name="onions" value="onions" onChange={handleChange} />Onions</label>
+                <label><input type="checkbox" id="pineapple" name="pineapple" value="pineapple" onChange={handleChange} />Pineapple</label>
+                <label><input type="checkbox" id="g pep" name="g pep" value="g pep" onChange={handleChange} />Green Pepper</label>
+                <label><input type="checkbox" id="x cheese" name="x cheese" value="x cheese" onChange={handleChange} />Extra Cheese</label>
+                {/* {errors.toppings.length > 0 ? <p className="error">{errors.toppings}</p> : null} */}
             </div>
             <div className="header">
                 <h2>Choice of Substitute</h2>
@@ -126,7 +139,6 @@ function Pizza() {
                     <br /><br /><hr />
         <button type="submit" onChange={handleSubmit}>Add to Order</button>
         <br /><br />
-        console.log(errors);
         <pre>{JSON.stringify(post, null, 2)}</pre>
         </form>
 
